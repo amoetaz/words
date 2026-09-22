@@ -79,11 +79,18 @@ fun WordDetailScreen(
                                     containerColor = MaterialTheme.colorScheme.surfaceVariant
                                 )
                             ) {
-                                Text(
-                                    text = "\"$example\"",
-                                    modifier = Modifier.padding(12.dp),
-                                    style = MaterialTheme.typography.bodyMedium
-                                )
+                                Column(modifier = Modifier.padding(12.dp)) {
+                                    Text(
+                                        text = example.english,
+                                        style = MaterialTheme.typography.bodyLarge
+                                    )
+                                    Spacer(modifier = Modifier.height(4.dp))
+                                    Text(
+                                        text = example.arabic,
+                                        style = MaterialTheme.typography.bodyMedium,
+                                        color = MaterialTheme.colorScheme.onSurfaceVariant
+                                    )
+                                }
                             }
                         }
                     }

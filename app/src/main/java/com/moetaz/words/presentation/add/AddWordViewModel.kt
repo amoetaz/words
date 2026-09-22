@@ -2,6 +2,7 @@ package com.moetaz.words.presentation.add
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.moetaz.words.domain.model.Example
 import com.moetaz.words.domain.model.Word
 import com.moetaz.words.domain.usecase.AddWordUseCase
 import kotlinx.coroutines.flow.*
@@ -24,16 +25,21 @@ class AddWordViewModel(
                 newList[intent.index] = intent.translation
                 _state.update { it.copy(translations = newList) }
             }
-            is AddWordIntent.OnExampleChanged -> {
+            is AddWordIntent.OnExampleEnglishChanged -> {
                 val newList = _state.value.examples.toMutableList()
-                newList[intent.index] = intent.example
+                newList[intent.index] = newList[intent.index].copy(english = intent.english)
+                _state.update { it.copy(examples = newList) }
+            }
+            is AddWordIntent.OnExampleArabicChanged -> {
+                val newList = _state.value.examples.toMutableList()
+                newList[intent.index] = newList[intent.index].copy(arabic = intent.arabic)
                 _state.update { it.copy(examples = newList) }
             }
             is AddWordIntent.AddTranslationField -> {
                 _state.update { it.copy(translations = it.translations + "") }
             }
             is AddWordIntent.AddExampleField -> {
-                _state.update { it.copy(examples = it.examples + "") }
+                _state.update { it.copy(examples = it.examples + Example("", "")) }
             }
             is AddWordIntent.SaveWord -> saveWord()
         }
@@ -52,7 +58,7 @@ class AddWordViewModel(
                 val word = Word(
                     word = currentState.word,
                     translations = currentState.translations.filter { it.isNotBlank() },
-                    examples = currentState.examples.filter { it.isNotBlank() }
+                    examples = currentState.examples.filter { it.english.isNotBlank() || it.arabic.isNotBlank() }
                 )
                 addWordUseCase(word)
                 _state.update { it.copy(isSaving = false, isSaved = true) }

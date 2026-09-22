@@ -39,6 +39,13 @@ android {
     buildFeatures {
         compose = true
     }
+    sourceSets {
+        getByName("main") {
+            assets {
+                srcDirs("src\\main\\assets", "src\\main\\assets")
+            }
+        }
+    }
 }
 
 dependencies {
@@ -77,6 +84,9 @@ dependencies {
     implementation(libs.androidx.glance.material3)
 
     testImplementation(libs.junit)
+    testImplementation(libs.kotlinx.coroutines.test)
+    testImplementation(libs.turbine)
+    testImplementation(libs.mockk)
     androidTestImplementation(platform(libs.androidx.compose.bom))
     androidTestImplementation(libs.androidx.compose.ui.test.junit4)
     androidTestImplementation(libs.androidx.espresso.core)

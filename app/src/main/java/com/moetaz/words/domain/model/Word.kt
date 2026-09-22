@@ -4,5 +4,5 @@ data class Word(
     val id: Long = 0,
     val word: String,
     val translations: List<String>,
-    val examples: List<String>
+    val examples: List<Example>
 )

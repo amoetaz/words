@@ -74,14 +74,24 @@ fun AddWordScreen(
 
             Text("Example Sentences", style = MaterialTheme.typography.titleMedium)
             state.examples.forEachIndexed { index, example ->
-                TextField(
-                    value = example,
-                    onValueChange = {
-                        viewModel.handleIntent(AddWordIntent.OnExampleChanged(index, it))
-                    },
-                    label = { Text("Example ${index + 1}") },
-                    modifier = Modifier.fillMaxWidth()
-                )
+                Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
+                    TextField(
+                        value = example.english,
+                        onValueChange = {
+                            viewModel.handleIntent(AddWordIntent.OnExampleEnglishChanged(index, it))
+                        },
+                        label = { Text("Example (English) ${index + 1}") },
+                        modifier = Modifier.fillMaxWidth()
+                    )
+                    TextField(
+                        value = example.arabic,
+                        onValueChange = {
+                            viewModel.handleIntent(AddWordIntent.OnExampleArabicChanged(index, it))
+                        },
+                        label = { Text("Example (Arabic) ${index + 1}") },
+                        modifier = Modifier.fillMaxWidth()
+                    )
+                }
             }
             TextButton(onClick = { viewModel.handleIntent(AddWordIntent.AddExampleField) }) {
                 Icon(Icons.Default.Add, contentDescription = null)
