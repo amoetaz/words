@@ -6,23 +6,38 @@ import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 
 class Converters {
+    private val json = Json { ignoreUnknownKeys = true }
+
     @TypeConverter
     fun fromStringList(value: List<String>): String {
-        return Json.encodeToString(value)
+        return json.encodeToString(value)
     }
 
     @TypeConverter
     fun toStringList(value: String): List<String> {
-        return Json.decodeFromString(value)
+        return try {
+            json.decodeFromString<List<String>>(value)
+        } catch (_: Exception) {
+            emptyList()
+        }
     }
 
     @TypeConverter
     fun fromExampleList(value: List<Example>): String {
-        return Json.encodeToString(value)
+        return json.encodeToString(value)
     }
 
     @TypeConverter
     fun toExampleList(value: String): List<Example> {
-        return Json.decodeFromString(value)
+        return try {
+            json.decodeFromString<List<Example>>(value)
+        } catch (_: Exception) {
+            try {
+                json.decodeFromString<List<String>>(value).map { Example(english = it, arabic = "") }
+            } catch (_: Exception) {
+                emptyList()
+            }
+        }
     }
 }
+
