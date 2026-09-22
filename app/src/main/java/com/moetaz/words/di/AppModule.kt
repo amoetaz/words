@@ -1,6 +1,9 @@
 package com.moetaz.words.di
 
 import androidx.room.Room
+import androidx.room.RoomDatabase
+import androidx.sqlite.db.SupportSQLiteDatabase
+import com.moetaz.words.data.local.database.DatabaseInitializer
 import com.moetaz.words.data.local.database.WordDatabase
 import com.moetaz.words.data.repository.WordRepositoryImpl
 import com.moetaz.words.domain.repository.WordRepository
@@ -10,20 +13,34 @@ import com.moetaz.words.domain.usecase.GetWordsUseCase
 import com.moetaz.words.presentation.add.AddWordViewModel
 import com.moetaz.words.presentation.detail.WordDetailViewModel
 import com.moetaz.words.presentation.list.WordListViewModel
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import org.koin.android.ext.koin.androidContext
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
 val appModule = module {
     single {
+        val context = androidContext()
         Room.databaseBuilder(
-            androidContext(),
+            context,
             WordDatabase::class.java,
             "word_db"
-        ).build()
+        )
+            .addCallback(object : RoomDatabase.Callback() {
+                override fun onCreate(db: SupportSQLiteDatabase) {
+                    super.onCreate(db)
+                    val dao = get<WordDatabase>().wordDao()
+                    CoroutineScope(Dispatchers.IO).launch {
+                        DatabaseInitializer.populateIfEmpty(context, dao)
+                    }
+                }
+            })
+            .build()
     }
     single { get<WordDatabase>().wordDao() }
-    single<WordRepository> { WordRepositoryImpl(get()) }
+    single<WordRepository> { WordRepositoryImpl(get(), androidContext()) }
     single { GetWordsUseCase(get()) }
     single { GetWordByIdUseCase(get()) }
     single { AddWordUseCase(get()) }

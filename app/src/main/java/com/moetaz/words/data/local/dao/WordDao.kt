@@ -18,6 +18,9 @@ interface WordDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertWord(word: WordEntity)
 
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertWords(words: List<WordEntity>)
+
     @Delete
     suspend fun deleteWord(word: WordEntity)
 }
