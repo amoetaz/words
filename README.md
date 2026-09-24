@@ -77,7 +77,7 @@ Clone the repository and build the project using Gradle:
 
 ```bash
 # Clone the repository
-git clone https://github.com/your-username/Words.git
+git clone https://github.com/amoetaz/Words.git
 cd Words
 
 # Build Debug APK
