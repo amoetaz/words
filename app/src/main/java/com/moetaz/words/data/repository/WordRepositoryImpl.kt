@@ -2,9 +2,9 @@ package com.moetaz.words.data.repository
 
 import android.content.Context
 import com.moetaz.words.data.local.dao.WordDao
-import com.moetaz.words.data.local.database.DatabaseInitializer
 import com.moetaz.words.data.local.entity.WordEntity
 import com.moetaz.words.domain.model.Word
+import com.moetaz.words.domain.model.WordMasteryStatus
 import com.moetaz.words.domain.repository.WordRepository
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -24,6 +24,7 @@ class WordRepositoryImpl(
             }
         }
     }
+
     override fun getWords(): Flow<List<Word>> {
         return dao.getWords().map { entities ->
             entities.map { it.toWord() }
@@ -40,5 +41,13 @@ class WordRepositoryImpl(
 
     override suspend fun deleteWord(word: Word) {
         dao.deleteWord(WordEntity.fromWord(word))
+    }
+
+    override suspend fun toggleFavorite(id: Long, isFavorite: Boolean) {
+        dao.updateFavorite(id, isFavorite)
+    }
+
+    override suspend fun updateMasteryStatus(id: Long, status: WordMasteryStatus) {
+        dao.updateMasteryStatus(id, status)
     }
 }

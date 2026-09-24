@@ -2,12 +2,14 @@ package com.moetaz.words.presentation.detail
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.moetaz.words.domain.repository.WordRepository
 import com.moetaz.words.domain.usecase.GetWordByIdUseCase
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 
 class WordDetailViewModel(
-    private val getWordByIdUseCase: GetWordByIdUseCase
+    private val getWordByIdUseCase: GetWordByIdUseCase,
+    private val repository: WordRepository? = null
 ) : ViewModel() {
 
     private val _state = MutableStateFlow(WordDetailState())
@@ -16,6 +18,18 @@ class WordDetailViewModel(
     fun handleIntent(intent: WordDetailIntent) {
         when (intent) {
             is WordDetailIntent.LoadWord -> loadWord(intent.id)
+            is WordDetailIntent.ToggleFavorite -> {
+                val currentWord = _state.value.word ?: return
+                viewModelScope.launch {
+                    repository?.toggleFavorite(currentWord.id, intent.isFavorite)
+                }
+            }
+            is WordDetailIntent.UpdateMasteryStatus -> {
+                val currentWord = _state.value.word ?: return
+                viewModelScope.launch {
+                    repository?.updateMasteryStatus(currentWord.id, intent.status)
+                }
+            }
         }
     }
 

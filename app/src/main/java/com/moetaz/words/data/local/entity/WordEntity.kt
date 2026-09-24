@@ -4,6 +4,7 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.moetaz.words.domain.model.Example
 import com.moetaz.words.domain.model.Word
+import com.moetaz.words.domain.model.WordMasteryStatus
 
 @Entity(tableName = "words")
 data class WordEntity(
@@ -13,7 +14,9 @@ data class WordEntity(
     val translations: List<String> = emptyList(),
     val examples: List<Example> = emptyList(),
     val phonetic: String? = null,
-    val definition: String? = null
+    val definition: String? = null,
+    val masteryStatus: WordMasteryStatus = WordMasteryStatus.LEARNING,
+    val isFavorite: Boolean = false
 ) {
     fun toWord(): Word = Word(
         id = id,
@@ -21,7 +24,9 @@ data class WordEntity(
         translations = translations,
         examples = examples,
         phonetic = phonetic,
-        definition = definition
+        definition = definition,
+        masteryStatus = masteryStatus,
+        isFavorite = isFavorite
     )
 
     companion object {
@@ -31,7 +36,9 @@ data class WordEntity(
             translations = word.translations,
             examples = word.examples,
             phonetic = word.phonetic,
-            definition = word.definition
+            definition = word.definition,
+            masteryStatus = word.masteryStatus,
+            isFavorite = word.isFavorite
         )
     }
 }

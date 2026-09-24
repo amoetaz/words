@@ -1,9 +1,12 @@
 package com.moetaz.words.presentation.detail
 
 import com.moetaz.words.domain.model.Word
+import com.moetaz.words.domain.model.WordMasteryStatus
 
 sealed interface WordDetailIntent {
     data class LoadWord(val id: Long) : WordDetailIntent
+    data class ToggleFavorite(val isFavorite: Boolean) : WordDetailIntent
+    data class UpdateMasteryStatus(val status: WordMasteryStatus) : WordDetailIntent
 }
 
 data class WordDetailState(

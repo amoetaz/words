@@ -5,6 +5,7 @@ import androidx.room.RoomDatabase
 import androidx.sqlite.db.SupportSQLiteDatabase
 import com.moetaz.words.data.local.database.DatabaseInitializer
 import com.moetaz.words.data.local.database.MIGRATION_1_2
+import com.moetaz.words.data.local.database.MIGRATION_2_3
 import com.moetaz.words.data.local.database.WordDatabase
 import com.moetaz.words.data.repository.WordRepositoryImpl
 import com.moetaz.words.domain.repository.WordRepository
@@ -13,7 +14,9 @@ import com.moetaz.words.domain.usecase.GetWordByIdUseCase
 import com.moetaz.words.domain.usecase.GetWordsUseCase
 import com.moetaz.words.presentation.add.AddWordViewModel
 import com.moetaz.words.presentation.detail.WordDetailViewModel
+import com.moetaz.words.presentation.flashcards.FlashcardsViewModel
 import com.moetaz.words.presentation.list.WordListViewModel
+import com.moetaz.words.presentation.quiz.QuizViewModel
 import com.moetaz.words.presentation.settings.SettingsViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -30,7 +33,7 @@ val appModule = module {
             WordDatabase::class.java,
             "word_db"
         )
-            .addMigrations(MIGRATION_1_2)
+            .addMigrations(MIGRATION_1_2, MIGRATION_2_3)
             .fallbackToDestructiveMigration(dropAllTables = true)
             .addCallback(object : RoomDatabase.Callback() {
                 override fun onCreate(db: SupportSQLiteDatabase) {
@@ -51,6 +54,8 @@ val appModule = module {
 
     viewModel { WordListViewModel(get()) }
     viewModel { AddWordViewModel(get(), get()) }
-    viewModel { WordDetailViewModel(get()) }
+    viewModel { WordDetailViewModel(get(), get()) }
     viewModel { SettingsViewModel(get()) }
+    viewModel { FlashcardsViewModel(get()) }
+    viewModel { QuizViewModel(get()) }
 }

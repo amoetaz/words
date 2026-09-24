@@ -11,12 +11,16 @@ import com.moetaz.words.presentation.add.AddWordScreen
 import com.moetaz.words.presentation.add.AddWordViewModel
 import com.moetaz.words.presentation.detail.WordDetailScreen
 import com.moetaz.words.presentation.detail.WordDetailViewModel
+import com.moetaz.words.presentation.flashcards.FlashcardsScreen
+import com.moetaz.words.presentation.flashcards.FlashcardsViewModel
 import com.moetaz.words.presentation.list.WordListScreen
 import com.moetaz.words.presentation.list.WordListViewModel
 import com.moetaz.words.presentation.navigation.Navigator
 import com.moetaz.words.presentation.navigation.Route
 import com.moetaz.words.presentation.navigation.rememberNavigationState
 import com.moetaz.words.presentation.navigation.toEntries
+import com.moetaz.words.presentation.quiz.QuizScreen
+import com.moetaz.words.presentation.quiz.QuizViewModel
 import com.moetaz.words.presentation.settings.SettingsScreen
 import com.moetaz.words.presentation.settings.SettingsViewModel
 import com.moetaz.words.ui.theme.WordsTheme
@@ -47,6 +51,12 @@ class MainActivity : ComponentActivity() {
                             },
                             onSettingsClick = {
                                 navigator.navigate(Route.Settings)
+                            },
+                            onFlashcardsClick = {
+                                navigator.navigate(Route.Flashcards)
+                            },
+                            onQuizClick = {
+                                navigator.navigate(Route.Quiz)
                             }
                         )
                     }
@@ -72,6 +82,20 @@ class MainActivity : ComponentActivity() {
                     entry<Route.Settings> {
                         val viewModel: SettingsViewModel = koinViewModel()
                         SettingsScreen(
+                            viewModel = viewModel,
+                            onBack = { navigator.goBack() }
+                        )
+                    }
+                    entry<Route.Flashcards> {
+                        val viewModel: FlashcardsViewModel = koinViewModel()
+                        FlashcardsScreen(
+                            viewModel = viewModel,
+                            onBack = { navigator.goBack() }
+                        )
+                    }
+                    entry<Route.Quiz> {
+                        val viewModel: QuizViewModel = koinViewModel()
+                        QuizScreen(
                             viewModel = viewModel,
                             onBack = { navigator.goBack() }
                         )

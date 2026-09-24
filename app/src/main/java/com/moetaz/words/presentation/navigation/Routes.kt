@@ -16,4 +16,10 @@ sealed interface Route : NavKey {
 
     @Serializable
     data object Settings : Route
+
+    @Serializable
+    data object Flashcards : Route
+
+    @Serializable
+    data object Quiz : Route
 }

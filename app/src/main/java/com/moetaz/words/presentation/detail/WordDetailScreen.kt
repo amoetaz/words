@@ -6,7 +6,10 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material.icons.automirrored.filled.VolumeUp
 import androidx.compose.material.icons.filled.Edit
+import androidx.compose.material.icons.filled.Favorite
+import androidx.compose.material.icons.filled.FavoriteBorder
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -18,6 +21,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.moetaz.words.domain.model.WordMasteryStatus
+import com.moetaz.words.presentation.util.rememberTextToSpeech
 import com.moetaz.words.ui.theme.SurfaceCardLight
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -29,6 +34,7 @@ fun WordDetailScreen(
     onBack: () -> Unit
 ) {
     val state by viewModel.state.collectAsState()
+    val tts = rememberTextToSpeech()
 
     LaunchedEffect(wordId) {
         viewModel.handleIntent(WordDetailIntent.LoadWord(wordId))
@@ -50,6 +56,16 @@ fun WordDetailScreen(
                 },
                 actions = {
                     if (state.word != null) {
+                        val word = state.word!!
+                        IconButton(onClick = {
+                            viewModel.handleIntent(WordDetailIntent.ToggleFavorite(!word.isFavorite))
+                        }) {
+                            Icon(
+                                imageVector = if (word.isFavorite) Icons.Default.Favorite else Icons.Default.FavoriteBorder,
+                                contentDescription = "Favorite",
+                                tint = if (word.isFavorite) MaterialTheme.colorScheme.error else MaterialTheme.colorScheme.onSurface
+                            )
+                        }
                         IconButton(onClick = { onEditWord(wordId) }) {
                             Icon(
                                 imageVector = Icons.Default.Edit,
@@ -87,7 +103,7 @@ fun WordDetailScreen(
                         .verticalScroll(rememberScrollState()),
                     verticalArrangement = Arrangement.spacedBy(20.dp)
                 ) {
-                    // Header Section: Word & Phonetic & Arabic Translation
+                    // Header Section: Word & Pronunciation & Translation
                     Row(
                         modifier = Modifier.fillMaxWidth(),
                         horizontalArrangement = Arrangement.SpaceBetween,
@@ -97,12 +113,21 @@ fun WordDetailScreen(
                             modifier = Modifier.weight(1f),
                             verticalArrangement = Arrangement.spacedBy(4.dp)
                         ) {
-                            Text(
-                                text = word.word,
-                                fontSize = 32.sp,
-                                fontWeight = FontWeight.Bold,
-                                color = MaterialTheme.colorScheme.onSurface
-                            )
+                            Row(verticalAlignment = Alignment.CenterVertically) {
+                                Text(
+                                    text = word.word,
+                                    fontSize = 32.sp,
+                                    fontWeight = FontWeight.Bold,
+                                    color = MaterialTheme.colorScheme.onSurface
+                                )
+                                IconButton(onClick = { tts.speak(word.word) }) {
+                                    Icon(
+                                        imageVector = Icons.AutoMirrored.Filled.VolumeUp,
+                                        contentDescription = "Speak",
+                                        tint = MaterialTheme.colorScheme.primary
+                                    )
+                                }
+                            }
                             word.phonetic?.let { phoneticText ->
                                 if (phoneticText.isNotBlank()) {
                                     Text(
@@ -121,6 +146,40 @@ fun WordDetailScreen(
                                 fontWeight = FontWeight.Bold,
                                 color = MaterialTheme.colorScheme.onSurface
                             )
+                        }
+                    }
+
+                    // Mastery Status Section
+                    Column(
+                        verticalArrangement = Arrangement.spacedBy(8.dp)
+                    ) {
+                        Text(
+                            text = "Mastery Status",
+                            fontSize = 16.sp,
+                            fontWeight = FontWeight.Bold,
+                            color = MaterialTheme.colorScheme.onSurface
+                        )
+                        SingleChoiceSegmentedButtonRow(
+                            modifier = Modifier.fillMaxWidth()
+                        ) {
+                            WordMasteryStatus.entries.forEachIndexed { index, status ->
+                                SegmentedButton(
+                                    selected = word.masteryStatus == status,
+                                    onClick = {
+                                        viewModel.handleIntent(WordDetailIntent.UpdateMasteryStatus(status))
+                                    },
+                                    shape = SegmentedButtonDefaults.itemShape(
+                                        index = index,
+                                        count = WordMasteryStatus.entries.size
+                                    )
+                                ) {
+                                    Text(
+                                        text = status.name,
+                                        fontSize = 11.sp,
+                                        fontWeight = FontWeight.SemiBold
+                                    )
+                                }
+                            }
                         }
                     }
 
@@ -156,7 +215,7 @@ fun WordDetailScreen(
                         }
                     }
 
-                    // Additional Translations Card (if multiple translations exist)
+                    // Additional Translations Card
                     if (word.translations.size > 1) {
                         Card(
                             modifier = Modifier.fillMaxWidth(),

@@ -2,6 +2,7 @@ package com.moetaz.words.data.local.converter
 
 import androidx.room.TypeConverter
 import com.moetaz.words.domain.model.Example
+import com.moetaz.words.domain.model.WordMasteryStatus
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 
@@ -39,5 +40,16 @@ class Converters {
             }
         }
     }
-}
 
+    @TypeConverter
+    fun fromMasteryStatus(status: WordMasteryStatus): String = status.name
+
+    @TypeConverter
+    fun toMasteryStatus(value: String): WordMasteryStatus {
+        return try {
+            WordMasteryStatus.valueOf(value)
+        } catch (_: Exception) {
+            WordMasteryStatus.LEARNING
+        }
+    }
+}

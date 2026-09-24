@@ -8,10 +8,8 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Add
-import androidx.compose.material.icons.filled.Clear
-import androidx.compose.material.icons.filled.Search
-import androidx.compose.material.icons.filled.Settings
+import androidx.compose.material.icons.automirrored.filled.VolumeUp
+import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -26,6 +24,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.moetaz.words.R
 import com.moetaz.words.domain.model.Word
+import com.moetaz.words.domain.model.WordMasteryStatus
+import com.moetaz.words.presentation.util.rememberTextToSpeech
 import com.moetaz.words.ui.theme.HeaderGradient
 import com.moetaz.words.ui.theme.PrimaryGradient
 import com.moetaz.words.ui.theme.SurfaceCardLight
@@ -35,9 +35,12 @@ fun WordListScreen(
     viewModel: WordListViewModel,
     onWordClick: (Long) -> Unit,
     onAddWordClick: () -> Unit,
-    onSettingsClick: () -> Unit = {}
+    onSettingsClick: () -> Unit = {},
+    onFlashcardsClick: () -> Unit = {},
+    onQuizClick: () -> Unit = {}
 ) {
     val state by viewModel.state.collectAsState()
+    val tts = rememberTextToSpeech()
 
     Scaffold(
         containerColor = MaterialTheme.colorScheme.background,
@@ -71,18 +74,17 @@ fun WordListScreen(
                     .clip(RoundedCornerShape(bottomStart = 28.dp, bottomEnd = 28.dp))
                     .background(HeaderGradient)
                     .statusBarsPadding()
-                    .padding(horizontal = 20.dp, vertical = 20.dp)
+                    .padding(horizontal = 16.dp, vertical = 16.dp)
             ) {
                 Column(
                     verticalArrangement = Arrangement.spacedBy(16.dp)
                 ) {
-                    Box(
-                        modifier = Modifier.fillMaxWidth()
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.SpaceBetween
                     ) {
-                        IconButton(
-                            onClick = onSettingsClick,
-                            modifier = Modifier.align(Alignment.CenterStart)
-                        ) {
+                        IconButton(onClick = onSettingsClick) {
                             Icon(
                                 imageVector = Icons.Default.Settings,
                                 contentDescription = "Settings",
@@ -94,12 +96,28 @@ fun WordListScreen(
                             text = stringResource(R.string.vocabulary_list),
                             color = Color.White,
                             fontSize = 20.sp,
-                            fontWeight = FontWeight.Bold,
-                            modifier = Modifier.align(Alignment.Center)
+                            fontWeight = FontWeight.Bold
                         )
+
+                        Row {
+                            IconButton(onClick = onFlashcardsClick) {
+                                Icon(
+                                    imageVector = Icons.Default.Style,
+                                    contentDescription = "Flashcards",
+                                    tint = Color.White
+                                )
+                            }
+                            IconButton(onClick = onQuizClick) {
+                                Icon(
+                                    imageVector = Icons.Default.School,
+                                    contentDescription = "Quiz",
+                                    tint = Color.White
+                                )
+                            }
+                        }
                     }
 
-                    // Pill Search Field
+                    // Search Field
                     OutlinedTextField(
                         value = state.searchQuery,
                         onValueChange = { query ->
@@ -184,7 +202,11 @@ fun WordListScreen(
                         verticalArrangement = Arrangement.spacedBy(10.dp)
                     ) {
                         items(state.filteredWords) { word ->
-                            WordItem(word = word, onClick = { onWordClick(word.id) })
+                            WordItem(
+                                word = word,
+                                onClick = { onWordClick(word.id) },
+                                onSpeakClick = { tts.speak(word.word) }
+                            )
                         }
                     }
                 }
@@ -194,7 +216,11 @@ fun WordListScreen(
 }
 
 @Composable
-fun WordItem(word: Word, onClick: () -> Unit) {
+fun WordItem(
+    word: Word,
+    onClick: () -> Unit,
+    onSpeakClick: () -> Unit
+) {
     Card(
         modifier = Modifier
             .fillMaxWidth()
@@ -209,23 +235,72 @@ fun WordItem(word: Word, onClick: () -> Unit) {
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(horizontal = 20.dp, vertical = 18.dp),
+                .padding(horizontal = 16.dp, vertical = 14.dp),
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically
         ) {
-            Text(
-                text = word.word,
-                fontSize = 18.sp,
-                fontWeight = FontWeight.Bold,
-                color = MaterialTheme.colorScheme.onSurface
-            )
-            val mainTranslation = word.translations.firstOrNull() ?: ""
-            if (mainTranslation.isNotEmpty()) {
+            Column(modifier = Modifier.weight(1f)) {
+                Row(verticalAlignment = Alignment.CenterVertically) {
+                    Text(
+                        text = word.word,
+                        fontSize = 18.sp,
+                        fontWeight = FontWeight.Bold,
+                        color = MaterialTheme.colorScheme.onSurface
+                    )
+                    IconButton(
+                        onClick = onSpeakClick,
+                        modifier = Modifier.size(32.dp)
+                    ) {
+                        Icon(
+                            imageVector = Icons.AutoMirrored.Filled.VolumeUp,
+                            contentDescription = "Speak",
+                            tint = MaterialTheme.colorScheme.primary,
+                            modifier = Modifier.size(18.dp)
+                        )
+                    }
+                    if (word.isFavorite) {
+                        Icon(
+                            imageVector = Icons.Default.Favorite,
+                            contentDescription = "Favorite",
+                            tint = MaterialTheme.colorScheme.error,
+                            modifier = Modifier.size(16.dp)
+                        )
+                    }
+                }
+
+                val mainTranslation = word.translations.firstOrNull() ?: ""
+                if (mainTranslation.isNotEmpty()) {
+                    Text(
+                        text = mainTranslation,
+                        fontSize = 15.sp,
+                        fontWeight = FontWeight.Medium,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant
+                    )
+                }
+            }
+
+            val badgeColor = when (word.masteryStatus) {
+                WordMasteryStatus.LEARNING -> MaterialTheme.colorScheme.tertiaryContainer
+                WordMasteryStatus.REVIEWING -> MaterialTheme.colorScheme.secondaryContainer
+                WordMasteryStatus.MASTERED -> MaterialTheme.colorScheme.primaryContainer
+            }
+
+            val badgeTextColor = when (word.masteryStatus) {
+                WordMasteryStatus.LEARNING -> MaterialTheme.colorScheme.onTertiaryContainer
+                WordMasteryStatus.REVIEWING -> MaterialTheme.colorScheme.onSecondaryContainer
+                WordMasteryStatus.MASTERED -> MaterialTheme.colorScheme.onPrimaryContainer
+            }
+
+            Surface(
+                color = badgeColor,
+                shape = RoundedCornerShape(8.dp)
+            ) {
                 Text(
-                    text = mainTranslation,
-                    fontSize = 18.sp,
+                    text = word.masteryStatus.name,
+                    color = badgeTextColor,
+                    fontSize = 11.sp,
                     fontWeight = FontWeight.Bold,
-                    color = MaterialTheme.colorScheme.onSurface
+                    modifier = Modifier.padding(horizontal = 8.dp, vertical = 4.dp)
                 )
             }
         }

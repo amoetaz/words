@@ -1,12 +1,16 @@
 # Words 📚
 
-**Words** is a modern, offline-first Android vocabulary learning and management app built with **Jetpack Compose** and **Clean Architecture**. It allows users to manage custom vocabulary, view rich word definitions and example sentences, switch application languages dynamically, import words from JSON, and display daily vocabulary updates on the Android home screen using a **Jetpack Glance** widget.
+**Words** is a modern, offline-first Android vocabulary learning and management app built with **Jetpack Compose** and **Clean Architecture**. It allows users to manage custom vocabulary, practice with interactive 3D flashcards, test their knowledge with vocabulary quizzes, listen to audio pronunciations, track word mastery statuses, switch application languages dynamically, import words from JSON, and display daily vocabulary updates on the Android home screen using a **Jetpack Glance** widget.
 
 ---
 
-## ✨ Features
+## ✨ Key Features
 
-- 📖 **Vocabulary Directory**: View a list of vocabulary words with definitions, translations, phonetic pronunciations, and example usage.
+- 🔊 **Audio Pronunciation (Text-to-Speech)**: Listen to English pronunciations of words across the list, detail, flashcards, and quiz screens using Android's native `TextToSpeech` engine.
+- 🎴 **Interactive Flashcards Mode**: Practice vocabulary with 3D flip card animations, reveal translations/definitions, and classify cards into spaced repetition tiers (*Again*, *Review*, *Mastered*).
+- 🧠 **Interactive Vocabulary Quiz**: Test recognition with multiple-choice quizzes that generate distractors dynamically from your word database with instant visual feedback and score tracking.
+- 📊 **Word Mastery Tiers & Favorites**: Categorize words by mastery status (`LEARNING`, `REVIEWING`, `MASTERED`) and bookmark favorite entries with heart badges.
+- 📖 **Vocabulary Directory**: View vocabulary words with definitions, translations, phonetic pronunciations, and example usage.
 - 🔍 **Search & Filter**: Find words quickly with real-time search functionality.
 - ➕ **Add & Edit Words**: Add new custom words or update existing word entries.
 - ⚙️ **Settings & Multi-language Support**: Support for English and Arabic locales using Android's per-app language preferences (`AppCompatDelegate`).
@@ -24,23 +28,26 @@ The app follows **Clean Architecture** principles and the **MVI (Model-View-Inte
 com.moetaz.words
 ├── data/
 │   ├── local/
-│   │   ├── converter/      # Room TypeConverters for custom data types
+│   │   ├── converter/      # Room TypeConverters for custom data types & enums
 │   │   ├── dao/            # Room Data Access Objects
-│   │   ├── database/       # Room Database configuration & initializers
+│   │   ├── database/       # Room Database configuration, migrations & initializers
 │   │   ├── dto/            # Data Transfer Objects for JSON parsing
 │   │   └── entity/         # Room Database entities
 │   └── repository/         # Implementation of domain repositories
 ├── di/                     # Koin Dependency Injection modules
 ├── domain/
-│   ├── model/              # Domain models (Word, Example)
+│   ├── model/              # Domain models (Word, Example, WordMasteryStatus)
 │   ├── repository/         # Repository interfaces
 │   └── usecase/            # Encapsulated business logic use cases
 ├── presentation/
 │   ├── add/                # Add/Edit Word Screen, ViewModels, and Contracts
-│   ├── detail/             # Word Detail Screen, ViewModels, and Contracts
-│   ├── list/               # Word List Screen, ViewModels, and Contracts
+│   ├── detail/             # Word Detail Screen with TTS, Mastery Selector & Favorites
+│   ├── flashcards/         # Interactive 3D Flip Card Screen & ViewModels
+│   ├── list/               # Word List Screen with status badges & TTS
 │   ├── navigation/         # Jetpack Navigation 3 setup & Navigator
-│   └── settings/           # Settings Screen, Language selector, and JSON Importer
+│   ├── quiz/               # Multiple-Choice Quiz Screen, ViewModels & State
+│   ├── settings/           # Settings Screen, Language selector, and JSON Importer
+│   └── util/               # TextToSpeechHelper Composable utilities
 ├── ui/theme/               # Material 3 Theme, Typography, and Color palettes
 └── widget/                 # Jetpack Glance Home Screen Widget & WorkManager Worker
 ```
@@ -53,7 +60,8 @@ com.moetaz.words
 - **UI Framework**: [Jetpack Compose](https://developer.android.com/jetpack/compose) with [Material 3](https://developer.android.com/jetpack/compose/designsystems/material3)
 - **Navigation**: [Navigation 3](https://developer.android.com/guide/navigation) (`androidx.navigation3`)
 - **Dependency Injection**: [Koin](https://insert-koin.io/) (`koin-android`, `koin-androidx-compose`)
-- **Local Database**: [Room Database](https://developer.android.com/training/data-storage/room) with KSP
+- **Local Database**: [Room Database](https://developer.android.com/training/data-storage/room) with KSP and DB migrations
+- **Audio Engine**: Android `TextToSpeech` API
 - **Background Tasks**: [WorkManager](https://developer.android.com/topic/libraries/architecture/workmanager)
 - **Home Screen Widget**: [Jetpack Glance](https://developer.android.com/jetpack/compose/glance)
 - **Serialization**: [KotlinX Serialization](https://github.com/Kotlin/kotlinx.serialization)
