@@ -53,6 +53,18 @@ class AddWordViewModelTest {
     }
 
     @Test
+    fun onPhoneticChanged_updatesPhonetic() {
+        viewModel.handleIntent(AddWordIntent.OnPhoneticChanged("/ɪˈfɛm.ər.əl/"))
+        assertEquals("/ɪˈfɛm.ər.əl/", viewModel.state.value.phonetic)
+    }
+
+    @Test
+    fun onDefinitionChanged_updatesDefinition() {
+        viewModel.handleIntent(AddWordIntent.OnDefinitionChanged("Lasting for a very short time."))
+        assertEquals("Lasting for a very short time.", viewModel.state.value.definition)
+    }
+
+    @Test
     fun onTranslationChanged_updatesTranslationAtIndex() {
         viewModel.handleIntent(AddWordIntent.OnTranslationChanged(0, "سريع الزوال"))
         assertEquals(listOf("سريع الزوال"), viewModel.state.value.translations)

@@ -10,14 +10,18 @@ data class WordEntity(
     @PrimaryKey(autoGenerate = true)
     val id: Long = 0,
     val word: String,
-    val translations: List<String>,
-    val examples: List<Example>
+    val translations: List<String> = emptyList(),
+    val examples: List<Example> = emptyList(),
+    val phonetic: String? = null,
+    val definition: String? = null
 ) {
     fun toWord(): Word = Word(
         id = id,
         word = word,
         translations = translations,
-        examples = examples
+        examples = examples,
+        phonetic = phonetic,
+        definition = definition
     )
 
     companion object {
@@ -25,7 +29,9 @@ data class WordEntity(
             id = word.id,
             word = word.word,
             translations = word.translations,
-            examples = word.examples
+            examples = word.examples,
+            phonetic = word.phonetic,
+            definition = word.definition
         )
     }
 }

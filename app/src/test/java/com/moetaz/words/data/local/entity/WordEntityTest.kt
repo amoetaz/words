@@ -12,6 +12,8 @@ class WordEntityTest {
         val entity = WordEntity(
             id = 42L,
             word = "Serendipity",
+            phonetic = "/ˌsɛr.ənˈdɪp.ə.ti/",
+            definition = "Finding valuable or agreeable things not sought for.",
             translations = listOf("حسن الحظ", "مصادفة سعيدة"),
             examples = listOf(Example("Finding that book was pure serendipity.", "العثور على ذلك الكتاب كان مصادفة نادرة."))
         )
@@ -20,6 +22,8 @@ class WordEntityTest {
 
         assertEquals(42L, domainWord.id)
         assertEquals("Serendipity", domainWord.word)
+        assertEquals("/ˌsɛr.ənˈdɪp.ə.ti/", domainWord.phonetic)
+        assertEquals("Finding valuable or agreeable things not sought for.", domainWord.definition)
         assertEquals(listOf("حسن الحظ", "مصادفة سعيدة"), domainWord.translations)
         assertEquals(listOf(Example("Finding that book was pure serendipity.", "العثور على ذلك الكتاب كان مصادفة نادرة.")), domainWord.examples)
     }

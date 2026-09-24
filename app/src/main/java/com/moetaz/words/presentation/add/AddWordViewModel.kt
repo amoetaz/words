@@ -23,6 +23,12 @@ class AddWordViewModel(
             is AddWordIntent.OnWordChanged -> {
                 _state.update { it.copy(word = intent.word) }
             }
+            is AddWordIntent.OnPhoneticChanged -> {
+                _state.update { it.copy(phonetic = intent.phonetic) }
+            }
+            is AddWordIntent.OnDefinitionChanged -> {
+                _state.update { it.copy(definition = intent.definition) }
+            }
             is AddWordIntent.OnTranslationChanged -> {
                 val newList = _state.value.translations.toMutableList()
                 newList[intent.index] = intent.translation
@@ -44,6 +50,13 @@ class AddWordViewModel(
             is AddWordIntent.AddExampleField -> {
                 _state.update { it.copy(examples = it.examples + Example("", "")) }
             }
+            is AddWordIntent.RemoveExampleField -> {
+                val newList = _state.value.examples.toMutableList()
+                if (intent.index in newList.indices) {
+                    newList.removeAt(intent.index)
+                    _state.update { it.copy(examples = newList) }
+                }
+            }
             is AddWordIntent.SaveWord -> saveWord()
         }
     }
@@ -58,6 +71,8 @@ class AddWordViewModel(
                         it.copy(
                             wordId = loadedWord.id,
                             word = loadedWord.word,
+                            phonetic = loadedWord.phonetic ?: "",
+                            definition = loadedWord.definition ?: "",
                             translations = loadedWord.translations.ifEmpty { listOf("") },
                             examples = loadedWord.examples.ifEmpty { listOf(Example("", "")) },
                             isLoading = false
@@ -83,6 +98,8 @@ class AddWordViewModel(
                 val word = Word(
                     id = currentState.wordId ?: 0,
                     word = currentState.word,
+                    phonetic = currentState.phonetic.ifBlank { null },
+                    definition = currentState.definition.ifBlank { null },
                     translations = currentState.translations.filter { it.isNotBlank() },
                     examples = currentState.examples.filter { it.english.isNotBlank() || it.arabic.isNotBlank() }
                 )
