@@ -5,6 +5,7 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material.icons.filled.Edit
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -19,6 +20,7 @@ import androidx.compose.ui.unit.dp
 fun WordDetailScreen(
     wordId: Long,
     viewModel: WordDetailViewModel,
+    onEditWord: (Long) -> Unit = {},
     onBack: () -> Unit
 ) {
     val state by viewModel.state.collectAsState()
@@ -34,6 +36,13 @@ fun WordDetailScreen(
                 navigationIcon = {
                     IconButton(onClick = onBack) {
                         Icon(Icons.Default.ArrowBack, contentDescription = "Back")
+                    }
+                },
+                actions = {
+                    if (state.word != null) {
+                        IconButton(onClick = { onEditWord(wordId) }) {
+                            Icon(Icons.Default.Edit, contentDescription = "Edit Word")
+                        }
                     }
                 }
             )

@@ -13,7 +13,6 @@ import com.moetaz.words.presentation.detail.WordDetailScreen
 import com.moetaz.words.presentation.detail.WordDetailViewModel
 import com.moetaz.words.presentation.list.WordListScreen
 import com.moetaz.words.presentation.list.WordListViewModel
-import com.moetaz.words.presentation.navigation.NavigationState
 import com.moetaz.words.presentation.navigation.Navigator
 import com.moetaz.words.presentation.navigation.Route
 import com.moetaz.words.presentation.navigation.rememberNavigationState
@@ -42,13 +41,14 @@ class MainActivity : ComponentActivity() {
                                 navigator.navigate(Route.WordDetail(id))
                             },
                             onAddWordClick = {
-                                navigator.navigate(Route.AddWord)
+                                navigator.navigate(Route.AddWord())
                             }
                         )
                     }
-                    entry<Route.AddWord> {
+                    entry<Route.AddWord> { key ->
                         val viewModel: AddWordViewModel = koinViewModel()
                         AddWordScreen(
+                            wordId = key.wordId,
                             viewModel = viewModel,
                             onBack = { navigator.goBack() }
                         )
@@ -58,6 +58,9 @@ class MainActivity : ComponentActivity() {
                         WordDetailScreen(
                             wordId = key.id,
                             viewModel = viewModel,
+                            onEditWord = { id ->
+                                navigator.navigate(Route.AddWord(id))
+                            },
                             onBack = { navigator.goBack() }
                         )
                     }

@@ -46,6 +46,6 @@ val appModule = module {
     single { AddWordUseCase(get()) }
 
     viewModel { WordListViewModel(get()) }
-    viewModel { AddWordViewModel(get()) }
+    viewModel { AddWordViewModel(get(), get()) }
     viewModel { WordDetailViewModel(get()) }
 }

@@ -5,11 +5,13 @@ import androidx.lifecycle.viewModelScope
 import com.moetaz.words.domain.model.Example
 import com.moetaz.words.domain.model.Word
 import com.moetaz.words.domain.usecase.AddWordUseCase
+import com.moetaz.words.domain.usecase.GetWordByIdUseCase
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 
 class AddWordViewModel(
-    private val addWordUseCase: AddWordUseCase
+    private val addWordUseCase: AddWordUseCase,
+    private val getWordByIdUseCase: GetWordByIdUseCase
 ) : ViewModel() {
 
     private val _state = MutableStateFlow(AddWordState())
@@ -17,6 +19,7 @@ class AddWordViewModel(
 
     fun handleIntent(intent: AddWordIntent) {
         when (intent) {
+            is AddWordIntent.LoadWord -> loadWord(intent.id)
             is AddWordIntent.OnWordChanged -> {
                 _state.update { it.copy(word = intent.word) }
             }
@@ -45,6 +48,28 @@ class AddWordViewModel(
         }
     }
 
+    private fun loadWord(id: Long) {
+        if (id <= 0 || _state.value.wordId == id) return
+        viewModelScope.launch {
+            _state.update { it.copy(isLoading = true) }
+            try {
+                getWordByIdUseCase(id).firstOrNull()?.let { loadedWord ->
+                    _state.update {
+                        it.copy(
+                            wordId = loadedWord.id,
+                            word = loadedWord.word,
+                            translations = loadedWord.translations.ifEmpty { listOf("") },
+                            examples = loadedWord.examples.ifEmpty { listOf(Example("", "")) },
+                            isLoading = false
+                        )
+                    }
+                } ?: _state.update { it.copy(isLoading = false) }
+            } catch (e: Exception) {
+                _state.update { it.copy(isLoading = false, error = e.message) }
+            }
+        }
+    }
+
     private fun saveWord() {
         val currentState = _state.value
         if (currentState.word.isBlank()) {
@@ -56,6 +81,7 @@ class AddWordViewModel(
             _state.update { it.copy(isSaving = true, error = null) }
             try {
                 val word = Word(
+                    id = currentState.wordId ?: 0,
                     word = currentState.word,
                     translations = currentState.translations.filter { it.isNotBlank() },
                     examples = currentState.examples.filter { it.english.isNotBlank() || it.arabic.isNotBlank() }

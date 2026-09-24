@@ -9,7 +9,7 @@ sealed interface Route : NavKey {
     data object WordList : Route
 
     @Serializable
-    data object AddWord : Route
+    data class AddWord(val wordId: Long? = null) : Route
 
     @Serializable
     data class WordDetail(val id: Long) : Route

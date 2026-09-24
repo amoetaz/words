@@ -13,11 +13,11 @@ class NavigatorTest {
     @Test
     fun navigate_whenRouteIsTopLevel_updatesTopLevelRoute() {
         val startRoute: Route = Route.WordList
-        val otherTopLevelRoute: Route = Route.AddWord
+        val otherTopLevelRoute: Route = Route.AddWord()
         val topLevelState = mutableStateOf(startRoute)
         val backStacks = mapOf<Route, NavBackStack<Route>>(
             Route.WordList to mockk(relaxed = true),
-            Route.AddWord to mockk(relaxed = true)
+            Route.AddWord() to mockk(relaxed = true)
         )
         val navState = NavigationState(
             startRoute = startRoute,
@@ -55,14 +55,14 @@ class NavigatorTest {
     @Test
     fun goBack_whenCurrentRouteIsTopLevelAndNotStartRoute_resetsToStartRoute() {
         val startRoute: Route = Route.WordList
-        val currentTopLevel: Route = Route.AddWord
+        val currentTopLevel: Route = Route.AddWord()
         val topLevelState = mutableStateOf(currentTopLevel)
         val addWordStack = mockk<NavBackStack<Route>>(relaxed = true) {
-            every { last() } returns Route.AddWord
+            every { last() } returns Route.AddWord()
         }
         val backStacks = mapOf<Route, NavBackStack<Route>>(
             Route.WordList to mockk(relaxed = true),
-            Route.AddWord to addWordStack
+            Route.AddWord() to addWordStack
         )
         val navState = NavigationState(
             startRoute = startRoute,

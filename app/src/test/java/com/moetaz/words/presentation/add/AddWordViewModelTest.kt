@@ -3,10 +3,13 @@ package com.moetaz.words.presentation.add
 import com.moetaz.words.domain.model.Example
 import com.moetaz.words.domain.model.Word
 import com.moetaz.words.domain.usecase.AddWordUseCase
+import com.moetaz.words.domain.usecase.GetWordByIdUseCase
 import com.moetaz.words.util.MainDispatcherRule
 import io.mockk.coEvery
 import io.mockk.coVerify
+import io.mockk.every
 import io.mockk.mockk
+import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.test.runTest
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse
@@ -22,12 +25,14 @@ class AddWordViewModelTest {
     val mainDispatcherRule = MainDispatcherRule()
 
     private lateinit var addWordUseCase: AddWordUseCase
+    private lateinit var getWordByIdUseCase: GetWordByIdUseCase
     private lateinit var viewModel: AddWordViewModel
 
     @Before
     fun setUp() {
         addWordUseCase = mockk(relaxed = true)
-        viewModel = AddWordViewModel(addWordUseCase)
+        getWordByIdUseCase = mockk(relaxed = true)
+        viewModel = AddWordViewModel(addWordUseCase, getWordByIdUseCase)
     }
 
     @Test
@@ -112,6 +117,51 @@ class AddWordViewModelTest {
         assertFalse(state.isSaving)
         assertTrue(state.isSaved)
         assertNull(state.error)
+    }
+
+    @Test
+    fun loadWord_populatesStateFromLoadedWord() = runTest {
+        val existingWord = Word(
+            id = 5L,
+            word = "Eloquent",
+            translations = listOf("فصيح"),
+            examples = listOf(Example("An eloquent speaker.", "متحدث فصيح."))
+        )
+        every { getWordByIdUseCase(5L) } returns flowOf(existingWord)
+
+        viewModel.handleIntent(AddWordIntent.LoadWord(5L))
+
+        val state = viewModel.state.value
+        assertEquals(5L, state.wordId)
+        assertEquals("Eloquent", state.word)
+        assertEquals(listOf("فصيح"), state.translations)
+        assertEquals(listOf(Example("An eloquent speaker.", "متحدث فصيح.")), state.examples)
+        assertFalse(state.isLoading)
+    }
+
+    @Test
+    fun saveWord_whenEditingExistingWord_preservesWordIdInSavedWord() = runTest {
+        val existingWord = Word(
+            id = 5L,
+            word = "Eloquent",
+            translations = listOf("فصيح"),
+            examples = listOf(Example("An eloquent speaker.", "متحدث فصيح."))
+        )
+        every { getWordByIdUseCase(5L) } returns flowOf(existingWord)
+
+        viewModel.handleIntent(AddWordIntent.LoadWord(5L))
+        viewModel.handleIntent(AddWordIntent.OnWordChanged("Eloquent Speaker"))
+        viewModel.handleIntent(AddWordIntent.SaveWord)
+
+        val expectedUpdatedWord = Word(
+            id = 5L,
+            word = "Eloquent Speaker",
+            translations = listOf("فصيح"),
+            examples = listOf(Example("An eloquent speaker.", "متحدث فصيح."))
+        )
+
+        coVerify(exactly = 1) { addWordUseCase(expectedUpdatedWord) }
+        assertTrue(viewModel.state.value.isSaved)
     }
 
     @Test
