@@ -20,6 +20,9 @@ class WordListViewModel(
     fun handleIntent(intent: WordListIntent) {
         when (intent) {
             is WordListIntent.LoadWords -> loadWords()
+            is WordListIntent.OnSearchQueryChanged -> {
+                _state.update { it.copy(searchQuery = intent.query) }
+            }
             else -> {} // Navigation handled by UI callback to Navigator
         }
     }

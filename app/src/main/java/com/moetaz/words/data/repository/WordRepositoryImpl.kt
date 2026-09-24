@@ -20,7 +20,7 @@ class WordRepositoryImpl(
     init {
         context?.let { ctx ->
             CoroutineScope(Dispatchers.IO).launch {
-                DatabaseInitializer.populateIfEmpty(ctx, dao)
+             //   DatabaseInitializer.populateIfEmpty(ctx, dao)
             }
         }
     }

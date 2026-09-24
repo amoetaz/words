@@ -54,6 +54,29 @@ class WordListViewModelTest {
     }
 
     @Test
+    fun onSearchQueryChanged_updatesSearchQueryAndFiltersWordsByEnglishWord() = runTest {
+        val word1 = Word(1L, "Eloquent", listOf("فصيح"), emptyList())
+        val word2 = Word(2L, "Luminous", listOf("مضيء"), emptyList())
+        val word3 = Word(3L, "Elegance", listOf("أناقة"), emptyList())
+        every { getWordsUseCase() } returns flowOf(listOf(word1, word2, word3))
+
+        val viewModel = WordListViewModel(getWordsUseCase)
+
+        assertEquals("", viewModel.state.value.searchQuery)
+        assertEquals(listOf(word1, word2, word3), viewModel.state.value.filteredWords)
+
+        viewModel.handleIntent(WordListIntent.OnSearchQueryChanged("el"))
+
+        assertEquals("el", viewModel.state.value.searchQuery)
+        assertEquals(listOf(word1, word3), viewModel.state.value.filteredWords)
+
+        viewModel.handleIntent(WordListIntent.OnSearchQueryChanged("LUMI"))
+
+        assertEquals("LUMI", viewModel.state.value.searchQuery)
+        assertEquals(listOf(word2), viewModel.state.value.filteredWords)
+    }
+
+    @Test
     fun handleIntent_otherIntents_doNotMutateState() = runTest {
         every { getWordsUseCase() } returns flowOf(emptyList())
 
