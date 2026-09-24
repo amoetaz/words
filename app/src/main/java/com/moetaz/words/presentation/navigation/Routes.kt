@@ -13,4 +13,7 @@ sealed interface Route : NavKey {
 
     @Serializable
     data class WordDetail(val id: Long) : Route
+
+    @Serializable
+    data object Settings : Route
 }

@@ -14,6 +14,7 @@ import com.moetaz.words.domain.usecase.GetWordsUseCase
 import com.moetaz.words.presentation.add.AddWordViewModel
 import com.moetaz.words.presentation.detail.WordDetailViewModel
 import com.moetaz.words.presentation.list.WordListViewModel
+import com.moetaz.words.presentation.settings.SettingsViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -51,4 +52,5 @@ val appModule = module {
     viewModel { WordListViewModel(get()) }
     viewModel { AddWordViewModel(get(), get()) }
     viewModel { WordDetailViewModel(get()) }
+    viewModel { SettingsViewModel(get()) }
 }

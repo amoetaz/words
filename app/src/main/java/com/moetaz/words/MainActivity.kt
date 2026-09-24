@@ -17,6 +17,8 @@ import com.moetaz.words.presentation.navigation.Navigator
 import com.moetaz.words.presentation.navigation.Route
 import com.moetaz.words.presentation.navigation.rememberNavigationState
 import com.moetaz.words.presentation.navigation.toEntries
+import com.moetaz.words.presentation.settings.SettingsScreen
+import com.moetaz.words.presentation.settings.SettingsViewModel
 import com.moetaz.words.ui.theme.WordsTheme
 import org.koin.androidx.compose.koinViewModel
 
@@ -42,6 +44,9 @@ class MainActivity : ComponentActivity() {
                             },
                             onAddWordClick = {
                                 navigator.navigate(Route.AddWord())
+                            },
+                            onSettingsClick = {
+                                navigator.navigate(Route.Settings)
                             }
                         )
                     }
@@ -61,6 +66,13 @@ class MainActivity : ComponentActivity() {
                             onEditWord = { id ->
                                 navigator.navigate(Route.AddWord(id))
                             },
+                            onBack = { navigator.goBack() }
+                        )
+                    }
+                    entry<Route.Settings> {
+                        val viewModel: SettingsViewModel = koinViewModel()
+                        SettingsScreen(
+                            viewModel = viewModel,
                             onBack = { navigator.goBack() }
                         )
                     }

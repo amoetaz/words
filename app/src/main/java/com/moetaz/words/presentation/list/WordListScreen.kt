@@ -11,6 +11,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Clear
 import androidx.compose.material.icons.filled.Search
+import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -31,7 +32,8 @@ import com.moetaz.words.ui.theme.SurfaceCardLight
 fun WordListScreen(
     viewModel: WordListViewModel,
     onWordClick: (Long) -> Unit,
-    onAddWordClick: () -> Unit
+    onAddWordClick: () -> Unit,
+    onSettingsClick: () -> Unit = {}
 ) {
     val state by viewModel.state.collectAsState()
 
@@ -75,18 +77,23 @@ fun WordListScreen(
                     Box(
                         modifier = Modifier.fillMaxWidth()
                     ) {
+                        IconButton(
+                            onClick = onSettingsClick,
+                            modifier = Modifier.align(Alignment.CenterStart)
+                        ) {
+                            Icon(
+                                imageVector = Icons.Default.Settings,
+                                contentDescription = "Settings",
+                                tint = Color.White
+                            )
+                        }
+
                         Text(
                             text = "Vocabulary List",
                             color = Color.White,
                             fontSize = 20.sp,
                             fontWeight = FontWeight.Bold,
                             modifier = Modifier.align(Alignment.Center)
-                        )
-                        Icon(
-                            imageVector = Icons.Default.Search,
-                            contentDescription = null,
-                            tint = Color.White.copy(alpha = 0.9f),
-                            modifier = Modifier.align(Alignment.CenterEnd)
                         )
                     }
 

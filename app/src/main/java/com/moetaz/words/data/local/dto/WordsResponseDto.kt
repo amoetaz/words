@@ -13,16 +13,17 @@ data class WordsResponseDto(
 @Serializable
 data class WordDto(
     val word: String,
-    @SerialName("translation") val translations: List<String> = emptyList(),
-    val examples: List<Example> = emptyList(),
     val phonetic: String? = null,
-    val definition: String? = null
+    val phonetics: String? = null,
+    val definition: String? = null,
+    @SerialName("translation") val translations: List<String> = emptyList(),
+    val examples: List<Example> = emptyList()
 ) {
     fun toEntity(): WordEntity = WordEntity(
         word = word,
         translations = translations,
         examples = examples,
-        phonetic = phonetic,
+        phonetic = phonetic ?: phonetics,
         definition = definition
     )
 }
