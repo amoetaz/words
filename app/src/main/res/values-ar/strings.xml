@@ -1,5 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Words</string>
     <string name="daily_words">Daily Words</string>
-    <string name="vocabulary_list">Vocabulary List</string>
+    <string name="vocabulary_list">الكلمات</string>
 </resources>
