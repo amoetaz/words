@@ -143,10 +143,27 @@ fun AddWordScreen(
                     OutlinedTextField(
                         value = state.definition,
                         onValueChange = { viewModel.handleIntent(AddWordIntent.OnDefinitionChanged(it)) },
-                        label = { Text("Definition") },
+                        label = { Text("English Definition") },
                         modifier = Modifier.fillMaxWidth(),
                         shape = RoundedCornerShape(12.dp),
                         minLines = 2,
+                        colors = OutlinedTextFieldDefaults.colors(
+                            focusedBorderColor = TealDark,
+                            unfocusedBorderColor = TealDark.copy(alpha = 0.5f),
+                            focusedContainerColor = SurfaceCardLight.copy(alpha = 0.5f),
+                            unfocusedContainerColor = SurfaceCardLight.copy(alpha = 0.5f)
+                        )
+                    )
+
+                    // Definition Translation Input Field
+                    OutlinedTextField(
+                        value = state.definitionTranslation,
+                        onValueChange = { viewModel.handleIntent(AddWordIntent.OnDefinitionTranslationChanged(it)) },
+                        label = { Text("Definition Translation (Arabic)") },
+                        modifier = Modifier.fillMaxWidth(),
+                        shape = RoundedCornerShape(12.dp),
+                        minLines = 2,
+                        textStyle = LocalTextStyle.current.copy(textAlign = TextAlign.End),
                         colors = OutlinedTextFieldDefaults.colors(
                             focusedBorderColor = TealDark,
                             unfocusedBorderColor = TealDark.copy(alpha = 0.5f),

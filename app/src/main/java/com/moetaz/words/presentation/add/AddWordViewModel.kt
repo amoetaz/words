@@ -29,6 +29,9 @@ class AddWordViewModel(
             is AddWordIntent.OnDefinitionChanged -> {
                 _state.update { it.copy(definition = intent.definition) }
             }
+            is AddWordIntent.OnDefinitionTranslationChanged -> {
+                _state.update { it.copy(definitionTranslation = intent.definitionTranslation) }
+            }
             is AddWordIntent.OnTranslationChanged -> {
                 val newList = _state.value.translations.toMutableList()
                 newList[intent.index] = intent.translation
@@ -73,6 +76,7 @@ class AddWordViewModel(
                             word = loadedWord.word,
                             phonetic = loadedWord.phonetic ?: "",
                             definition = loadedWord.definition ?: "",
+                            definitionTranslation = loadedWord.definitionTranslation ?: "",
                             translations = loadedWord.translations.ifEmpty { listOf("") },
                             examples = loadedWord.examples.ifEmpty { listOf(Example("", "")) },
                             isLoading = false
@@ -100,6 +104,7 @@ class AddWordViewModel(
                     word = currentState.word,
                     phonetic = currentState.phonetic.ifBlank { null },
                     definition = currentState.definition.ifBlank { null },
+                    definitionTranslation = currentState.definitionTranslation.ifBlank { null },
                     translations = currentState.translations.filter { it.isNotBlank() },
                     examples = currentState.examples.filter { it.english.isNotBlank() || it.arabic.isNotBlank() }
                 )

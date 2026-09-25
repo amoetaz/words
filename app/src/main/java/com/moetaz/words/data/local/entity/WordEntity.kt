@@ -15,6 +15,7 @@ data class WordEntity(
     val examples: List<Example> = emptyList(),
     val phonetic: String? = null,
     val definition: String? = null,
+    val definitionTranslation: String? = null,
     val masteryStatus: WordMasteryStatus = WordMasteryStatus.LEARNING,
     val isFavorite: Boolean = false
 ) {
@@ -25,6 +26,7 @@ data class WordEntity(
         examples = examples,
         phonetic = phonetic,
         definition = definition,
+        definitionTranslation = definitionTranslation,
         masteryStatus = masteryStatus,
         isFavorite = isFavorite
     )
@@ -37,6 +39,7 @@ data class WordEntity(
             examples = word.examples,
             phonetic = word.phonetic,
             definition = word.definition,
+            definitionTranslation = word.definitionTranslation,
             masteryStatus = word.masteryStatus,
             isFavorite = word.isFavorite
         )

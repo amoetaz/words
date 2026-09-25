@@ -169,6 +169,16 @@ fun FlashcardsScreen(
                                         )
                                     }
 
+                                    currentWord.definitionTranslation?.let {
+                                        Spacer(modifier = Modifier.height(8.dp))
+                                        Text(
+                                            text = it,
+                                            style = MaterialTheme.typography.bodyMedium,
+                                            color = MaterialTheme.colorScheme.onSurfaceVariant,
+                                            textAlign = TextAlign.Center
+                                        )
+                                    }
+
                                     if (currentWord.examples.isNotEmpty()) {
                                         Spacer(modifier = Modifier.height(16.dp))
                                         Text(

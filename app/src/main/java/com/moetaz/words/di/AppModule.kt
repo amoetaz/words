@@ -6,6 +6,7 @@ import androidx.sqlite.db.SupportSQLiteDatabase
 import com.moetaz.words.data.local.database.DatabaseInitializer
 import com.moetaz.words.data.local.database.MIGRATION_1_2
 import com.moetaz.words.data.local.database.MIGRATION_2_3
+import com.moetaz.words.data.local.database.MIGRATION_3_4
 import com.moetaz.words.data.local.database.WordDatabase
 import com.moetaz.words.data.repository.WordRepositoryImpl
 import com.moetaz.words.domain.repository.WordRepository
@@ -33,7 +34,7 @@ val appModule = module {
             WordDatabase::class.java,
             "word_db"
         )
-            .addMigrations(MIGRATION_1_2, MIGRATION_2_3)
+            .addMigrations(MIGRATION_1_2, MIGRATION_2_3, MIGRATION_3_4)
             .fallbackToDestructiveMigration(dropAllTables = true)
             .addCallback(object : RoomDatabase.Callback() {
                 override fun onCreate(db: SupportSQLiteDatabase) {

@@ -184,32 +184,47 @@ fun WordDetailScreen(
                     }
 
                     // Definition Card Section
-                    word.definition?.let { defText ->
-                        if (defText.isNotBlank()) {
-                            Card(
-                                modifier = Modifier.fillMaxWidth(),
-                                shape = RoundedCornerShape(20.dp),
-                                colors = CardDefaults.cardColors(
-                                    containerColor = SurfaceCardLight
-                                ),
-                                elevation = CardDefaults.cardElevation(defaultElevation = 0.dp)
+                    if (!word.definition.isNullOrBlank() || !word.definitionTranslation.isNullOrBlank()) {
+                        Card(
+                            modifier = Modifier.fillMaxWidth(),
+                            shape = RoundedCornerShape(20.dp),
+                            colors = CardDefaults.cardColors(
+                                containerColor = SurfaceCardLight
+                            ),
+                            elevation = CardDefaults.cardElevation(defaultElevation = 0.dp)
+                        ) {
+                            Column(
+                                modifier = Modifier.padding(20.dp),
+                                verticalArrangement = Arrangement.spacedBy(10.dp)
                             ) {
-                                Column(
-                                    modifier = Modifier.padding(20.dp),
-                                    verticalArrangement = Arrangement.spacedBy(8.dp)
-                                ) {
-                                    Text(
-                                        text = "Definition",
-                                        fontSize = 20.sp,
-                                        fontWeight = FontWeight.Bold,
-                                        color = MaterialTheme.colorScheme.onSurface
-                                    )
-                                    Text(
-                                        text = defText,
-                                        fontSize = 15.sp,
-                                        lineHeight = 22.sp,
-                                        color = MaterialTheme.colorScheme.onSurface
-                                    )
+                                Text(
+                                    text = "Definition",
+                                    fontSize = 20.sp,
+                                    fontWeight = FontWeight.Bold,
+                                    color = MaterialTheme.colorScheme.onSurface
+                                )
+                                word.definition?.let { defText ->
+                                    if (defText.isNotBlank()) {
+                                        Text(
+                                            text = defText,
+                                            fontSize = 15.sp,
+                                            lineHeight = 22.sp,
+                                            color = MaterialTheme.colorScheme.onSurface
+                                        )
+                                    }
+                                }
+                                word.definitionTranslation?.let { defTransText ->
+                                    if (defTransText.isNotBlank()) {
+                                        Text(
+                                            text = defTransText,
+                                            fontSize = 15.sp,
+                                            lineHeight = 22.sp,
+                                            fontWeight = FontWeight.Medium,
+                                            color = MaterialTheme.colorScheme.onSurfaceVariant,
+                                            modifier = Modifier.fillMaxWidth(),
+                                            textAlign = androidx.compose.ui.text.style.TextAlign.End
+                                        )
+                                    }
                                 }
                             }
                         }

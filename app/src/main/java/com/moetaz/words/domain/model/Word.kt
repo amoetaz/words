@@ -13,6 +13,7 @@ data class Word(
     val examples: List<Example> = emptyList(),
     val phonetic: String? = null,
     val definition: String? = null,
+    val definitionTranslation: String? = null,
     val masteryStatus: WordMasteryStatus = WordMasteryStatus.LEARNING,
     val isFavorite: Boolean = false
 )

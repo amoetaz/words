@@ -16,6 +16,8 @@ data class WordDto(
     val phonetic: String? = null,
     val phonetics: String? = null,
     val definition: String? = null,
+    @SerialName("definition_translation") val definitionTranslation: String? = null,
+    @SerialName("definition_ar") val definitionArabic: String? = null,
     @SerialName("translation") val translations: List<String> = emptyList(),
     val examples: List<Example> = emptyList()
 ) {
@@ -24,6 +26,7 @@ data class WordDto(
         translations = translations,
         examples = examples,
         phonetic = phonetic ?: phonetics,
-        definition = definition
+        definition = definition,
+        definitionTranslation = definitionTranslation ?: definitionArabic
     )
 }
