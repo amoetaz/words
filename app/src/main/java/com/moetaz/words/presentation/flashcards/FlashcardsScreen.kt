@@ -7,10 +7,8 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.automirrored.filled.NavigateBefore
 import androidx.compose.material.icons.automirrored.filled.NavigateNext
-import androidx.compose.material.icons.automirrored.filled.VolumeUp
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.FavoriteBorder
 import androidx.compose.material3.*
@@ -22,9 +20,10 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.moetaz.words.domain.model.WordMasteryStatus
+import com.moetaz.words.presentation.components.SpeakButton
+import com.moetaz.words.presentation.components.WordsTopAppBar
 import com.moetaz.words.presentation.util.rememberTextToSpeech
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun FlashcardsScreen(
     viewModel: FlashcardsViewModel,
@@ -36,16 +35,10 @@ fun FlashcardsScreen(
     Scaffold(
         containerColor = MaterialTheme.colorScheme.background,
         topBar = {
-            TopAppBar(
-                title = { Text("Flashcards Practice") },
-                navigationIcon = {
-                    IconButton(onClick = onBack) {
-                        Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Back")
-                    }
-                },
-                colors = TopAppBarDefaults.topAppBarColors(
-                    containerColor = MaterialTheme.colorScheme.background
-                )
+            WordsTopAppBar(
+                title = "Flashcards Practice",
+                onBack = onBack,
+                containerColor = MaterialTheme.colorScheme.background
             )
         }
     ) { padding ->
@@ -120,13 +113,7 @@ fun FlashcardsScreen(
                                             fontWeight = FontWeight.Bold,
                                             textAlign = TextAlign.Center
                                         )
-                                        IconButton(onClick = { tts.speak(currentWord.word) }) {
-                                            Icon(
-                                                imageVector = Icons.AutoMirrored.Filled.VolumeUp,
-                                                contentDescription = "Pronounce",
-                                                tint = MaterialTheme.colorScheme.primary
-                                            )
-                                        }
+                                        SpeakButton(onClick = { tts.speak(currentWord.word) })
                                     }
 
                                     currentWord.phonetic?.let {

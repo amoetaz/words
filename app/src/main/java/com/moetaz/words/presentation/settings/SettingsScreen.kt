@@ -3,15 +3,11 @@ package com.moetaz.words.presentation.settings
 import android.net.Uri
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.DarkMode
 import androidx.compose.material.icons.filled.FileDownload
 import androidx.compose.material.icons.filled.Language
@@ -19,16 +15,16 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.moetaz.words.presentation.components.PrimaryActionButton
+import com.moetaz.words.presentation.components.SelectableOptionRow
+import com.moetaz.words.presentation.components.WordsCard
+import com.moetaz.words.presentation.components.WordsTopAppBar
 import com.moetaz.words.ui.theme.AppThemeMode
-import com.moetaz.words.ui.theme.PrimaryGradient
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun SettingsScreen(
     viewModel: SettingsViewModel,
@@ -59,27 +55,9 @@ fun SettingsScreen(
     Scaffold(
         containerColor = MaterialTheme.colorScheme.background,
         topBar = {
-            TopAppBar(
-                title = {
-                    Text(
-                        text = "Settings",
-                        fontSize = 20.sp,
-                        fontWeight = FontWeight.Bold,
-                        color = MaterialTheme.colorScheme.onSurface
-                    )
-                },
-                navigationIcon = {
-                    IconButton(onClick = onBack) {
-                        Icon(
-                            imageVector = Icons.AutoMirrored.Filled.ArrowBack,
-                            contentDescription = "Back",
-                            tint = MaterialTheme.colorScheme.onSurface
-                        )
-                    }
-                },
-                colors = TopAppBarDefaults.topAppBarColors(
-                    containerColor = Color.Transparent
-                )
+            WordsTopAppBar(
+                title = "Settings",
+                onBack = onBack
             )
         }
     ) { padding ->
@@ -92,14 +70,7 @@ fun SettingsScreen(
             verticalArrangement = Arrangement.spacedBy(20.dp)
         ) {
             // Theme Mode Selection Section
-            Card(
-                modifier = Modifier.fillMaxWidth(),
-                shape = RoundedCornerShape(20.dp),
-                colors = CardDefaults.cardColors(
-                    containerColor = MaterialTheme.colorScheme.surface
-                ),
-                elevation = CardDefaults.cardElevation(defaultElevation = 0.dp)
-            ) {
+            WordsCard {
                 Column(
                     modifier = Modifier.padding(20.dp),
                     verticalArrangement = Arrangement.spacedBy(16.dp)
@@ -124,7 +95,7 @@ fun SettingsScreen(
                     Column(
                         verticalArrangement = Arrangement.spacedBy(8.dp)
                     ) {
-                        OptionRow(
+                        SelectableOptionRow(
                             label = "System Default / النظام الافتراضي",
                             selected = state.selectedThemeMode == AppThemeMode.SYSTEM,
                             onSelect = {
@@ -132,7 +103,7 @@ fun SettingsScreen(
                             }
                         )
 
-                        OptionRow(
+                        SelectableOptionRow(
                             label = "Light / فاتح",
                             selected = state.selectedThemeMode == AppThemeMode.LIGHT,
                             onSelect = {
@@ -140,7 +111,7 @@ fun SettingsScreen(
                             }
                         )
 
-                        OptionRow(
+                        SelectableOptionRow(
                             label = "Dark / داكن",
                             selected = state.selectedThemeMode == AppThemeMode.DARK,
                             onSelect = {
@@ -152,14 +123,7 @@ fun SettingsScreen(
             }
 
             // Language Selection Section
-            Card(
-                modifier = Modifier.fillMaxWidth(),
-                shape = RoundedCornerShape(20.dp),
-                colors = CardDefaults.cardColors(
-                    containerColor = MaterialTheme.colorScheme.surface
-                ),
-                elevation = CardDefaults.cardElevation(defaultElevation = 0.dp)
-            ) {
+            WordsCard {
                 Column(
                     modifier = Modifier.padding(20.dp),
                     verticalArrangement = Arrangement.spacedBy(16.dp)
@@ -184,7 +148,7 @@ fun SettingsScreen(
                     Column(
                         verticalArrangement = Arrangement.spacedBy(8.dp)
                     ) {
-                        OptionRow(
+                        SelectableOptionRow(
                             label = "English",
                             selected = state.selectedLanguage == "en",
                             onSelect = {
@@ -192,7 +156,7 @@ fun SettingsScreen(
                             }
                         )
 
-                        OptionRow(
+                        SelectableOptionRow(
                             label = "العربية (Arabic)",
                             selected = state.selectedLanguage == "ar",
                             onSelect = {
@@ -204,14 +168,7 @@ fun SettingsScreen(
             }
 
             // JSON Import Section
-            Card(
-                modifier = Modifier.fillMaxWidth(),
-                shape = RoundedCornerShape(20.dp),
-                colors = CardDefaults.cardColors(
-                    containerColor = MaterialTheme.colorScheme.surface
-                ),
-                elevation = CardDefaults.cardElevation(defaultElevation = 0.dp)
-            ) {
+            WordsCard {
                 Column(
                     modifier = Modifier.padding(20.dp),
                     verticalArrangement = Arrangement.spacedBy(16.dp)
@@ -240,35 +197,12 @@ fun SettingsScreen(
                         lineHeight = 20.sp
                     )
 
-                    Box(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .height(50.dp)
-                            .clip(CircleShape)
-                            .background(PrimaryGradient)
-                            .clickable(
-                                enabled = !state.isImporting,
-                                onClick = {
-                                    jsonPickerLauncher.launch("application/json")
-                                }
-                            ),
-                        contentAlignment = Alignment.Center
-                    ) {
-                        if (state.isImporting) {
-                            CircularProgressIndicator(
-                                modifier = Modifier.size(24.dp),
-                                color = Color.White,
-                                strokeWidth = 2.dp
-                            )
-                        } else {
-                            Text(
-                                text = "Choose JSON File",
-                                fontSize = 16.sp,
-                                fontWeight = FontWeight.Bold,
-                                color = Color.White
-                            )
-                        }
-                    }
+                    PrimaryActionButton(
+                        text = "Choose JSON File",
+                        onClick = { jsonPickerLauncher.launch("application/json") },
+                        isLoading = state.isImporting,
+                        enabled = !state.isImporting
+                    )
 
                     if (state.importMessage != null) {
                         Card(
@@ -335,36 +269,5 @@ fun SettingsScreen(
                 }
             }
         }
-    }
-}
-
-@Composable
-private fun OptionRow(
-    label: String,
-    selected: Boolean,
-    onSelect: () -> Unit
-) {
-    Row(
-        modifier = Modifier
-            .fillMaxWidth()
-            .clip(RoundedCornerShape(12.dp))
-            .clickable(onClick = onSelect)
-            .padding(horizontal = 12.dp, vertical = 10.dp),
-        horizontalArrangement = Arrangement.SpaceBetween,
-        verticalAlignment = Alignment.CenterVertically
-    ) {
-        Text(
-            text = label,
-            fontSize = 16.sp,
-            fontWeight = if (selected) FontWeight.Bold else FontWeight.Normal,
-            color = MaterialTheme.colorScheme.onSurface
-        )
-        RadioButton(
-            selected = selected,
-            onClick = onSelect,
-            colors = RadioButtonDefaults.colors(
-                selectedColor = MaterialTheme.colorScheme.primary
-            )
-        )
     }
 }

@@ -6,8 +6,6 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.filled.ArrowBack
-import androidx.compose.material.icons.automirrored.filled.VolumeUp
 import androidx.compose.material.icons.filled.Cancel
 import androidx.compose.material.icons.filled.CheckCircle
 import androidx.compose.material3.*
@@ -19,9 +17,11 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import com.moetaz.words.presentation.components.SpeakButton
+import com.moetaz.words.presentation.components.WordsCard
+import com.moetaz.words.presentation.components.WordsTopAppBar
 import com.moetaz.words.presentation.util.rememberTextToSpeech
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun QuizScreen(
     viewModel: QuizViewModel,
@@ -33,16 +33,10 @@ fun QuizScreen(
     Scaffold(
         containerColor = MaterialTheme.colorScheme.background,
         topBar = {
-            TopAppBar(
-                title = { Text("Vocabulary Quiz") },
-                navigationIcon = {
-                    IconButton(onClick = onBack) {
-                        Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Back")
-                    }
-                },
-                colors = TopAppBarDefaults.topAppBarColors(
-                    containerColor = MaterialTheme.colorScheme.background
-                )
+            WordsTopAppBar(
+                title = "Vocabulary Quiz",
+                onBack = onBack,
+                containerColor = MaterialTheme.colorScheme.background
             )
         }
     ) { padding ->
@@ -112,9 +106,8 @@ fun QuizScreen(
 
                         Spacer(modifier = Modifier.height(24.dp))
 
-                        Card(
-                            modifier = Modifier.fillMaxWidth(),
-                            colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.primaryContainer),
+                        WordsCard(
+                            containerColor = MaterialTheme.colorScheme.primaryContainer,
                             shape = RoundedCornerShape(20.dp)
                         ) {
                             Column(
@@ -136,13 +129,10 @@ fun QuizScreen(
                                         fontWeight = FontWeight.Bold,
                                         color = MaterialTheme.colorScheme.onPrimaryContainer
                                     )
-                                    IconButton(onClick = { tts.speak(currentQ.word.word) }) {
-                                        Icon(
-                                            imageVector = Icons.AutoMirrored.Filled.VolumeUp,
-                                            contentDescription = "Pronounce",
-                                            tint = MaterialTheme.colorScheme.onPrimaryContainer
-                                        )
-                                    }
+                                    SpeakButton(
+                                        onClick = { tts.speak(currentQ.word.word) },
+                                        tint = MaterialTheme.colorScheme.onPrimaryContainer
+                                    )
                                 }
                             }
                         }

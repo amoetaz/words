@@ -8,7 +8,6 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.filled.VolumeUp
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
@@ -24,7 +23,9 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.moetaz.words.R
 import com.moetaz.words.domain.model.Word
-import com.moetaz.words.domain.model.WordMasteryStatus
+import com.moetaz.words.presentation.components.MasteryStatusBadge
+import com.moetaz.words.presentation.components.SpeakButton
+import com.moetaz.words.presentation.components.WordsCard
 import com.moetaz.words.presentation.util.rememberTextToSpeech
 import com.moetaz.words.ui.theme.HeaderGradient
 import com.moetaz.words.ui.theme.PrimaryGradient
@@ -220,16 +221,9 @@ fun WordItem(
     onClick: () -> Unit,
     onSpeakClick: () -> Unit
 ) {
-    Card(
-        modifier = Modifier
-            .fillMaxWidth()
-            .clip(RoundedCornerShape(16.dp))
-            .clickable(onClick = onClick),
+    WordsCard(
         shape = RoundedCornerShape(16.dp),
-        colors = CardDefaults.cardColors(
-            containerColor = MaterialTheme.colorScheme.surface
-        ),
-        elevation = CardDefaults.cardElevation(defaultElevation = 0.dp)
+        onClick = onClick
     ) {
         Row(
             modifier = Modifier
@@ -246,17 +240,11 @@ fun WordItem(
                         fontWeight = FontWeight.Bold,
                         color = MaterialTheme.colorScheme.onSurface
                     )
-                    IconButton(
+                    SpeakButton(
                         onClick = onSpeakClick,
+                        iconSize = 18.dp,
                         modifier = Modifier.size(32.dp)
-                    ) {
-                        Icon(
-                            imageVector = Icons.AutoMirrored.Filled.VolumeUp,
-                            contentDescription = "Speak",
-                            tint = MaterialTheme.colorScheme.primary,
-                            modifier = Modifier.size(18.dp)
-                        )
-                    }
+                    )
                     if (word.isFavorite) {
                         Icon(
                             imageVector = Icons.Default.Favorite,
@@ -278,30 +266,7 @@ fun WordItem(
                 }
             }
 
-            val badgeColor = when (word.masteryStatus) {
-                WordMasteryStatus.LEARNING -> MaterialTheme.colorScheme.tertiaryContainer
-                WordMasteryStatus.REVIEWING -> MaterialTheme.colorScheme.secondaryContainer
-                WordMasteryStatus.MASTERED -> MaterialTheme.colorScheme.primaryContainer
-            }
-
-            val badgeTextColor = when (word.masteryStatus) {
-                WordMasteryStatus.LEARNING -> MaterialTheme.colorScheme.onTertiaryContainer
-                WordMasteryStatus.REVIEWING -> MaterialTheme.colorScheme.onSecondaryContainer
-                WordMasteryStatus.MASTERED -> MaterialTheme.colorScheme.onPrimaryContainer
-            }
-
-            Surface(
-                color = badgeColor,
-                shape = RoundedCornerShape(8.dp)
-            ) {
-                Text(
-                    text = word.masteryStatus.name,
-                    color = badgeTextColor,
-                    fontSize = 11.sp,
-                    fontWeight = FontWeight.Bold,
-                    modifier = Modifier.padding(horizontal = 8.dp, vertical = 4.dp)
-                )
-            }
+            MasteryStatusBadge(status = word.masteryStatus)
         }
     }
 }

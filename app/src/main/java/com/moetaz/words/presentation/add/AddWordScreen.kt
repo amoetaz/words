@@ -1,10 +1,7 @@
 package com.moetaz.words.presentation.add
 
-import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
@@ -17,15 +14,16 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.moetaz.words.ui.theme.PrimaryGradient
+import com.moetaz.words.presentation.components.PrimaryActionButton
+import com.moetaz.words.presentation.components.WordsCard
+import com.moetaz.words.presentation.components.WordsTextField
+import com.moetaz.words.presentation.components.WordsTopAppBar
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun AddWordScreen(
     wordId: Long? = null,
@@ -51,26 +49,9 @@ fun AddWordScreen(
     Scaffold(
         containerColor = MaterialTheme.colorScheme.background,
         topBar = {
-            TopAppBar(
-                title = {
-                    Text(
-                        text = if (isEditing) "Edit Entry" else "Add Entry",
-                        fontSize = 18.sp,
-                        fontWeight = FontWeight.Bold,
-                        color = MaterialTheme.colorScheme.onSurface,
-                        modifier = Modifier.fillMaxWidth(),
-                        textAlign = TextAlign.Center
-                    )
-                },
-                navigationIcon = {
-                    TextButton(onClick = onBack) {
-                        Text(
-                            text = "Cancel",
-                            fontSize = 15.sp,
-                            color = MaterialTheme.colorScheme.onSurfaceVariant
-                        )
-                    }
-                },
+            WordsTopAppBar(
+                title = if (isEditing) "Edit Entry" else "Add Entry",
+                centerTitle = true,
                 actions = {
                     TextButton(
                         onClick = { viewModel.handleIntent(AddWordIntent.SaveWord) },
@@ -83,10 +64,7 @@ fun AddWordScreen(
                             color = MaterialTheme.colorScheme.primary
                         )
                     }
-                },
-                colors = TopAppBarDefaults.topAppBarColors(
-                    containerColor = Color.Transparent
-                )
+                }
             )
         }
     ) { padding ->
@@ -105,89 +83,56 @@ fun AddWordScreen(
                         .verticalScroll(rememberScrollState()),
                     verticalArrangement = Arrangement.spacedBy(20.dp)
                 ) {
+                    TextButton(onClick = onBack) {
+                        Text(
+                            text = "Cancel",
+                            fontSize = 15.sp,
+                            color = MaterialTheme.colorScheme.onSurfaceVariant
+                        )
+                    }
+
                     // English Word Input Field
-                    OutlinedTextField(
+                    WordsTextField(
                         value = state.word,
                         onValueChange = { viewModel.handleIntent(AddWordIntent.OnWordChanged(it)) },
-                        label = { Text("English Word (Required)") },
-                        modifier = Modifier.fillMaxWidth(),
-                        shape = RoundedCornerShape(12.dp),
-                        colors = OutlinedTextFieldDefaults.colors(
-                            focusedBorderColor = MaterialTheme.colorScheme.primary,
-                            unfocusedBorderColor = MaterialTheme.colorScheme.primary.copy(alpha = 0.5f),
-                            focusedContainerColor = MaterialTheme.colorScheme.surface.copy(alpha = 0.5f),
-                            unfocusedContainerColor = MaterialTheme.colorScheme.surface.copy(alpha = 0.5f)
-                        ),
-                        singleLine = true
+                        label = "English Word (Required)"
                     )
 
                     // Phonetic Pronunciation Input Field
-                    OutlinedTextField(
+                    WordsTextField(
                         value = state.phonetic,
                         onValueChange = { viewModel.handleIntent(AddWordIntent.OnPhoneticChanged(it)) },
-                        label = { Text("Phonetic Pronunciation (e.g. /æsˈθɛtɪk/)") },
-                        modifier = Modifier.fillMaxWidth(),
-                        shape = RoundedCornerShape(12.dp),
-                        colors = OutlinedTextFieldDefaults.colors(
-                            focusedBorderColor = MaterialTheme.colorScheme.primary,
-                            unfocusedBorderColor = MaterialTheme.colorScheme.primary.copy(alpha = 0.5f),
-                            focusedContainerColor = MaterialTheme.colorScheme.surface.copy(alpha = 0.5f),
-                            unfocusedContainerColor = MaterialTheme.colorScheme.surface.copy(alpha = 0.5f)
-                        ),
-                        singleLine = true
+                        label = "Phonetic Pronunciation (e.g. /æsˈθɛtɪk/)"
                     )
 
                     // Definition Input Field
-                    OutlinedTextField(
+                    WordsTextField(
                         value = state.definition,
                         onValueChange = { viewModel.handleIntent(AddWordIntent.OnDefinitionChanged(it)) },
-                        label = { Text("English Definition") },
-                        modifier = Modifier.fillMaxWidth(),
-                        shape = RoundedCornerShape(12.dp),
-                        minLines = 2,
-                        colors = OutlinedTextFieldDefaults.colors(
-                            focusedBorderColor = MaterialTheme.colorScheme.primary,
-                            unfocusedBorderColor = MaterialTheme.colorScheme.primary.copy(alpha = 0.5f),
-                            focusedContainerColor = MaterialTheme.colorScheme.surface.copy(alpha = 0.5f),
-                            unfocusedContainerColor = MaterialTheme.colorScheme.surface.copy(alpha = 0.5f)
-                        )
+                        label = "English Definition",
+                        singleLine = false,
+                        minLines = 2
                     )
 
                     // Definition Translation Input Field
-                    OutlinedTextField(
+                    WordsTextField(
                         value = state.definitionTranslation,
                         onValueChange = { viewModel.handleIntent(AddWordIntent.OnDefinitionTranslationChanged(it)) },
-                        label = { Text("Definition Translation (Arabic)") },
-                        modifier = Modifier.fillMaxWidth(),
-                        shape = RoundedCornerShape(12.dp),
+                        label = "Definition Translation (Arabic)",
+                        singleLine = false,
                         minLines = 2,
-                        textStyle = LocalTextStyle.current.copy(textAlign = TextAlign.End),
-                        colors = OutlinedTextFieldDefaults.colors(
-                            focusedBorderColor = MaterialTheme.colorScheme.primary,
-                            unfocusedBorderColor = MaterialTheme.colorScheme.primary.copy(alpha = 0.5f),
-                            focusedContainerColor = MaterialTheme.colorScheme.surface.copy(alpha = 0.5f),
-                            unfocusedContainerColor = MaterialTheme.colorScheme.surface.copy(alpha = 0.5f)
-                        )
+                        textStyle = LocalTextStyle.current.copy(textAlign = TextAlign.End)
                     )
 
                     // Arabic Translation Input Field
                     val mainTranslation = state.translations.firstOrNull() ?: ""
-                    OutlinedTextField(
+                    WordsTextField(
                         value = mainTranslation,
                         onValueChange = { text ->
                             viewModel.handleIntent(AddWordIntent.OnTranslationChanged(0, text))
                         },
-                        label = { Text("Arabic Translation (Required)") },
-                        modifier = Modifier.fillMaxWidth(),
-                        shape = RoundedCornerShape(12.dp),
-                        textStyle = LocalTextStyle.current.copy(textAlign = TextAlign.End),
-                        colors = OutlinedTextFieldDefaults.colors(
-                            focusedBorderColor = MaterialTheme.colorScheme.primary,
-                            unfocusedBorderColor = MaterialTheme.colorScheme.primary.copy(alpha = 0.5f),
-                            focusedContainerColor = MaterialTheme.colorScheme.surface.copy(alpha = 0.5f),
-                            unfocusedContainerColor = MaterialTheme.colorScheme.surface.copy(alpha = 0.5f)
-                        ),
-                        singleLine = true
+                        label = "Arabic Translation (Required)",
+                        textStyle = LocalTextStyle.current.copy(textAlign = TextAlign.End)
                     )
 
                     // Examples Section Title
@@ -200,14 +145,7 @@ fun AddWordScreen(
 
                     // Examples Card List
                     state.examples.forEachIndexed { index, example ->
-                        Card(
-                            modifier = Modifier.fillMaxWidth(),
-                            shape = RoundedCornerShape(16.dp),
-                            colors = CardDefaults.cardColors(
-                                containerColor = MaterialTheme.colorScheme.surface
-                            ),
-                            elevation = CardDefaults.cardElevation(defaultElevation = 0.dp)
-                        ) {
+                        WordsCard(shape = RoundedCornerShape(16.dp)) {
                             Column(
                                 modifier = Modifier.padding(16.dp),
                                 verticalArrangement = Arrangement.spacedBy(10.dp)
@@ -271,18 +209,9 @@ fun AddWordScreen(
                     }
 
                     // "+ Add Example" Button Card
-                    Card(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .clip(RoundedCornerShape(16.dp))
-                            .clickable {
-                                viewModel.handleIntent(AddWordIntent.AddExampleField)
-                            },
+                    WordsCard(
                         shape = RoundedCornerShape(16.dp),
-                        colors = CardDefaults.cardColors(
-                            containerColor = MaterialTheme.colorScheme.surface
-                        ),
-                        elevation = CardDefaults.cardElevation(defaultElevation = 0.dp)
+                        onClick = { viewModel.handleIntent(AddWordIntent.AddExampleField) }
                     ) {
                         Row(
                             modifier = Modifier
@@ -317,34 +246,12 @@ fun AddWordScreen(
 
                     Spacer(modifier = Modifier.height(8.dp))
 
-                    // Full-width Save Changes Gradient Pill Button
-                    Box(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .height(52.dp)
-                            .clip(CircleShape)
-                            .background(PrimaryGradient)
-                            .clickable(
-                                enabled = !state.isSaving,
-                                onClick = { viewModel.handleIntent(AddWordIntent.SaveWord) }
-                            ),
-                        contentAlignment = Alignment.Center
-                    ) {
-                        if (state.isSaving) {
-                            CircularProgressIndicator(
-                                modifier = Modifier.size(24.dp),
-                                color = Color.White,
-                                strokeWidth = 2.dp
-                            )
-                        } else {
-                            Text(
-                                text = if (isEditing) "Save Changes" else "Save Word",
-                                fontSize = 16.sp,
-                                fontWeight = FontWeight.Bold,
-                                color = Color.White
-                            )
-                        }
-                    }
+                    PrimaryActionButton(
+                        text = if (isEditing) "Save Changes" else "Save Word",
+                        onClick = { viewModel.handleIntent(AddWordIntent.SaveWord) },
+                        isLoading = state.isSaving,
+                        enabled = !state.isSaving
+                    )
 
                     Spacer(modifier = Modifier.height(20.dp))
                 }

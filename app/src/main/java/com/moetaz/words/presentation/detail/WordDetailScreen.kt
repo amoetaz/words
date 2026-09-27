@@ -2,11 +2,8 @@ package com.moetaz.words.presentation.detail
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.filled.ArrowBack
-import androidx.compose.material.icons.automirrored.filled.VolumeUp
 import androidx.compose.material.icons.filled.Edit
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.FavoriteBorder
@@ -17,12 +14,14 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.moetaz.words.domain.model.WordMasteryStatus
+import com.moetaz.words.presentation.components.SpeakButton
+import com.moetaz.words.presentation.components.WordsCard
+import com.moetaz.words.presentation.components.WordsTopAppBar
 import com.moetaz.words.presentation.util.rememberTextToSpeech
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -43,17 +42,9 @@ fun WordDetailScreen(
     Scaffold(
         containerColor = MaterialTheme.colorScheme.background,
         topBar = {
-            TopAppBar(
-                title = {},
-                navigationIcon = {
-                    IconButton(onClick = onBack) {
-                        Icon(
-                            imageVector = Icons.AutoMirrored.Filled.ArrowBack,
-                            contentDescription = "Back",
-                            tint = MaterialTheme.colorScheme.onSurface
-                        )
-                    }
-                },
+            WordsTopAppBar(
+                title = "",
+                onBack = onBack,
                 actions = {
                     if (state.word != null) {
                         val word = state.word!!
@@ -74,10 +65,7 @@ fun WordDetailScreen(
                             )
                         }
                     }
-                },
-                colors = TopAppBarDefaults.topAppBarColors(
-                    containerColor = Color.Transparent
-                )
+                }
             )
         }
     ) { padding ->
@@ -120,13 +108,10 @@ fun WordDetailScreen(
                                     fontWeight = FontWeight.Bold,
                                     color = MaterialTheme.colorScheme.onSurface
                                 )
-                                IconButton(onClick = { tts.speak(word.word) }) {
-                                    Icon(
-                                        imageVector = Icons.AutoMirrored.Filled.VolumeUp,
-                                        contentDescription = "Speak",
-                                        tint = MaterialTheme.colorScheme.primary
-                                    )
-                                }
+                                SpeakButton(
+                                    onClick = { tts.speak(word.word) },
+                                    iconSize = 24.dp
+                                )
                             }
                             word.phonetic?.let { phoneticText ->
                                 if (phoneticText.isNotBlank()) {
@@ -185,14 +170,7 @@ fun WordDetailScreen(
 
                     // Definition Card Section
                     if (!word.definition.isNullOrBlank() || !word.definitionTranslation.isNullOrBlank()) {
-                        Card(
-                            modifier = Modifier.fillMaxWidth(),
-                            shape = RoundedCornerShape(20.dp),
-                            colors = CardDefaults.cardColors(
-                                containerColor = MaterialTheme.colorScheme.surface
-                            ),
-                            elevation = CardDefaults.cardElevation(defaultElevation = 0.dp)
-                        ) {
+                        WordsCard {
                             Column(
                                 modifier = Modifier.padding(20.dp),
                                 verticalArrangement = Arrangement.spacedBy(10.dp)
@@ -232,14 +210,7 @@ fun WordDetailScreen(
 
                     // Additional Translations Card
                     if (word.translations.size > 1) {
-                        Card(
-                            modifier = Modifier.fillMaxWidth(),
-                            shape = RoundedCornerShape(20.dp),
-                            colors = CardDefaults.cardColors(
-                                containerColor = MaterialTheme.colorScheme.surface
-                            ),
-                            elevation = CardDefaults.cardElevation(defaultElevation = 0.dp)
-                        ) {
+                        WordsCard {
                             Column(
                                 modifier = Modifier.padding(20.dp),
                                 verticalArrangement = Arrangement.spacedBy(8.dp)
@@ -263,14 +234,7 @@ fun WordDetailScreen(
 
                     // Examples Card Section
                     if (word.examples.isNotEmpty()) {
-                        Card(
-                            modifier = Modifier.fillMaxWidth(),
-                            shape = RoundedCornerShape(20.dp),
-                            colors = CardDefaults.cardColors(
-                                containerColor = MaterialTheme.colorScheme.surface
-                            ),
-                            elevation = CardDefaults.cardElevation(defaultElevation = 0.dp)
-                        ) {
+                        WordsCard {
                             Column(
                                 modifier = Modifier.padding(20.dp),
                                 verticalArrangement = Arrangement.spacedBy(16.dp)
