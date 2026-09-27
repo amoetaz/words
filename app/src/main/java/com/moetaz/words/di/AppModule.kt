@@ -19,6 +19,7 @@ import com.moetaz.words.presentation.flashcards.FlashcardsViewModel
 import com.moetaz.words.presentation.list.WordListViewModel
 import com.moetaz.words.presentation.quiz.QuizViewModel
 import com.moetaz.words.presentation.settings.SettingsViewModel
+import com.moetaz.words.ui.theme.ThemePreferences
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -47,6 +48,7 @@ val appModule = module {
             })
             .build()
     }
+    single { ThemePreferences(androidContext()) }
     single { get<WordDatabase>().wordDao() }
     single<WordRepository> { WordRepositoryImpl(get(), androidContext()) }
     single { GetWordsUseCase(get()) }
@@ -56,7 +58,7 @@ val appModule = module {
     viewModel { WordListViewModel(get()) }
     viewModel { AddWordViewModel(get(), get()) }
     viewModel { WordDetailViewModel(get(), get()) }
-    viewModel { SettingsViewModel(get()) }
+    viewModel { SettingsViewModel(get(), get()) }
     viewModel { FlashcardsViewModel(get()) }
     viewModel { QuizViewModel(get()) }
 }

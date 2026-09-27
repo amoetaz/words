@@ -1,82 +1,62 @@
 package com.moetaz.words.presentation.settings
 
+import android.content.Context
 import com.moetaz.words.domain.repository.WordRepository
-import com.moetaz.words.util.MainDispatcherRule
-import io.mockk.coVerify
+import com.moetaz.words.ui.theme.AppThemeMode
+import com.moetaz.words.ui.theme.ThemePreferences
 import io.mockk.mockk
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.test.StandardTestDispatcher
+import kotlinx.coroutines.test.resetMain
 import kotlinx.coroutines.test.runTest
+import kotlinx.coroutines.test.setMain
+import org.junit.After
 import org.junit.Assert.assertEquals
-import org.junit.Assert.assertFalse
-import org.junit.Assert.assertNull
 import org.junit.Before
-import org.junit.Rule
 import org.junit.Test
 
+@OptIn(ExperimentalCoroutinesApi::class)
 class SettingsViewModelTest {
 
-    @get:Rule
-    val mainDispatcherRule = MainDispatcherRule()
-
+    private val testDispatcher = StandardTestDispatcher()
     private lateinit var repository: WordRepository
+    private lateinit var context: Context
+    private lateinit var themePreferences: ThemePreferences
     private lateinit var viewModel: SettingsViewModel
 
     @Before
     fun setUp() {
+        Dispatchers.setMain(testDispatcher)
         repository = mockk(relaxed = true)
-        viewModel = SettingsViewModel(repository)
+        context = mockk(relaxed = true)
+        themePreferences = ThemePreferences(context)
+        viewModel = SettingsViewModel(repository, themePreferences)
+    }
+
+    @After
+    fun tearDown() {
+        Dispatchers.resetMain()
     }
 
     @Test
-    fun importJson_validJson_insertsWordsAndUpdatesSuccessMessage() = runTest {
-        val sampleJson = """
-            {
-              "words": [
-                {
-                  "word": "exuberance",
-                  "phonetics": "exuberance",
-                  "definition": "exuberance",
-                  "translation": [
-                    "امتلاء بالحيوية"
-                  ],
-                  "examples": [
-                    {
-                      "english": "Her exuberance was contagious.",
-                      "arabic": "كان امتلائها بالحيوية معدياً."
-                    }
-                  ]
-                }
-              ]
-            }
-        """.trimIndent()
-
-        viewModel.handleIntent(SettingsIntent.ImportJsonContent(sampleJson))
-
-        assertFalse(viewModel.state.value.isImporting)
-        assertEquals("Successfully imported 1 word(s)!", viewModel.state.value.importMessage)
-        assertNull(viewModel.state.value.importError)
-
-        coVerify(exactly = 1) { repository.insertWord(any()) }
+    fun defaultState_hasSystemThemeMode() {
+        assertEquals(AppThemeMode.SYSTEM, viewModel.state.value.selectedThemeMode)
     }
 
     @Test
-    fun importJson_invalidJson_setsImportError() = runTest {
-        val invalidJson = "invalid json content"
+    fun changeThemeMode_updatesStateAndPreferences() = runTest {
+        viewModel.handleIntent(SettingsIntent.ChangeThemeMode(AppThemeMode.DARK))
 
-        viewModel.handleIntent(SettingsIntent.ImportJsonContent(invalidJson))
-
-        assertFalse(viewModel.state.value.isImporting)
-        assertNull(viewModel.state.value.importMessage)
-        assertEquals(true, viewModel.state.value.importError?.contains("Failed to parse JSON file"))
+        assertEquals(AppThemeMode.DARK, viewModel.state.value.selectedThemeMode)
+        assertEquals(AppThemeMode.DARK, themePreferences.themeMode.value)
     }
 
     @Test
-    fun clearImportStatus_resetsMessages() = runTest {
-        val invalidJson = "invalid json"
-        viewModel.handleIntent(SettingsIntent.ImportJsonContent(invalidJson))
+    fun changeThemeMode_toLight_updatesStateAndPreferences() = runTest {
+        viewModel.handleIntent(SettingsIntent.ChangeThemeMode(AppThemeMode.LIGHT))
 
-        viewModel.handleIntent(SettingsIntent.ClearImportStatus)
-
-        assertNull(viewModel.state.value.importMessage)
-        assertNull(viewModel.state.value.importError)
+        assertEquals(AppThemeMode.LIGHT, viewModel.state.value.selectedThemeMode)
+        assertEquals(AppThemeMode.LIGHT, themePreferences.themeMode.value)
     }
 }

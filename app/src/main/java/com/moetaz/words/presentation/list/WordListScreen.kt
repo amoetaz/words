@@ -28,7 +28,6 @@ import com.moetaz.words.domain.model.WordMasteryStatus
 import com.moetaz.words.presentation.util.rememberTextToSpeech
 import com.moetaz.words.ui.theme.HeaderGradient
 import com.moetaz.words.ui.theme.PrimaryGradient
-import com.moetaz.words.ui.theme.SurfaceCardLight
 
 @Composable
 fun WordListScreen(
@@ -228,7 +227,7 @@ fun WordItem(
             .clickable(onClick = onClick),
         shape = RoundedCornerShape(16.dp),
         colors = CardDefaults.cardColors(
-            containerColor = SurfaceCardLight
+            containerColor = MaterialTheme.colorScheme.surface
         ),
         elevation = CardDefaults.cardElevation(defaultElevation = 0.dp)
     ) {

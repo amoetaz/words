@@ -24,8 +24,6 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.moetaz.words.ui.theme.PrimaryGradient
-import com.moetaz.words.ui.theme.SurfaceCardLight
-import com.moetaz.words.ui.theme.TealDark
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -82,7 +80,7 @@ fun AddWordScreen(
                             text = "SAVE",
                             fontSize = 15.sp,
                             fontWeight = FontWeight.Bold,
-                            color = TealDark
+                            color = MaterialTheme.colorScheme.primary
                         )
                     }
                 },
@@ -115,10 +113,10 @@ fun AddWordScreen(
                         modifier = Modifier.fillMaxWidth(),
                         shape = RoundedCornerShape(12.dp),
                         colors = OutlinedTextFieldDefaults.colors(
-                            focusedBorderColor = TealDark,
-                            unfocusedBorderColor = TealDark.copy(alpha = 0.5f),
-                            focusedContainerColor = SurfaceCardLight.copy(alpha = 0.5f),
-                            unfocusedContainerColor = SurfaceCardLight.copy(alpha = 0.5f)
+                            focusedBorderColor = MaterialTheme.colorScheme.primary,
+                            unfocusedBorderColor = MaterialTheme.colorScheme.primary.copy(alpha = 0.5f),
+                            focusedContainerColor = MaterialTheme.colorScheme.surface.copy(alpha = 0.5f),
+                            unfocusedContainerColor = MaterialTheme.colorScheme.surface.copy(alpha = 0.5f)
                         ),
                         singleLine = true
                     )
@@ -131,10 +129,10 @@ fun AddWordScreen(
                         modifier = Modifier.fillMaxWidth(),
                         shape = RoundedCornerShape(12.dp),
                         colors = OutlinedTextFieldDefaults.colors(
-                            focusedBorderColor = TealDark,
-                            unfocusedBorderColor = TealDark.copy(alpha = 0.5f),
-                            focusedContainerColor = SurfaceCardLight.copy(alpha = 0.5f),
-                            unfocusedContainerColor = SurfaceCardLight.copy(alpha = 0.5f)
+                            focusedBorderColor = MaterialTheme.colorScheme.primary,
+                            unfocusedBorderColor = MaterialTheme.colorScheme.primary.copy(alpha = 0.5f),
+                            focusedContainerColor = MaterialTheme.colorScheme.surface.copy(alpha = 0.5f),
+                            unfocusedContainerColor = MaterialTheme.colorScheme.surface.copy(alpha = 0.5f)
                         ),
                         singleLine = true
                     )
@@ -148,10 +146,10 @@ fun AddWordScreen(
                         shape = RoundedCornerShape(12.dp),
                         minLines = 2,
                         colors = OutlinedTextFieldDefaults.colors(
-                            focusedBorderColor = TealDark,
-                            unfocusedBorderColor = TealDark.copy(alpha = 0.5f),
-                            focusedContainerColor = SurfaceCardLight.copy(alpha = 0.5f),
-                            unfocusedContainerColor = SurfaceCardLight.copy(alpha = 0.5f)
+                            focusedBorderColor = MaterialTheme.colorScheme.primary,
+                            unfocusedBorderColor = MaterialTheme.colorScheme.primary.copy(alpha = 0.5f),
+                            focusedContainerColor = MaterialTheme.colorScheme.surface.copy(alpha = 0.5f),
+                            unfocusedContainerColor = MaterialTheme.colorScheme.surface.copy(alpha = 0.5f)
                         )
                     )
 
@@ -165,10 +163,10 @@ fun AddWordScreen(
                         minLines = 2,
                         textStyle = LocalTextStyle.current.copy(textAlign = TextAlign.End),
                         colors = OutlinedTextFieldDefaults.colors(
-                            focusedBorderColor = TealDark,
-                            unfocusedBorderColor = TealDark.copy(alpha = 0.5f),
-                            focusedContainerColor = SurfaceCardLight.copy(alpha = 0.5f),
-                            unfocusedContainerColor = SurfaceCardLight.copy(alpha = 0.5f)
+                            focusedBorderColor = MaterialTheme.colorScheme.primary,
+                            unfocusedBorderColor = MaterialTheme.colorScheme.primary.copy(alpha = 0.5f),
+                            focusedContainerColor = MaterialTheme.colorScheme.surface.copy(alpha = 0.5f),
+                            unfocusedContainerColor = MaterialTheme.colorScheme.surface.copy(alpha = 0.5f)
                         )
                     )
 
@@ -184,10 +182,10 @@ fun AddWordScreen(
                         shape = RoundedCornerShape(12.dp),
                         textStyle = LocalTextStyle.current.copy(textAlign = TextAlign.End),
                         colors = OutlinedTextFieldDefaults.colors(
-                            focusedBorderColor = TealDark,
-                            unfocusedBorderColor = TealDark.copy(alpha = 0.5f),
-                            focusedContainerColor = SurfaceCardLight.copy(alpha = 0.5f),
-                            unfocusedContainerColor = SurfaceCardLight.copy(alpha = 0.5f)
+                            focusedBorderColor = MaterialTheme.colorScheme.primary,
+                            unfocusedBorderColor = MaterialTheme.colorScheme.primary.copy(alpha = 0.5f),
+                            focusedContainerColor = MaterialTheme.colorScheme.surface.copy(alpha = 0.5f),
+                            unfocusedContainerColor = MaterialTheme.colorScheme.surface.copy(alpha = 0.5f)
                         ),
                         singleLine = true
                     )
@@ -206,7 +204,7 @@ fun AddWordScreen(
                             modifier = Modifier.fillMaxWidth(),
                             shape = RoundedCornerShape(16.dp),
                             colors = CardDefaults.cardColors(
-                                containerColor = SurfaceCardLight
+                                containerColor = MaterialTheme.colorScheme.surface
                             ),
                             elevation = CardDefaults.cardElevation(defaultElevation = 0.dp)
                         ) {
@@ -235,8 +233,8 @@ fun AddWordScreen(
                                         colors = OutlinedTextFieldDefaults.colors(
                                             focusedBorderColor = Color.Transparent,
                                             unfocusedBorderColor = Color.Transparent,
-                                            focusedContainerColor = Color.White.copy(alpha = 0.8f),
-                                            unfocusedContainerColor = Color.White.copy(alpha = 0.6f)
+                                            focusedContainerColor = MaterialTheme.colorScheme.background,
+                                            unfocusedContainerColor = MaterialTheme.colorScheme.background.copy(alpha = 0.7f)
                                         )
                                     )
                                     IconButton(
@@ -264,8 +262,8 @@ fun AddWordScreen(
                                     colors = OutlinedTextFieldDefaults.colors(
                                         focusedBorderColor = Color.Transparent,
                                         unfocusedBorderColor = Color.Transparent,
-                                        focusedContainerColor = Color.White.copy(alpha = 0.8f),
-                                        unfocusedContainerColor = Color.White.copy(alpha = 0.6f)
+                                        focusedContainerColor = MaterialTheme.colorScheme.background,
+                                        unfocusedContainerColor = MaterialTheme.colorScheme.background.copy(alpha = 0.7f)
                                     )
                                 )
                             }
@@ -282,7 +280,7 @@ fun AddWordScreen(
                             },
                         shape = RoundedCornerShape(16.dp),
                         colors = CardDefaults.cardColors(
-                            containerColor = SurfaceCardLight
+                            containerColor = MaterialTheme.colorScheme.surface
                         ),
                         elevation = CardDefaults.cardElevation(defaultElevation = 0.dp)
                     ) {
@@ -296,7 +294,7 @@ fun AddWordScreen(
                             Icon(
                                 imageVector = Icons.Default.Add,
                                 contentDescription = null,
-                                tint = TealDark,
+                                tint = MaterialTheme.colorScheme.primary,
                                 modifier = Modifier.size(20.dp)
                             )
                             Spacer(modifier = Modifier.width(8.dp))
@@ -304,7 +302,7 @@ fun AddWordScreen(
                                 text = "Add Example",
                                 fontSize = 16.sp,
                                 fontWeight = FontWeight.SemiBold,
-                                color = TealDark
+                                color = MaterialTheme.colorScheme.primary
                             )
                         }
                     }

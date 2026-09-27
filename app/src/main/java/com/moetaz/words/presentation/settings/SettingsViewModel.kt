@@ -6,6 +6,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.moetaz.words.data.local.dto.WordsResponseDto
 import com.moetaz.words.domain.repository.WordRepository
+import com.moetaz.words.ui.theme.AppThemeMode
+import com.moetaz.words.ui.theme.ThemePreferences
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -14,7 +16,8 @@ import kotlinx.coroutines.launch
 import kotlinx.serialization.json.Json
 
 class SettingsViewModel(
-    private val repository: WordRepository
+    private val repository: WordRepository,
+    private val themePreferences: ThemePreferences
 ) : ViewModel() {
 
     private val _state = MutableStateFlow(SettingsState())
@@ -25,12 +28,18 @@ class SettingsViewModel(
     init {
         val currentLocales = AppCompatDelegate.getApplicationLocales()
         val currentLang = if (!currentLocales.isEmpty) currentLocales.get(0)?.language ?: "en" else "en"
-        _state.update { it.copy(selectedLanguage = currentLang) }
+        _state.update {
+            it.copy(
+                selectedLanguage = currentLang,
+                selectedThemeMode = themePreferences.themeMode.value
+            )
+        }
     }
 
     fun handleIntent(intent: SettingsIntent) {
         when (intent) {
             is SettingsIntent.ChangeLanguage -> setLanguage(intent.languageCode)
+            is SettingsIntent.ChangeThemeMode -> setThemeMode(intent.themeMode)
             is SettingsIntent.ImportJsonContent -> importJson(intent.jsonContent)
             is SettingsIntent.ClearImportStatus -> {
                 _state.update { it.copy(importMessage = null, importError = null) }
@@ -42,6 +51,11 @@ class SettingsViewModel(
         _state.update { it.copy(selectedLanguage = languageCode) }
         val appLocales = LocaleListCompat.forLanguageTags(languageCode)
         AppCompatDelegate.setApplicationLocales(appLocales)
+    }
+
+    private fun setThemeMode(mode: AppThemeMode) {
+        themePreferences.setThemeMode(mode)
+        _state.update { it.copy(selectedThemeMode = mode) }
     }
 
     private fun importJson(jsonContent: String) {

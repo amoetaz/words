@@ -12,6 +12,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material.icons.filled.DarkMode
 import androidx.compose.material.icons.filled.FileDownload
 import androidx.compose.material.icons.filled.Language
 import androidx.compose.material3.*
@@ -24,9 +25,8 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.moetaz.words.ui.theme.AppThemeMode
 import com.moetaz.words.ui.theme.PrimaryGradient
-import com.moetaz.words.ui.theme.SurfaceCardLight
-import com.moetaz.words.ui.theme.TealDark
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -91,12 +91,72 @@ fun SettingsScreen(
                 .verticalScroll(rememberScrollState()),
             verticalArrangement = Arrangement.spacedBy(20.dp)
         ) {
+            // Theme Mode Selection Section
+            Card(
+                modifier = Modifier.fillMaxWidth(),
+                shape = RoundedCornerShape(20.dp),
+                colors = CardDefaults.cardColors(
+                    containerColor = MaterialTheme.colorScheme.surface
+                ),
+                elevation = CardDefaults.cardElevation(defaultElevation = 0.dp)
+            ) {
+                Column(
+                    modifier = Modifier.padding(20.dp),
+                    verticalArrangement = Arrangement.spacedBy(16.dp)
+                ) {
+                    Row(
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.spacedBy(12.dp)
+                    ) {
+                        Icon(
+                            imageVector = Icons.Default.DarkMode,
+                            contentDescription = null,
+                            tint = MaterialTheme.colorScheme.primary
+                        )
+                        Text(
+                            text = "Theme / المظهر",
+                            fontSize = 18.sp,
+                            fontWeight = FontWeight.Bold,
+                            color = MaterialTheme.colorScheme.onSurface
+                        )
+                    }
+
+                    Column(
+                        verticalArrangement = Arrangement.spacedBy(8.dp)
+                    ) {
+                        OptionRow(
+                            label = "System Default / النظام الافتراضي",
+                            selected = state.selectedThemeMode == AppThemeMode.SYSTEM,
+                            onSelect = {
+                                viewModel.handleIntent(SettingsIntent.ChangeThemeMode(AppThemeMode.SYSTEM))
+                            }
+                        )
+
+                        OptionRow(
+                            label = "Light / فاتح",
+                            selected = state.selectedThemeMode == AppThemeMode.LIGHT,
+                            onSelect = {
+                                viewModel.handleIntent(SettingsIntent.ChangeThemeMode(AppThemeMode.LIGHT))
+                            }
+                        )
+
+                        OptionRow(
+                            label = "Dark / داكن",
+                            selected = state.selectedThemeMode == AppThemeMode.DARK,
+                            onSelect = {
+                                viewModel.handleIntent(SettingsIntent.ChangeThemeMode(AppThemeMode.DARK))
+                            }
+                        )
+                    }
+                }
+            }
+
             // Language Selection Section
             Card(
                 modifier = Modifier.fillMaxWidth(),
                 shape = RoundedCornerShape(20.dp),
                 colors = CardDefaults.cardColors(
-                    containerColor = SurfaceCardLight
+                    containerColor = MaterialTheme.colorScheme.surface
                 ),
                 elevation = CardDefaults.cardElevation(defaultElevation = 0.dp)
             ) {
@@ -111,7 +171,7 @@ fun SettingsScreen(
                         Icon(
                             imageVector = Icons.Default.Language,
                             contentDescription = null,
-                            tint = TealDark
+                            tint = MaterialTheme.colorScheme.primary
                         )
                         Text(
                             text = "Language / اللغة",
@@ -124,7 +184,7 @@ fun SettingsScreen(
                     Column(
                         verticalArrangement = Arrangement.spacedBy(8.dp)
                     ) {
-                        LanguageOptionRow(
+                        OptionRow(
                             label = "English",
                             selected = state.selectedLanguage == "en",
                             onSelect = {
@@ -132,7 +192,7 @@ fun SettingsScreen(
                             }
                         )
 
-                        LanguageOptionRow(
+                        OptionRow(
                             label = "العربية (Arabic)",
                             selected = state.selectedLanguage == "ar",
                             onSelect = {
@@ -148,7 +208,7 @@ fun SettingsScreen(
                 modifier = Modifier.fillMaxWidth(),
                 shape = RoundedCornerShape(20.dp),
                 colors = CardDefaults.cardColors(
-                    containerColor = SurfaceCardLight
+                    containerColor = MaterialTheme.colorScheme.surface
                 ),
                 elevation = CardDefaults.cardElevation(defaultElevation = 0.dp)
             ) {
@@ -163,7 +223,7 @@ fun SettingsScreen(
                         Icon(
                             imageVector = Icons.Default.FileDownload,
                             contentDescription = null,
-                            tint = TealDark
+                            tint = MaterialTheme.colorScheme.primary
                         )
                         Text(
                             text = "Import Words",
@@ -213,7 +273,7 @@ fun SettingsScreen(
                     if (state.importMessage != null) {
                         Card(
                             colors = CardDefaults.cardColors(
-                                containerColor = Color(0xFFE8F5E9)
+                                containerColor = MaterialTheme.colorScheme.primaryContainer
                             ),
                             shape = RoundedCornerShape(12.dp)
                         ) {
@@ -226,7 +286,7 @@ fun SettingsScreen(
                             ) {
                                 Text(
                                     text = state.importMessage!!,
-                                    color = Color(0xFF2E7D32),
+                                    color = MaterialTheme.colorScheme.onPrimaryContainer,
                                     fontSize = 14.sp,
                                     fontWeight = FontWeight.Medium
                                 )
@@ -235,7 +295,7 @@ fun SettingsScreen(
                                         viewModel.handleIntent(SettingsIntent.ClearImportStatus)
                                     }
                                 ) {
-                                    Text("Dismiss", color = Color(0xFF2E7D32))
+                                    Text("Dismiss", color = MaterialTheme.colorScheme.onPrimaryContainer)
                                 }
                             }
                         }
@@ -244,7 +304,7 @@ fun SettingsScreen(
                     if (state.importError != null) {
                         Card(
                             colors = CardDefaults.cardColors(
-                                containerColor = Color(0xFFFFEBEE)
+                                containerColor = MaterialTheme.colorScheme.errorContainer
                             ),
                             shape = RoundedCornerShape(12.dp)
                         ) {
@@ -257,7 +317,7 @@ fun SettingsScreen(
                             ) {
                                 Text(
                                     text = state.importError!!,
-                                    color = Color(0xFFC62828),
+                                    color = MaterialTheme.colorScheme.onErrorContainer,
                                     fontSize = 14.sp,
                                     fontWeight = FontWeight.Medium,
                                     modifier = Modifier.weight(1f)
@@ -267,7 +327,7 @@ fun SettingsScreen(
                                         viewModel.handleIntent(SettingsIntent.ClearImportStatus)
                                     }
                                 ) {
-                                    Text("Dismiss", color = Color(0xFFC62828))
+                                    Text("Dismiss", color = MaterialTheme.colorScheme.onErrorContainer)
                                 }
                             }
                         }
@@ -279,7 +339,7 @@ fun SettingsScreen(
 }
 
 @Composable
-private fun LanguageOptionRow(
+private fun OptionRow(
     label: String,
     selected: Boolean,
     onSelect: () -> Unit
@@ -303,7 +363,7 @@ private fun LanguageOptionRow(
             selected = selected,
             onClick = onSelect,
             colors = RadioButtonDefaults.colors(
-                selectedColor = TealDark
+                selectedColor = MaterialTheme.colorScheme.primary
             )
         )
     }

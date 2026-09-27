@@ -3,6 +3,7 @@ package com.moetaz.words.ui.theme
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 
+// Light Theme Colors
 val TealPrimary = Color(0xFF2B7A7A)
 val TealSecondary = Color(0xFF4CA6A6)
 val TealDark = Color(0xFF206A76)
@@ -15,6 +16,26 @@ val SurfaceCardHighlight = Color(0xFFDDE3E0)
 val OnSurfaceDark = Color(0xFF1E292B)
 val OnSurfaceVariantText = Color(0xFF4A5558)
 val OnSurfaceMuted = Color(0xFF788588)
+
+// Dark Theme Colors
+val BackgroundDark = Color(0xFF121819)
+val SurfaceCardDark = Color(0xFF1E2628)
+val SurfaceCardHighlightDark = Color(0xFF2B3639)
+
+val OnSurfaceLight = Color(0xFFE2E8E8)
+val OnSurfaceVariantTextDark = Color(0xFFA0B0B3)
+val OnSurfaceMutedDark = Color(0xFF6C7C80)
+
+val TealPrimaryDark = Color(0xFF4CA6A6)
+val TealSecondaryDark = Color(0xFF62C2C2)
+
+// Containers in Dark Mode
+val PrimaryContainerDark = Color(0xFF1C4244)
+val OnPrimaryContainerDark = Color(0xFFB2DFDB)
+val SecondaryContainerDark = Color(0xFF224244)
+val OnSecondaryContainerDark = Color(0xFFB0BEC5)
+val TertiaryContainerDark = Color(0xFF384520)
+val OnTertiaryContainerDark = Color(0xFFDCEDC8)
 
 val PrimaryGradient = Brush.horizontalGradient(
     colors = listOf(TealDark, TealSecondary)

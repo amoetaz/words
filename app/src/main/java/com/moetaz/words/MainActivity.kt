@@ -4,6 +4,8 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.navigation3.runtime.entryProvider
 import androidx.navigation3.ui.NavDisplay
@@ -23,15 +25,22 @@ import com.moetaz.words.presentation.quiz.QuizScreen
 import com.moetaz.words.presentation.quiz.QuizViewModel
 import com.moetaz.words.presentation.settings.SettingsScreen
 import com.moetaz.words.presentation.settings.SettingsViewModel
+import com.moetaz.words.ui.theme.ThemePreferences
 import com.moetaz.words.ui.theme.WordsTheme
+import org.koin.android.ext.android.inject
 import org.koin.androidx.compose.koinViewModel
 
 class MainActivity : ComponentActivity() {
+
+    private val themePreferences: ThemePreferences by inject()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            WordsTheme {
+            val themeMode by themePreferences.themeMode.collectAsState()
+
+            WordsTheme(themeMode = themeMode) {
                 val navigationState = rememberNavigationState<Route>(
                     startRoute = Route.WordList,
                     topLevelRoutes = setOf(Route.WordList)
