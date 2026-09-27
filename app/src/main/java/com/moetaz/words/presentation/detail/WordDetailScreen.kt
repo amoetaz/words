@@ -1,5 +1,6 @@
 package com.moetaz.words.presentation.detail
 
+import android.content.res.Configuration
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
@@ -16,15 +17,18 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.moetaz.words.domain.model.Example
+import com.moetaz.words.domain.model.Word
 import com.moetaz.words.domain.model.WordMasteryStatus
 import com.moetaz.words.presentation.components.SpeakButton
 import com.moetaz.words.presentation.components.WordsCard
 import com.moetaz.words.presentation.components.WordsTopAppBar
 import com.moetaz.words.presentation.util.rememberTextToSpeech
+import com.moetaz.words.ui.theme.WordsTheme
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun WordDetailScreen(
     wordId: Long,
@@ -33,11 +37,30 @@ fun WordDetailScreen(
     onBack: () -> Unit
 ) {
     val state by viewModel.state.collectAsState()
-    val tts = rememberTextToSpeech()
 
     LaunchedEffect(wordId) {
         viewModel.handleIntent(WordDetailIntent.LoadWord(wordId))
     }
+
+    WordDetailContent(
+        wordId = wordId,
+        state = state,
+        onIntent = viewModel::handleIntent,
+        onEditWord = onEditWord,
+        onBack = onBack
+    )
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun WordDetailContent(
+    wordId: Long,
+    state: WordDetailState,
+    onIntent: (WordDetailIntent) -> Unit,
+    onEditWord: (Long) -> Unit = {},
+    onBack: () -> Unit
+) {
+    val tts = rememberTextToSpeech()
 
     Scaffold(
         containerColor = MaterialTheme.colorScheme.background,
@@ -47,9 +70,9 @@ fun WordDetailScreen(
                 onBack = onBack,
                 actions = {
                     if (state.word != null) {
-                        val word = state.word!!
+                        val word = state.word
                         IconButton(onClick = {
-                            viewModel.handleIntent(WordDetailIntent.ToggleFavorite(!word.isFavorite))
+                            onIntent(WordDetailIntent.ToggleFavorite(!word.isFavorite))
                         }) {
                             Icon(
                                 imageVector = if (word.isFavorite) Icons.Default.Favorite else Icons.Default.FavoriteBorder,
@@ -78,12 +101,12 @@ fun WordDetailScreen(
                 CircularProgressIndicator(modifier = Modifier.align(Alignment.Center))
             } else if (state.error != null) {
                 Text(
-                    text = state.error ?: "Unknown Error",
+                    text = state.error,
                     color = MaterialTheme.colorScheme.error,
                     modifier = Modifier.align(Alignment.Center)
                 )
             } else if (state.word != null) {
-                val word = state.word!!
+                val word = state.word
                 Column(
                     modifier = Modifier
                         .fillMaxSize()
@@ -151,7 +174,7 @@ fun WordDetailScreen(
                                 SegmentedButton(
                                     selected = word.masteryStatus == status,
                                     onClick = {
-                                        viewModel.handleIntent(WordDetailIntent.UpdateMasteryStatus(status))
+                                        onIntent(WordDetailIntent.UpdateMasteryStatus(status))
                                     },
                                     shape = SegmentedButtonDefaults.itemShape(
                                         index = index,
@@ -287,5 +310,32 @@ fun WordDetailScreen(
                 }
             }
         }
+    }
+}
+
+@Preview(name = "Light Mode", showBackground = true)
+@Preview(name = "Dark Mode", uiMode = Configuration.UI_MODE_NIGHT_YES, showBackground = true)
+@Composable
+private fun WordDetailContentPreview() {
+    WordsTheme {
+        WordDetailContent(
+            wordId = 1L,
+            state = WordDetailState(
+                word = Word(
+                    id = 1L,
+                    word = "Eloquent",
+                    phonetic = "/ˈɛl.ə.kwənt/",
+                    definition = "Fluent or persuasive in speaking or writing.",
+                    definitionTranslation = "فصيح أو بليغ في التحدث أو الكتابة.",
+                    translations = listOf("فصيح", "بليغ"),
+                    examples = listOf(Example(english = "An eloquent speech.", arabic = "خطاب فصيح.")),
+                    masteryStatus = WordMasteryStatus.LEARNING,
+                    isFavorite = true
+                )
+            ),
+            onIntent = {},
+            onEditWord = {},
+            onBack = {}
+        )
     }
 }

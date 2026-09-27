@@ -1,5 +1,6 @@
 package com.moetaz.words.presentation.flashcards
 
+import android.content.res.Configuration
 import androidx.compose.animation.core.FastOutSlowInEasing
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.tween
@@ -18,11 +19,15 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.moetaz.words.domain.model.Example
+import com.moetaz.words.domain.model.Word
 import com.moetaz.words.domain.model.WordMasteryStatus
 import com.moetaz.words.presentation.components.SpeakButton
 import com.moetaz.words.presentation.components.WordsTopAppBar
 import com.moetaz.words.presentation.util.rememberTextToSpeech
+import com.moetaz.words.ui.theme.WordsTheme
 
 @Composable
 fun FlashcardsScreen(
@@ -30,6 +35,20 @@ fun FlashcardsScreen(
     onBack: () -> Unit
 ) {
     val state by viewModel.state.collectAsState()
+
+    FlashcardsContent(
+        state = state,
+        onIntent = viewModel::handleIntent,
+        onBack = onBack
+    )
+}
+
+@Composable
+fun FlashcardsContent(
+    state: FlashcardsState,
+    onIntent: (FlashcardsIntent) -> Unit,
+    onBack: () -> Unit
+) {
     val tts = rememberTextToSpeech()
 
     Scaffold(
@@ -86,7 +105,7 @@ fun FlashcardsScreen(
                                 rotationY = rotation
                                 cameraDistance = 12 * density
                             }
-                            .clickable { viewModel.handleIntent(FlashcardsIntent.FlipCard) },
+                            .clickable { onIntent(FlashcardsIntent.FlipCard) },
                         shape = RoundedCornerShape(24.dp),
                         colors = CardDefaults.cardColors(
                             containerColor = MaterialTheme.colorScheme.surfaceVariant
@@ -188,7 +207,7 @@ fun FlashcardsScreen(
                     ) {
                         OutlinedButton(
                             onClick = {
-                                viewModel.handleIntent(
+                                onIntent(
                                     FlashcardsIntent.MarkMastery(currentWord.id, WordMasteryStatus.LEARNING)
                                 )
                             }
@@ -198,7 +217,7 @@ fun FlashcardsScreen(
 
                         Button(
                             onClick = {
-                                viewModel.handleIntent(
+                                onIntent(
                                     FlashcardsIntent.MarkMastery(currentWord.id, WordMasteryStatus.REVIEWING)
                                 )
                             },
@@ -209,7 +228,7 @@ fun FlashcardsScreen(
 
                         Button(
                             onClick = {
-                                viewModel.handleIntent(
+                                onIntent(
                                     FlashcardsIntent.MarkMastery(currentWord.id, WordMasteryStatus.MASTERED)
                                 )
                             },
@@ -224,12 +243,12 @@ fun FlashcardsScreen(
                         horizontalArrangement = Arrangement.SpaceBetween,
                         verticalAlignment = Alignment.CenterVertically
                     ) {
-                        IconButton(onClick = { viewModel.handleIntent(FlashcardsIntent.PreviousCard) }) {
+                        IconButton(onClick = { onIntent(FlashcardsIntent.PreviousCard) }) {
                             Icon(Icons.AutoMirrored.Filled.NavigateBefore, contentDescription = "Previous")
                         }
 
                         IconButton(onClick = {
-                            viewModel.handleIntent(
+                            onIntent(
                                 FlashcardsIntent.ToggleFavorite(currentWord.id, !currentWord.isFavorite)
                             )
                         }) {
@@ -240,12 +259,39 @@ fun FlashcardsScreen(
                             )
                         }
 
-                        IconButton(onClick = { viewModel.handleIntent(FlashcardsIntent.NextCard) }) {
+                        IconButton(onClick = { onIntent(FlashcardsIntent.NextCard) }) {
                             Icon(Icons.AutoMirrored.Filled.NavigateNext, contentDescription = "Next")
                         }
                     }
                 }
             }
         }
+    }
+}
+
+@Preview(name = "Light Mode", showBackground = true)
+@Preview(name = "Dark Mode", uiMode = Configuration.UI_MODE_NIGHT_YES, showBackground = true)
+@Composable
+private fun FlashcardsContentPreview() {
+    WordsTheme {
+        FlashcardsContent(
+            state = FlashcardsState(
+                words = listOf(
+                    Word(
+                        id = 1L,
+                        word = "Resilient",
+                        phonetic = "/rɪˈzɪl.jənt/",
+                        definition = "Able to withstand or recover quickly from difficult conditions.",
+                        definitionTranslation = "قادر على التعافي بسرعة من الظروف الصعبة.",
+                        translations = listOf("مرن", "صامد"),
+                        examples = listOf(Example(english = "She is a resilient person.", arabic = "إنها شخصية صامدة."))
+                    )
+                ),
+                currentIndex = 0,
+                isFlipped = false
+            ),
+            onIntent = {},
+            onBack = {}
+        )
     }
 }

@@ -1,5 +1,6 @@
 package com.moetaz.words.presentation.components
 
+import android.content.res.Configuration
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.LocalTextStyle
 import androidx.compose.material3.MaterialTheme
@@ -10,7 +11,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.moetaz.words.ui.theme.WordsTheme
 
 @Composable
 fun WordsTextField(
@@ -45,4 +48,17 @@ fun WordsTextField(
             unfocusedContainerColor = MaterialTheme.colorScheme.surface.copy(alpha = 0.5f)
         )
     )
+}
+
+@Preview(name = "Light Mode", showBackground = true)
+@Preview(name = "Dark Mode", uiMode = Configuration.UI_MODE_NIGHT_YES, showBackground = true)
+@Composable
+private fun WordsTextFieldPreview() {
+    WordsTheme {
+        WordsTextField(
+            value = "Eloquent",
+            onValueChange = {},
+            label = "English Word"
+        )
+    }
 }

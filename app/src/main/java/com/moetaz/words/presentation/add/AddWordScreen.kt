@@ -1,5 +1,6 @@
 package com.moetaz.words.presentation.add
 
+import android.content.res.Configuration
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -17,12 +18,15 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.moetaz.words.domain.model.Example
 import com.moetaz.words.presentation.components.PrimaryActionButton
 import com.moetaz.words.presentation.components.WordsCard
 import com.moetaz.words.presentation.components.WordsTextField
 import com.moetaz.words.presentation.components.WordsTopAppBar
+import com.moetaz.words.ui.theme.WordsTheme
 
 @Composable
 fun AddWordScreen(
@@ -44,6 +48,19 @@ fun AddWordScreen(
         }
     }
 
+    AddWordContent(
+        state = state,
+        onIntent = viewModel::handleIntent,
+        onBack = onBack
+    )
+}
+
+@Composable
+fun AddWordContent(
+    state: AddWordState,
+    onIntent: (AddWordIntent) -> Unit,
+    onBack: () -> Unit
+) {
     val isEditing = state.wordId != null
 
     Scaffold(
@@ -54,7 +71,7 @@ fun AddWordScreen(
                 centerTitle = true,
                 actions = {
                     TextButton(
-                        onClick = { viewModel.handleIntent(AddWordIntent.SaveWord) },
+                        onClick = { onIntent(AddWordIntent.SaveWord) },
                         enabled = !state.isSaving
                     ) {
                         Text(
@@ -94,21 +111,21 @@ fun AddWordScreen(
                     // English Word Input Field
                     WordsTextField(
                         value = state.word,
-                        onValueChange = { viewModel.handleIntent(AddWordIntent.OnWordChanged(it)) },
+                        onValueChange = { onIntent(AddWordIntent.OnWordChanged(it)) },
                         label = "English Word (Required)"
                     )
 
                     // Phonetic Pronunciation Input Field
                     WordsTextField(
                         value = state.phonetic,
-                        onValueChange = { viewModel.handleIntent(AddWordIntent.OnPhoneticChanged(it)) },
+                        onValueChange = { onIntent(AddWordIntent.OnPhoneticChanged(it)) },
                         label = "Phonetic Pronunciation (e.g. /æsˈθɛtɪk/)"
                     )
 
                     // Definition Input Field
                     WordsTextField(
                         value = state.definition,
-                        onValueChange = { viewModel.handleIntent(AddWordIntent.OnDefinitionChanged(it)) },
+                        onValueChange = { onIntent(AddWordIntent.OnDefinitionChanged(it)) },
                         label = "English Definition",
                         singleLine = false,
                         minLines = 2
@@ -117,7 +134,7 @@ fun AddWordScreen(
                     // Definition Translation Input Field
                     WordsTextField(
                         value = state.definitionTranslation,
-                        onValueChange = { viewModel.handleIntent(AddWordIntent.OnDefinitionTranslationChanged(it)) },
+                        onValueChange = { onIntent(AddWordIntent.OnDefinitionTranslationChanged(it)) },
                         label = "Definition Translation (Arabic)",
                         singleLine = false,
                         minLines = 2,
@@ -129,7 +146,7 @@ fun AddWordScreen(
                     WordsTextField(
                         value = mainTranslation,
                         onValueChange = { text ->
-                            viewModel.handleIntent(AddWordIntent.OnTranslationChanged(0, text))
+                            onIntent(AddWordIntent.OnTranslationChanged(0, text))
                         },
                         label = "Arabic Translation (Required)",
                         textStyle = LocalTextStyle.current.copy(textAlign = TextAlign.End)
@@ -163,7 +180,7 @@ fun AddWordScreen(
                                     OutlinedTextField(
                                         value = example.english,
                                         onValueChange = {
-                                            viewModel.handleIntent(AddWordIntent.OnExampleEnglishChanged(index, it))
+                                            onIntent(AddWordIntent.OnExampleEnglishChanged(index, it))
                                         },
                                         placeholder = { Text("English Example Sentence") },
                                         modifier = Modifier.weight(1f),
@@ -177,7 +194,7 @@ fun AddWordScreen(
                                     )
                                     IconButton(
                                         onClick = {
-                                            viewModel.handleIntent(AddWordIntent.RemoveExampleField(index))
+                                            onIntent(AddWordIntent.RemoveExampleField(index))
                                         }
                                     ) {
                                         Icon(
@@ -191,7 +208,7 @@ fun AddWordScreen(
                                 OutlinedTextField(
                                     value = example.arabic,
                                     onValueChange = {
-                                        viewModel.handleIntent(AddWordIntent.OnExampleArabicChanged(index, it))
+                                        onIntent(AddWordIntent.OnExampleArabicChanged(index, it))
                                     },
                                     placeholder = { Text("المثال باللغة العربية") },
                                     modifier = Modifier.fillMaxWidth(),
@@ -211,7 +228,7 @@ fun AddWordScreen(
                     // "+ Add Example" Button Card
                     WordsCard(
                         shape = RoundedCornerShape(16.dp),
-                        onClick = { viewModel.handleIntent(AddWordIntent.AddExampleField) }
+                        onClick = { onIntent(AddWordIntent.AddExampleField) }
                     ) {
                         Row(
                             modifier = Modifier
@@ -236,9 +253,9 @@ fun AddWordScreen(
                         }
                     }
 
-                    if (state.error != null) {
+                    state.error?.let { errorMessage ->
                         Text(
-                            text = state.error!!,
+                            text = errorMessage,
                             color = MaterialTheme.colorScheme.error,
                             fontSize = 14.sp
                         )
@@ -248,7 +265,7 @@ fun AddWordScreen(
 
                     PrimaryActionButton(
                         text = if (isEditing) "Save Changes" else "Save Word",
-                        onClick = { viewModel.handleIntent(AddWordIntent.SaveWord) },
+                        onClick = { onIntent(AddWordIntent.SaveWord) },
                         isLoading = state.isSaving,
                         enabled = !state.isSaving
                     )
@@ -257,5 +274,25 @@ fun AddWordScreen(
                 }
             }
         }
+    }
+}
+
+@Preview(name = "Light Mode", showBackground = true)
+@Preview(name = "Dark Mode", uiMode = Configuration.UI_MODE_NIGHT_YES, showBackground = true)
+@Composable
+private fun AddWordContentPreview() {
+    WordsTheme {
+        AddWordContent(
+            state = AddWordState(
+                word = "Eloquent",
+                phonetic = "/ˈɛl.ə.kwənt/",
+                definition = "Fluent or persuasive in speaking or writing.",
+                definitionTranslation = "فصيح أو بليغ في التحدث أو الكتابة.",
+                translations = listOf("فصيح"),
+                examples = listOf(Example(english = "An eloquent speech.", arabic = "خطاب فصيح."))
+            ),
+            onIntent = {},
+            onBack = {}
+        )
     }
 }

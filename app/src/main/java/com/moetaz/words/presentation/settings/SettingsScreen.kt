@@ -1,5 +1,6 @@
 package com.moetaz.words.presentation.settings
 
+import android.content.res.Configuration
 import android.net.Uri
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
@@ -17,6 +18,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.moetaz.words.presentation.components.PrimaryActionButton
@@ -24,6 +26,7 @@ import com.moetaz.words.presentation.components.SelectableOptionRow
 import com.moetaz.words.presentation.components.WordsCard
 import com.moetaz.words.presentation.components.WordsTopAppBar
 import com.moetaz.words.ui.theme.AppThemeMode
+import com.moetaz.words.ui.theme.WordsTheme
 
 @Composable
 fun SettingsScreen(
@@ -31,6 +34,20 @@ fun SettingsScreen(
     onBack: () -> Unit
 ) {
     val state by viewModel.state.collectAsState()
+
+    SettingsContent(
+        state = state,
+        onIntent = viewModel::handleIntent,
+        onBack = onBack
+    )
+}
+
+@Composable
+fun SettingsContent(
+    state: SettingsState,
+    onIntent: (SettingsIntent) -> Unit,
+    onBack: () -> Unit
+) {
     val context = LocalContext.current
 
     val jsonPickerLauncher = rememberLauncherForActivityResult(
@@ -42,12 +59,10 @@ fun SettingsScreen(
                     stream.bufferedReader().readText()
                 }
                 if (!content.isNullOrBlank()) {
-                    viewModel.handleIntent(SettingsIntent.ImportJsonContent(content))
+                    onIntent(SettingsIntent.ImportJsonContent(content))
                 }
             } catch (_: Exception) {
-                viewModel.handleIntent(
-                    SettingsIntent.ImportJsonContent("")
-                )
+                onIntent(SettingsIntent.ImportJsonContent(""))
             }
         }
     }
@@ -99,7 +114,7 @@ fun SettingsScreen(
                             label = "System Default / النظام الافتراضي",
                             selected = state.selectedThemeMode == AppThemeMode.SYSTEM,
                             onSelect = {
-                                viewModel.handleIntent(SettingsIntent.ChangeThemeMode(AppThemeMode.SYSTEM))
+                                onIntent(SettingsIntent.ChangeThemeMode(AppThemeMode.SYSTEM))
                             }
                         )
 
@@ -107,7 +122,7 @@ fun SettingsScreen(
                             label = "Light / فاتح",
                             selected = state.selectedThemeMode == AppThemeMode.LIGHT,
                             onSelect = {
-                                viewModel.handleIntent(SettingsIntent.ChangeThemeMode(AppThemeMode.LIGHT))
+                                onIntent(SettingsIntent.ChangeThemeMode(AppThemeMode.LIGHT))
                             }
                         )
 
@@ -115,7 +130,7 @@ fun SettingsScreen(
                             label = "Dark / داكن",
                             selected = state.selectedThemeMode == AppThemeMode.DARK,
                             onSelect = {
-                                viewModel.handleIntent(SettingsIntent.ChangeThemeMode(AppThemeMode.DARK))
+                                onIntent(SettingsIntent.ChangeThemeMode(AppThemeMode.DARK))
                             }
                         )
                     }
@@ -152,7 +167,7 @@ fun SettingsScreen(
                             label = "English",
                             selected = state.selectedLanguage == "en",
                             onSelect = {
-                                viewModel.handleIntent(SettingsIntent.ChangeLanguage("en"))
+                                onIntent(SettingsIntent.ChangeLanguage("en"))
                             }
                         )
 
@@ -160,7 +175,7 @@ fun SettingsScreen(
                             label = "العربية (Arabic)",
                             selected = state.selectedLanguage == "ar",
                             onSelect = {
-                                viewModel.handleIntent(SettingsIntent.ChangeLanguage("ar"))
+                                onIntent(SettingsIntent.ChangeLanguage("ar"))
                             }
                         )
                     }
@@ -204,7 +219,7 @@ fun SettingsScreen(
                         enabled = !state.isImporting
                     )
 
-                    if (state.importMessage != null) {
+                    state.importMessage?.let { message ->
                         Card(
                             colors = CardDefaults.cardColors(
                                 containerColor = MaterialTheme.colorScheme.primaryContainer
@@ -219,14 +234,14 @@ fun SettingsScreen(
                                 verticalAlignment = Alignment.CenterVertically
                             ) {
                                 Text(
-                                    text = state.importMessage!!,
+                                    text = message,
                                     color = MaterialTheme.colorScheme.onPrimaryContainer,
                                     fontSize = 14.sp,
                                     fontWeight = FontWeight.Medium
                                 )
                                 TextButton(
                                     onClick = {
-                                        viewModel.handleIntent(SettingsIntent.ClearImportStatus)
+                                        onIntent(SettingsIntent.ClearImportStatus)
                                     }
                                 ) {
                                     Text("Dismiss", color = MaterialTheme.colorScheme.onPrimaryContainer)
@@ -235,7 +250,7 @@ fun SettingsScreen(
                         }
                     }
 
-                    if (state.importError != null) {
+                    state.importError?.let { errorMessage ->
                         Card(
                             colors = CardDefaults.cardColors(
                                 containerColor = MaterialTheme.colorScheme.errorContainer
@@ -250,7 +265,7 @@ fun SettingsScreen(
                                 verticalAlignment = Alignment.CenterVertically
                             ) {
                                 Text(
-                                    text = state.importError!!,
+                                    text = errorMessage,
                                     color = MaterialTheme.colorScheme.onErrorContainer,
                                     fontSize = 14.sp,
                                     fontWeight = FontWeight.Medium,
@@ -258,7 +273,7 @@ fun SettingsScreen(
                                 )
                                 TextButton(
                                     onClick = {
-                                        viewModel.handleIntent(SettingsIntent.ClearImportStatus)
+                                        onIntent(SettingsIntent.ClearImportStatus)
                                     }
                                 ) {
                                     Text("Dismiss", color = MaterialTheme.colorScheme.onErrorContainer)
@@ -269,5 +284,21 @@ fun SettingsScreen(
                 }
             }
         }
+    }
+}
+
+@Preview(name = "Light Mode", showBackground = true)
+@Preview(name = "Dark Mode", uiMode = Configuration.UI_MODE_NIGHT_YES, showBackground = true)
+@Composable
+private fun SettingsContentPreview() {
+    WordsTheme {
+        SettingsContent(
+            state = SettingsState(
+                selectedLanguage = "en",
+                selectedThemeMode = AppThemeMode.SYSTEM
+            ),
+            onIntent = {},
+            onBack = {}
+        )
     }
 }

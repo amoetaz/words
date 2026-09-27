@@ -1,5 +1,6 @@
 package com.moetaz.words.presentation.quiz
 
+import android.content.res.Configuration
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
@@ -16,11 +17,14 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.moetaz.words.domain.model.Word
 import com.moetaz.words.presentation.components.SpeakButton
 import com.moetaz.words.presentation.components.WordsCard
 import com.moetaz.words.presentation.components.WordsTopAppBar
 import com.moetaz.words.presentation.util.rememberTextToSpeech
+import com.moetaz.words.ui.theme.WordsTheme
 
 @Composable
 fun QuizScreen(
@@ -28,6 +32,20 @@ fun QuizScreen(
     onBack: () -> Unit
 ) {
     val state by viewModel.state.collectAsState()
+
+    QuizContent(
+        state = state,
+        onIntent = viewModel::handleIntent,
+        onBack = onBack
+    )
+}
+
+@Composable
+fun QuizContent(
+    state: QuizState,
+    onIntent: (QuizIntent) -> Unit,
+    onBack: () -> Unit
+) {
     val tts = rememberTextToSpeech()
 
     Scaffold(
@@ -72,7 +90,7 @@ fun QuizScreen(
                         color = MaterialTheme.colorScheme.primary
                     )
                     Spacer(modifier = Modifier.height(32.dp))
-                    Button(onClick = { viewModel.handleIntent(QuizIntent.RestartQuiz) }) {
+                    Button(onClick = { onIntent(QuizIntent.RestartQuiz) }) {
                         Text("Try Again")
                     }
                 }
@@ -166,7 +184,7 @@ fun QuizScreen(
                                         shape = RoundedCornerShape(16.dp)
                                     )
                                     .clickable(enabled = !state.isAnswered) {
-                                        viewModel.handleIntent(QuizIntent.SelectOption(option))
+                                        onIntent(QuizIntent.SelectOption(option))
                                     },
                                 color = cardColor
                             ) {
@@ -206,7 +224,7 @@ fun QuizScreen(
 
                     AnimatedVisibility(visible = state.isAnswered) {
                         Button(
-                            onClick = { viewModel.handleIntent(QuizIntent.NextQuestion) },
+                            onClick = { onIntent(QuizIntent.NextQuestion) },
                             modifier = Modifier
                                 .fillMaxWidth()
                                 .height(52.dp)
@@ -219,5 +237,27 @@ fun QuizScreen(
                 }
             }
         }
+    }
+}
+
+@Preview(name = "Light Mode", showBackground = true)
+@Preview(name = "Dark Mode", uiMode = Configuration.UI_MODE_NIGHT_YES, showBackground = true)
+@Composable
+private fun QuizContentPreview() {
+    WordsTheme {
+        QuizContent(
+            state = QuizState(
+                questions = listOf(
+                    QuizQuestion(
+                        word = Word(id = 1L, word = "Eloquent", translations = listOf("فصيح")),
+                        options = listOf("فصيح", "دقيق", "سريع", "جميل"),
+                        correctAnswer = "فصيح"
+                    )
+                ),
+                currentQuestionIndex = 0
+            ),
+            onIntent = {},
+            onBack = {}
+        )
     }
 }

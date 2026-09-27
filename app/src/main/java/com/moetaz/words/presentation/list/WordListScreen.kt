@@ -1,5 +1,6 @@
 package com.moetaz.words.presentation.list
 
+import android.content.res.Configuration
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -19,16 +20,19 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.moetaz.words.R
 import com.moetaz.words.domain.model.Word
+import com.moetaz.words.domain.model.WordMasteryStatus
 import com.moetaz.words.presentation.components.MasteryStatusBadge
 import com.moetaz.words.presentation.components.SpeakButton
 import com.moetaz.words.presentation.components.WordsCard
 import com.moetaz.words.presentation.util.rememberTextToSpeech
 import com.moetaz.words.ui.theme.HeaderGradient
 import com.moetaz.words.ui.theme.PrimaryGradient
+import com.moetaz.words.ui.theme.WordsTheme
 
 @Composable
 fun WordListScreen(
@@ -40,6 +44,28 @@ fun WordListScreen(
     onQuizClick: () -> Unit = {}
 ) {
     val state by viewModel.state.collectAsState()
+
+    WordListContent(
+        state = state,
+        onIntent = viewModel::handleIntent,
+        onWordClick = onWordClick,
+        onAddWordClick = onAddWordClick,
+        onSettingsClick = onSettingsClick,
+        onFlashcardsClick = onFlashcardsClick,
+        onQuizClick = onQuizClick
+    )
+}
+
+@Composable
+fun WordListContent(
+    state: WordListState,
+    onIntent: (WordListIntent) -> Unit,
+    onWordClick: (Long) -> Unit,
+    onAddWordClick: () -> Unit,
+    onSettingsClick: () -> Unit = {},
+    onFlashcardsClick: () -> Unit = {},
+    onQuizClick: () -> Unit = {}
+) {
     val tts = rememberTextToSpeech()
 
     Scaffold(
@@ -121,7 +147,7 @@ fun WordListScreen(
                     OutlinedTextField(
                         value = state.searchQuery,
                         onValueChange = { query ->
-                            viewModel.handleIntent(WordListIntent.OnSearchQueryChanged(query))
+                            onIntent(WordListIntent.OnSearchQueryChanged(query))
                         },
                         modifier = Modifier
                             .fillMaxWidth()
@@ -144,7 +170,7 @@ fun WordListScreen(
                             if (state.searchQuery.isNotEmpty()) {
                                 IconButton(
                                     onClick = {
-                                        viewModel.handleIntent(WordListIntent.OnSearchQueryChanged(""))
+                                        onIntent(WordListIntent.OnSearchQueryChanged(""))
                                     }
                                 ) {
                                     Icon(
@@ -179,7 +205,7 @@ fun WordListScreen(
                     CircularProgressIndicator(modifier = Modifier.align(Alignment.Center))
                 } else if (state.error != null) {
                     Text(
-                        text = state.error ?: "Unknown Error",
+                        text = state.error,
                         color = MaterialTheme.colorScheme.error,
                         modifier = Modifier.align(Alignment.Center)
                     )
@@ -268,5 +294,42 @@ fun WordItem(
 
             MasteryStatusBadge(status = word.masteryStatus)
         }
+    }
+}
+
+@Preview(name = "Light Mode", showBackground = true)
+@Preview(name = "Dark Mode", uiMode = Configuration.UI_MODE_NIGHT_YES, showBackground = true)
+@Composable
+private fun WordListContentPreview() {
+    val sampleWords = listOf(
+        Word(
+            id = 1L,
+            word = "Eloquent",
+            phonetic = "/ˈɛl.ə.kwənt/",
+            definition = "Fluent or persuasive in speaking or writing.",
+            translations = listOf("فصيح", "بليغ"),
+            masteryStatus = WordMasteryStatus.LEARNING,
+            isFavorite = true
+        ),
+        Word(
+            id = 2L,
+            word = "Meticulous",
+            phonetic = "/məˈtɪk.jə.ləs/",
+            definition = "Showing great attention to detail.",
+            translations = listOf("دقيق", "شديد العناية"),
+            masteryStatus = WordMasteryStatus.MASTERED,
+            isFavorite = false
+        )
+    )
+
+    WordsTheme {
+        WordListContent(
+            state = WordListState(
+                words = sampleWords
+            ),
+            onIntent = {},
+            onWordClick = {},
+            onAddWordClick = {}
+        )
     }
 }

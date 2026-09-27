@@ -1,5 +1,6 @@
 package com.moetaz.words.presentation.components
 
+import android.content.res.Configuration
 import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material.icons.Icons
@@ -10,7 +11,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.sp
+import com.moetaz.words.ui.theme.WordsTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -51,4 +54,16 @@ fun WordsTopAppBar(
             containerColor = containerColor
         )
     )
+}
+
+@Preview(name = "Light Mode", showBackground = true)
+@Preview(name = "Dark Mode", uiMode = Configuration.UI_MODE_NIGHT_YES, showBackground = true)
+@Composable
+private fun WordsTopAppBarPreview() {
+    WordsTheme {
+        WordsTopAppBar(
+            title = "Settings",
+            onBack = {}
+        )
+    }
 }

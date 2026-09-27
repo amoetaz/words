@@ -1,5 +1,6 @@
 package com.moetaz.words.presentation.components
 
+import android.content.res.Configuration
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
@@ -15,9 +16,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.moetaz.words.ui.theme.PrimaryGradient
+import com.moetaz.words.ui.theme.WordsTheme
 
 @Composable
 fun PrimaryActionButton(
@@ -53,5 +56,17 @@ fun PrimaryActionButton(
                 color = Color.White
             )
         }
+    }
+}
+
+@Preview(name = "Light Mode", showBackground = true)
+@Preview(name = "Dark Mode", uiMode = Configuration.UI_MODE_NIGHT_YES, showBackground = true)
+@Composable
+private fun PrimaryActionButtonPreview() {
+    WordsTheme {
+        PrimaryActionButton(
+            text = "Save Word",
+            onClick = {}
+        )
     }
 }
