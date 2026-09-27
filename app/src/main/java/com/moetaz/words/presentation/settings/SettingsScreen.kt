@@ -6,11 +6,13 @@ import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.DarkMode
 import androidx.compose.material.icons.filled.FileDownload
+import androidx.compose.material.icons.filled.FileUpload
 import androidx.compose.material.icons.filled.Language
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
@@ -64,6 +66,22 @@ fun SettingsContent(
             } catch (_: Exception) {
                 onIntent(SettingsIntent.ImportJsonContent(""))
             }
+        }
+    }
+
+    val jsonExportLauncher = rememberLauncherForActivityResult(
+        contract = ActivityResultContracts.CreateDocument("application/json")
+    ) { uri: Uri? ->
+        uri?.let { fileUri ->
+            onIntent(SettingsIntent.ExportJson(fileUri, context))
+        }
+    }
+
+    val jsonExampleLauncher = rememberLauncherForActivityResult(
+        contract = ActivityResultContracts.CreateDocument("application/json")
+    ) { uri: Uri? ->
+        uri?.let { fileUri ->
+            onIntent(SettingsIntent.DownloadExampleJson(fileUri, context))
         }
     }
 
@@ -182,6 +200,108 @@ fun SettingsContent(
                 }
             }
 
+            // JSON Export Section
+            WordsCard {
+                Column(
+                    modifier = Modifier.padding(20.dp),
+                    verticalArrangement = Arrangement.spacedBy(16.dp)
+                ) {
+                    Row(
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.spacedBy(12.dp)
+                    ) {
+                        Icon(
+                            imageVector = Icons.Default.FileUpload,
+                            contentDescription = null,
+                            tint = MaterialTheme.colorScheme.primary
+                        )
+                        Text(
+                            text = "Export Words",
+                            fontSize = 18.sp,
+                            fontWeight = FontWeight.Bold,
+                            color = MaterialTheme.colorScheme.onSurface
+                        )
+                    }
+
+                    Text(
+                        text = "Export all vocabulary words from your database into a structured JSON file matching the database format.",
+                        fontSize = 14.sp,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant,
+                        lineHeight = 20.sp
+                    )
+
+                    PrimaryActionButton(
+                        text = "Export to JSON File",
+                        onClick = { jsonExportLauncher.launch("words_backup.json") },
+                        isLoading = state.isExporting,
+                        enabled = !state.isExporting
+                    )
+
+                    state.exportMessage?.let { message ->
+                        Card(
+                            colors = CardDefaults.cardColors(
+                                containerColor = MaterialTheme.colorScheme.primaryContainer
+                            ),
+                            shape = RoundedCornerShape(12.dp)
+                        ) {
+                            Row(
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .padding(12.dp),
+                                horizontalArrangement = Arrangement.SpaceBetween,
+                                verticalAlignment = Alignment.CenterVertically
+                            ) {
+                                Text(
+                                    text = message,
+                                    color = MaterialTheme.colorScheme.onPrimaryContainer,
+                                    fontSize = 14.sp,
+                                    fontWeight = FontWeight.Medium
+                                )
+                                TextButton(
+                                    onClick = {
+                                        onIntent(SettingsIntent.ClearExportStatus)
+                                    }
+                                ) {
+                                    Text("Dismiss", color = MaterialTheme.colorScheme.onPrimaryContainer)
+                                }
+                            }
+                        }
+                    }
+
+                    state.exportError?.let { errorMessage ->
+                        Card(
+                            colors = CardDefaults.cardColors(
+                                containerColor = MaterialTheme.colorScheme.errorContainer
+                            ),
+                            shape = RoundedCornerShape(12.dp)
+                        ) {
+                            Row(
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .padding(12.dp),
+                                horizontalArrangement = Arrangement.SpaceBetween,
+                                verticalAlignment = Alignment.CenterVertically
+                            ) {
+                                Text(
+                                    text = errorMessage,
+                                    color = MaterialTheme.colorScheme.onErrorContainer,
+                                    fontSize = 14.sp,
+                                    fontWeight = FontWeight.Medium,
+                                    modifier = Modifier.weight(1f)
+                                )
+                                TextButton(
+                                    onClick = {
+                                        onIntent(SettingsIntent.ClearExportStatus)
+                                    }
+                                ) {
+                                    Text("Dismiss", color = MaterialTheme.colorScheme.onErrorContainer)
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
             // JSON Import Section
             WordsCard {
                 Column(
@@ -206,7 +326,7 @@ fun SettingsContent(
                     }
 
                     Text(
-                        text = "Select a JSON file containing vocabulary words to import them directly into your database.",
+                        text = "Select a JSON file containing vocabulary words to import them directly into your database, or download an example file to see the expected format.",
                         fontSize = 14.sp,
                         color = MaterialTheme.colorScheme.onSurfaceVariant,
                         lineHeight = 20.sp
@@ -218,6 +338,27 @@ fun SettingsContent(
                         isLoading = state.isImporting,
                         enabled = !state.isImporting
                     )
+
+                    OutlinedButton(
+                        onClick = { jsonExampleLauncher.launch("sample_words.json") },
+                        enabled = !state.isImporting,
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .height(52.dp),
+                        shape = CircleShape
+                    ) {
+                        Icon(
+                            imageVector = Icons.Default.FileDownload,
+                            contentDescription = null,
+                            modifier = Modifier.size(20.dp)
+                        )
+                        Spacer(modifier = Modifier.width(8.dp))
+                        Text(
+                            text = "Download Example JSON",
+                            fontSize = 15.sp,
+                            fontWeight = FontWeight.SemiBold
+                        )
+                    }
 
                     state.importMessage?.let { message ->
                         Card(

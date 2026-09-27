@@ -1,20 +1,26 @@
 package com.moetaz.words.presentation.settings
 
 import android.content.Context
+import android.net.Uri
 import com.moetaz.words.domain.repository.WordRepository
 import com.moetaz.words.ui.theme.AppThemeMode
 import com.moetaz.words.ui.theme.ThemePreferences
+import io.mockk.coEvery
+import io.mockk.coVerify
 import io.mockk.mockk
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.test.StandardTestDispatcher
 import kotlinx.coroutines.test.resetMain
 import kotlinx.coroutines.test.runTest
 import kotlinx.coroutines.test.setMain
 import org.junit.After
+import org.junit.Assert
 import org.junit.Assert.assertEquals
 import org.junit.Before
 import org.junit.Test
+import java.io.ByteArrayOutputStream
 
 @OptIn(ExperimentalCoroutinesApi::class)
 class SettingsViewModelTest {
@@ -58,5 +64,76 @@ class SettingsViewModelTest {
 
         assertEquals(AppThemeMode.LIGHT, viewModel.state.value.selectedThemeMode)
         assertEquals(AppThemeMode.LIGHT, themePreferences.themeMode.value)
+    }
+
+    @Test
+    fun importJson_validDatabaseStructure_insertsWordsAndUpdatesState() = runTest {
+        val dbJson = """
+            {
+              "words": [
+                {
+                  "id": 1,
+                  "word": "Eloquent",
+                  "translations": ["فصيح"],
+                  "masteryStatus": "LEARNING",
+                  "isFavorite": true
+                }
+              ]
+            }
+        """.trimIndent()
+
+        viewModel.handleIntent(SettingsIntent.ImportJsonContent(dbJson))
+        testDispatcher.scheduler.advanceUntilIdle()
+
+        val state = viewModel.state.value
+        assertEquals("Successfully imported 1 word(s)!", state.importMessage)
+        coVerify { repository.insertWord(any()) }
+    }
+
+    @Test
+    fun importJson_jsonArray_insertsWordsAndUpdatesState() = runTest {
+        val arrayJson = """
+            [
+              {
+                "id": 2,
+                "word": "Meticulous",
+                "translations": ["دقيق"],
+                "masteryStatus": "MASTERED"
+              }
+            ]
+        """.trimIndent()
+
+        viewModel.handleIntent(SettingsIntent.ImportJsonContent(arrayJson))
+        testDispatcher.scheduler.advanceUntilIdle()
+
+        val state = viewModel.state.value
+        assertEquals("Successfully imported 1 word(s)!", state.importMessage)
+        coVerify { repository.insertWord(any()) }
+    }
+
+    @Test
+    fun exportJson_emptyDatabase_setsExportError() = runTest {
+        coEvery { repository.getWords() } returns flowOf(emptyList())
+
+        viewModel.handleIntent(SettingsIntent.ExportJson(mockk(relaxed = true), context))
+        testDispatcher.scheduler.advanceUntilIdle()
+
+        val state = viewModel.state.value
+        assertEquals("No words in database to export.", state.exportError)
+    }
+
+    @Test
+    fun downloadExampleJson_success_updatesImportMessage() = runTest {
+        val mockUri = mockk<Uri>(relaxed = true)
+        val mockOutputStream = ByteArrayOutputStream()
+        coEvery { context.contentResolver.openOutputStream(mockUri) } returns mockOutputStream
+
+        viewModel.handleIntent(SettingsIntent.DownloadExampleJson(mockUri, context))
+        testDispatcher.scheduler.advanceUntilIdle()
+
+        val state = viewModel.state.value
+        assertEquals("Example JSON file saved successfully!", state.importMessage)
+        Assert.assertTrue(mockOutputStream.toString().contains("Eloquent"))
+        Assert.assertTrue(mockOutputStream.toString().contains("Meticulous"))
     }
 }
