@@ -165,8 +165,7 @@ class SettingsViewModel(
                             phonetic = "/ˈɛl.ə.kwənt/",
                             definition = "Fluent or persuasive in speaking or writing.",
                             definitionTranslation = "طلاقة أو إقناع في التحدث أو الكتابة.",
-                            masteryStatus = WordMasteryStatus.LEARNING,
-                            isFavorite = true
+
                         ),
                         WordDto(
                             word = "Meticulous",
@@ -180,8 +179,7 @@ class SettingsViewModel(
                             phonetic = "/məˈtɪk.jə.ləs/",
                             definition = "Showing great attention to detail; very careful and precise.",
                             definitionTranslation = "إبداء اهتمام كبير بالتفاصيل؛ حريص ودقيق للغاية.",
-                            masteryStatus = WordMasteryStatus.REVIEWING,
-                            isFavorite = false
+
                         )
                     )
                 )

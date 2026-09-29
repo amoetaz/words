@@ -2,6 +2,7 @@ package com.moetaz.words.data.repository
 
 import android.content.Context
 import com.moetaz.words.data.local.dao.WordDao
+import com.moetaz.words.data.local.database.DatabaseInitializer
 import com.moetaz.words.data.local.entity.WordEntity
 import com.moetaz.words.domain.model.Word
 import com.moetaz.words.domain.model.WordMasteryStatus
@@ -20,7 +21,7 @@ class WordRepositoryImpl(
     init {
         context?.let { ctx ->
             CoroutineScope(Dispatchers.IO).launch {
-             //   DatabaseInitializer.populateIfEmpty(ctx, dao)
+               DatabaseInitializer.populateIfEmpty(ctx, dao)
             }
         }
     }

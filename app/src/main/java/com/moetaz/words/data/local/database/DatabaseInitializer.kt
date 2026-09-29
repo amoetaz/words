@@ -1,6 +1,7 @@
 package com.moetaz.words.data.local.database
 
 import android.content.Context
+import android.util.Log
 import com.moetaz.words.R
 import com.moetaz.words.data.local.dao.WordDao
 import com.moetaz.words.data.local.dto.WordsResponseDto
@@ -18,10 +19,13 @@ object DatabaseInitializer {
                 val response = json.decodeFromString<WordsResponseDto>(jsonString)
                 val entities = response.words.map { it.toEntity() }
                 if (entities.isNotEmpty()) {
+                    Log.d("DatabaseInitTAG", "entities: ${entities}")
+
                     dao.insertWords(entities)
                 }
             } catch (e: Exception) {
                 e.printStackTrace()
+                Log.d("DatabaseInitTAG", "populateIfEmpty: ${e.message}")
             }
         }
     }

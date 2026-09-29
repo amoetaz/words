@@ -1,1168 +1,1382 @@
-{
-  "words": [
-    {
-      "word": "exuberance",
-      "translation": [
-        "امتلاء بالحيوية"
-      ],
-      "examples": [
-        {
-          "english": "Her exuberance was contagious.",
-          "arabic": "كان امتلائها بالحيوية معدياً."
-        },
-        {
-          "english": "The children played with great exuberance.",
-          "arabic": "لعب الأطفال بامتلاء بالحيوية كبير."
-        }
-      ]
-    },
-    {
-      "word": "conviction",
-      "translation": [
-        "ادانة"
-      ],
-      "examples": [
-        {
-          "english": "He has a prior conviction for theft.",
-          "arabic": "لديه ادانة سابقة بالسرقة."
-        },
-        {
-          "english": "The evidence led to his conviction.",
-          "arabic": "أدت الأدلة إلى ادانته."
-        }
-      ]
-    },
-    {
-      "word": "quotient",
-      "translation": [
-        "نسبة"
-      ],
-      "examples": [
-        {
-          "english": "Intelligence quotient is often abbreviated as IQ.",
-          "arabic": "غالباً ما يُختصر نسبة الذكاء بـ IQ."
-        },
-        {
-          "english": "The quotient of 10 divided by 2 is 5.",
-          "arabic": "نسبة قسمة 10 على 2 هي 5."
-        }
-      ]
-    },
-    {
-      "word": "bargain",
-      "translation": [
-        "صفقة"
-      ],
-      "examples": [
-        {
-          "english": "This car is a real bargain.",
-          "arabic": "هذه السيارة صفقة حقيقية."
-        },
-        {
-          "english": "We made a bargain to help each other.",
-          "arabic": "عقدنا صفقة لمساعدة بعضنا البعض."
-        }
-      ]
-    },
-    {
-      "word": "Affinity",
-      "translation": [
-        "انجذاب"
-      ],
-      "examples": [
-        {
-          "english": "He has a natural affinity for music.",
-          "arabic": "لديه انجذاب طبيعي للموسيقى."
-        },
-        {
-          "english": "There is a strong affinity between the two languages.",
-          "arabic": "يوجد انجذاب قوي بين اللغتين."
-        }
-      ]
-    },
-    {
-      "word": "instinct",
-      "translation": [
-        "غريزة"
-      ],
-      "examples": [
-        {
-          "english": "Survival is a basic human instinct.",
-          "arabic": "البقاء هو غريزة إنسانية أساسية."
-        },
-        {
-          "english": "She trusted her maternal instinct.",
-          "arabic": "وثقت في غريزتها كأم."
-        }
-      ]
-    },
-    {
-      "word": "razor",
-      "translation": [
-        "ماكينة حلاقة"
-      ],
-      "examples": [
-        {
-          "english": "He bought a new electric razor.",
-          "arabic": "اشترى ماكينة حلاقة كهربائية جديدة."
-        },
-        {
-          "english": "The razor is very sharp.",
-          "arabic": "ماكينة الحلاقة حادة جداً."
-        }
-      ]
-    },
-    {
-      "word": "foe",
-      "translation": [
-        "عدو"
-      ],
-      "examples": [
-        {
-          "english": "He is a formidable foe in the ring.",
-          "arabic": "إنه عدو لدود في الحلبة."
-        },
-        {
-          "english": "They joined forces to defeat a common foe.",
-          "arabic": "لقد وحدوا قواهم لهزيمة عدو مشترك."
-        }
-      ]
-    },
-    {
-      "word": "benefactor",
-      "translation": [
-        "متبرع"
-      ],
-      "examples": [
-        {
-          "english": "An anonymous benefactor donated a million dollars.",
-          "arabic": "قدم متبرع مجهول مليون دولار."
-        },
-        {
-          "english": "The hospital was built thanks to a generous benefactor.",
-          "arabic": "تم بناء المستشفى بفضل متبرع سخي."
-        }
-      ]
-    },
-    {
-      "word": "hip",
-      "translation": [
-        "ورك"
-      ],
-      "examples": [
-        {
-          "english": "She placed her hands on her hips.",
-          "arabic": "وضعت يديها على وركيها."
-        },
-        {
-          "english": "He suffered a hip injury.",
-          "arabic": "لقد عانى من إصابة في الورك."
-        }
-      ]
-    },
-    {
-      "word": "bulk",
-      "translation": [
-        "كتلة"
-      ],
-      "examples": [
-        {
-          "english": "The bulk of the work is already done.",
-          "arabic": "تم إنجاز كتلة العمل الأكبر بالفعل."
-        },
-        {
-          "english": "He buys his groceries in bulk.",
-          "arabic": "يشتري البقالة الخاصة به ككتلة واحدة."
-        }
-      ]
-    },
-    {
-      "word": "feat",
-      "translation": [
-        "عمل فذ"
-      ],
-      "examples": [
-        {
-          "english": "Climbing that mountain is a remarkable feat.",
-          "arabic": "تسلق هذا الجبل هو عمل فذ رائع."
-        },
-        {
-          "english": "The bridge was an engineering feat.",
-          "arabic": "كان الجسر بمثابة عمل فذ هندسي."
-        }
-      ]
-    },
-    {
-      "word": "might",
-      "translation": [
-        "عظمة",
-        "بأس"
-      ],
-      "examples": [
-        {
-          "english": "He pushed the door with all his might.",
-          "arabic": "دفع الباب بكل بأسه."
-        },
-        {
-          "english": "The military might of the empire was feared.",
-          "arabic": "كانت العظمة العسكرية للإمبراطورية مرهوبة."
-        }
-      ]
-    },
-    {
-      "word": "aversion",
-      "translation": [
-        "كره",
-        "بغض"
-      ],
-      "examples": [
-        {
-          "english": "I have a strong aversion to spiders.",
-          "arabic": "لدي كره شديد للعناكب."
-        },
-        {
-          "english": "His aversion to hard work is obvious.",
-          "arabic": "إن بغضه للعمل الشاق واضح."
-        }
-      ]
-    },
-    {
-      "word": "cue",
-      "translation": [
-        "اشارة",
-        "ايعاز"
-      ],
-      "examples": [
-        {
-          "english": "That's my cue to leave.",
-          "arabic": "هذه إشارة لي للمغادرة."
-        },
-        {
-          "english": "The actor missed his cue.",
-          "arabic": "فوت الممثل الإيعاز الخاص به."
-        }
-      ]
-    },
-    {
-      "word": "pillar",
-      "translation": [
-        "عمود"
-      ],
-      "examples": [
-        {
-          "english": "He leaned against the stone pillar.",
-          "arabic": "اتكأ على العمود الحجري."
-        },
-        {
-          "english": "She is a pillar of the community.",
-          "arabic": "إنها عمود من أعمدة المجتمع."
-        }
-      ]
-    },
-    {
-      "word": "pace",
-      "translation": [
-        "خطوة"
-      ],
-      "examples": [
-        {
-          "english": "He took a step forward at a slow pace.",
-          "arabic": "أخذ خطوة للأمام بخطى بطيئة."
-        },
-        {
-          "english": "The pace of change is accelerating.",
-          "arabic": "خطوة التغيير تتسارع."
-        }
-      ]
-    },
-    {
-      "word": "laughter",
-      "translation": [
-        "ضحك"
-      ],
-      "examples": [
-        {
-          "english": "The room was filled with laughter.",
-          "arabic": "كانت الغرفة مليئة بالضحك."
-        },
-        {
-          "english": "His joke caused loud laughter.",
-          "arabic": "تسببت نكتته في ضحك عالٍ."
-        }
-      ]
-    },
-    {
-      "word": "hardship",
-      "translation": [
-        "ضيق",
-        "عناء"
-      ],
-      "examples": [
-        {
-          "english": "They endured years of financial hardship.",
-          "arabic": "لقد تحملوا سنوات من الضيق المالي."
-        },
-        {
-          "english": "The war caused widespread hardship.",
-          "arabic": "تسببت الحرب في عناء واسع النطاق."
-        }
-      ]
-    },
-    {
-      "word": "hatch",
-      "translation": [
-        "باب ارضي"
-      ],
-      "examples": [
-        {
-          "english": "Open the escape hatch.",
-          "arabic": "افتح الباب الأرضي للهروب."
-        },
-        {
-          "english": "They climbed down through the hatch.",
-          "arabic": "نزلوا للأسفل من خلال الباب الأرضي."
-        }
-      ]
-    },
-    {
-      "word": "allied",
-      "translation": [
-        "حليف"
-      ],
-      "examples": [
-        {
-          "english": "The allied forces attacked at dawn.",
-          "arabic": "هاجمت قوات الحليف عند الفجر."
-        },
-        {
-          "english": "We must support our allied nations.",
-          "arabic": "يجب أن ندعم دولنا الحليفة."
-        }
-      ]
-    },
-    {
-      "word": "heir",
-      "translation": [
-        "وريث"
-      ],
-      "examples": [
-        {
-          "english": "He is the sole heir to the throne.",
-          "arabic": "إنه الوريث الوحيد للعرش."
-        },
-        {
-          "english": "She was named heir to the family business.",
-          "arabic": "تم تسميتها وريثة لأعمال العائلة."
-        }
-      ]
-    },
-    {
-      "word": "nutrition",
-      "translation": [
-        "تغذية"
-      ],
-      "examples": [
-        {
-          "english": "Good nutrition is essential for health.",
-          "arabic": "التغذية الجيدة ضرورية للصحة."
-        },
-        {
-          "english": "He studied plant nutrition at university.",
-          "arabic": "درس تغذية النبات في الجامعة."
-        }
-      ]
-    },
-    {
-      "word": "luxury",
-      "translation": [
-        "ترف"
-      ],
-      "examples": [
-        {
-          "english": "They lived a life of absolute luxury.",
-          "arabic": "عاشوا حياة من الترف المطلق."
-        },
-        {
-          "english": "A hot bath is a simple luxury.",
-          "arabic": "الاستحمام الساخن هو ترف بسيط."
-        }
-      ]
-    },
-    {
-      "word": "haven",
-      "translation": [
-        "ملاذ",
-        "مأوي"
-      ],
-      "examples": [
-        {
-          "english": "The island is a haven for wildlife.",
-          "arabic": "الجزيرة هي ملاذ للحياة البرية."
-        },
-        {
-          "english": "They sought a safe haven from the storm.",
-          "arabic": "لقد بحثوا عن مأوى آمن من العاصفة."
-        }
-      ]
-    },
-    {
-      "word": "prohibition",
-      "translation": [
-        "حظر"
-      ],
-      "examples": [
-        {
-          "english": "There is a prohibition against smoking here.",
-          "arabic": "يوجد حظر على التدخين هنا."
-        },
-        {
-          "english": "The law enforces a strict prohibition on alcohol.",
-          "arabic": "يفرض القانون حظراً صارماً على الكحول."
-        }
-      ]
-    },
-    {
-      "word": "wit",
-      "translation": [
-        "نباهة"
-      ],
-      "examples": [
-        {
-          "english": "She is known for her quick wit.",
-          "arabic": "هي معروفة بنباهتها السريعة."
-        },
-        {
-          "english": "He answered the question with great wit.",
-          "arabic": "أجاب على السؤال بنباهة كبيرة."
-        }
-      ]
-    },
-    {
-      "word": "plum",
-      "translation": [
-        "خوخ"
-      ],
-      "examples": [
-        {
-          "english": "She ate a juicy plum.",
-          "arabic": "أكلت حبة خوخ غنية بالعصير."
-        },
-        {
-          "english": "The plum tree blossomed in spring.",
-          "arabic": "أزهرت شجرة الخوخ في الربيع."
-        }
-      ]
-    },
-    {
-      "word": "ire",
-      "translation": [
-        "غضب"
-      ],
-      "examples": [
-        {
-          "english": "The decision provoked the ire of the public.",
-          "arabic": "أثار القرار غضب الرأي العام."
-        },
-        {
-          "english": "He was afraid to face his father's ire.",
-          "arabic": "كان يخشى مواجهة غضب والده."
-        }
-      ]
-    },
-    {
-      "word": "disorder",
-      "translation": [
-        "فوضي"
-      ],
-      "examples": [
-        {
-          "english": "The room was in a state of complete disorder.",
-          "arabic": "كانت الغرفة في حالة فوضى عارمة."
-        },
-        {
-          "english": "The protest soon descended into disorder.",
-          "arabic": "سرعان ما تحول الاحتجاج إلى فوضى."
-        }
-      ]
-    },
-    {
-      "word": "sceptic",
-      "translation": [
-        "شكوكى"
-      ],
-      "examples": [
-        {
-          "english": "He is a natural sceptic about new technology.",
-          "arabic": "إنه شخص شكوكي بطبعه حول التكنولوجيا الجديدة."
-        },
-        {
-          "english": "I tried to convince the sceptic in the group.",
-          "arabic": "حاولت إقناع الشخص الشكوكي في المجموعة."
-        }
-      ]
-    },
-    {
-      "word": "foyer",
-      "translation": [
-        "بهو"
-      ],
-      "examples": [
-        {
-          "english": "We waited for him in the hotel foyer.",
-          "arabic": "انتظرناه في بهو الفندق."
-        },
-        {
-          "english": "The theater foyer was crowded.",
-          "arabic": "كان بهو المسرح مزدحماً."
-        }
-      ]
-    },
-    {
-      "word": "hay",
-      "translation": [
-        "قش"
-      ],
-      "examples": [
-        {
-          "english": "The horses are eating hay.",
-          "arabic": "الخيول تأكل القش."
-        },
-        {
-          "english": "We need to bail the hay before it rains.",
-          "arabic": "نحتاج إلى حزم القش قبل أن تمطر."
-        }
-      ]
-    },
-    {
-      "word": "stake",
-      "translation": [
-        "وتد"
-      ],
-      "examples": [
-        {
-          "english": "He drove a wooden stake into the ground.",
-          "arabic": "دفع وتداً خشبياً في الأرض."
-        },
-        {
-          "english": "Tie the tent rope to the stake.",
-          "arabic": "اربط حبل الخيمة بالوتد."
-        }
-      ]
-    },
-    {
-      "word": "herd",
-      "translation": [
-        "قطيع"
-      ],
-      "examples": [
-        {
-          "english": "A herd of elephants crossed the river.",
-          "arabic": "عبر قطيع من الأفيال النهر."
-        },
-        {
-          "english": "He manages a large herd of cattle.",
-          "arabic": "إنه يدير قطيعاً كبيراً من الماشية."
-        }
-      ]
-    },
-    {
-      "word": "pit",
-      "translation": [
-        "حفرة"
-      ],
-      "examples": [
-        {
-          "english": "They dug a deep pit in the garden.",
-          "arabic": "لقد حفروا حفرة عميقة في الحديقة."
-        },
-        {
-          "english": "He almost fell into the muddy pit.",
-          "arabic": "كاد أن يسقط في الحفرة الموحلة."
-        }
-      ]
-    },
-    {
-      "word": "Decree",
-      "translation": [
-        "حكم",
-        "امر"
-      ],
-      "examples": [
-        {
-          "english": "The king issued a new decree.",
-          "arabic": "أصدر الملك أمراً جديداً."
-        },
-        {
-          "english": "The court's decree is final.",
-          "arabic": "حكم المحكمة نهائي."
-        }
-      ]
-    },
-    {
-      "word": "heist",
-      "translation": [
-        "سرقة"
-      ],
-      "examples": [
-        {
-          "english": "The bank heist was planned carefully.",
-          "arabic": "تم التخطيط لعملية سرقة البنك بعناية."
-        },
-        {
-          "english": "They got away with millions in the diamond heist.",
-          "arabic": "لقد هربوا بالملايين في سرقة الماس."
-        }
-      ]
-    },
-    {
-      "word": "incline",
-      "translation": [
-        "منحدر"
-      ],
-      "examples": [
-        {
-          "english": "The car struggled up the steep incline.",
-          "arabic": "عانت السيارة في الصعود على المنحدر الشديد."
-        },
-        {
-          "english": "She walked up the gradual incline.",
-          "arabic": "صعدت على المنحدر التدريجي."
-        }
-      ]
-    },
-    {
-      "word": "referendum",
-      "translation": [
-        "استفتاء"
-      ],
-      "examples": [
-        {
-          "english": "The country held a referendum on independence.",
-          "arabic": "أجرت البلاد استفتاء على الاستقلال."
-        },
-        {
-          "english": "The results of the referendum were clear.",
-          "arabic": "كانت نتائج الاستفتاء واضحة."
-        }
-      ]
-    },
-    {
-      "word": "kickback",
-      "translation": [
-        "رشوة"
-      ],
-      "examples": [
-        {
-          "english": "He was accused of accepting a kickback.",
-          "arabic": "اتُهم بقبول رشوة."
-        },
-        {
-          "english": "The contractor offered a kickback to secure the deal.",
-          "arabic": "قدم المقاول رشوة لتأمين الصفقة."
-        }
-      ]
-    },
-    {
-      "word": "deceit",
-      "translation": [
-        "تدليس",
-        "خداع"
-      ],
-      "examples": [
-        {
-          "english": "Their marriage was built on deceit.",
-          "arabic": "كان زواجهم مبنياً على التدليس."
-        },
-        {
-          "english": "He is a master of lies and deceit.",
-          "arabic": "إنه أستاذ في الكذب والخداع."
-        }
-      ]
-    },
-    {
-      "word": "persecution",
-      "translation": [
-        "اضطهاد"
-      ],
-      "examples": [
-        {
-          "english": "They fled their country to escape religious persecution.",
-          "arabic": "فروا من بلادهم هرباً من الاضطهاد الديني."
-        },
-        {
-          "english": "The group faced years of political persecution.",
-          "arabic": "واجهت المجموعة سنوات من الاضطهاد السياسي."
-        }
-      ]
-    },
-    {
-      "word": "annihilation",
-      "translation": [
-        "ابادة جماعية"
-      ],
-      "examples": [
-        {
-          "english": "The war resulted in the total annihilation of the city.",
-          "arabic": "أسفرت الحرب عن الإبادة الجماعية الكاملة للمدينة."
-        },
-        {
-          "english": "They are trying to prevent nuclear annihilation.",
-          "arabic": "إنهم يحاولون منع الإبادة الجماعية النووية."
-        }
-      ]
-    },
-    {
-      "word": "entomology",
-      "translation": [
-        "علم الحشرات"
-      ],
-      "examples": [
-        {
-          "english": "She is studying entomology at the university.",
-          "arabic": "إنها تدرس علم الحشرات في الجامعة."
-        },
-        {
-          "english": "His interest in bugs led him to a career in entomology.",
-          "arabic": "اهتمامه بالبق قاده إلى مهنة في علم الحشرات."
-        }
-      ]
-    },
-    {
-      "word": "Astronomy",
-      "translation": [
-        "علم الفلك"
-      ],
-      "examples": [
-        {
-          "english": "He loves using his telescope for astronomy.",
-          "arabic": "يحب استخدام التلسكوب الخاص به في علم الفلك."
-        },
-        {
-          "english": "Astronomy helps us understand the universe.",
-          "arabic": "يساعدنا علم الفلك على فهم الكون."
-        }
-      ]
-    },
-    {
-      "word": "testament",
-      "translation": [
-        "ميثاق",
-        "عهد"
-      ],
-      "examples": [
-        {
-          "english": "The building is a testament to their hard work.",
-          "arabic": "المبنى هو عهد على عملهم الشاق."
-        },
-        {
-          "english": "He read the old testament daily.",
-          "arabic": "كان يقرأ الميثاق القديم يومياً."
-        }
-      ]
-    },
-    {
-      "word": "nuisance",
-      "translation": [
-        "ازعاج"
-      ],
-      "examples": [
-        {
-          "english": "The loud music is a public nuisance.",
-          "arabic": "الموسيقى الصاخبة تعتبر إزعاجاً عاماً."
-        },
-        {
-          "english": "Filling out these forms is such a nuisance.",
-          "arabic": "ملء هذه النماذج يمثل إزعاجاً كبيراً."
-        }
-      ]
-    },
-    {
-      "word": "coalition",
-      "translation": [
-        "ائتلاف",
-        "تحالف مؤقت"
-      ],
-      "examples": [
-        {
-          "english": "The two parties formed a coalition government.",
-          "arabic": "شكل الحزبان حكومة ائتلاف."
-        },
-        {
-          "english": "They built a temporary coalition to win the war.",
-          "arabic": "لقد بنوا تحالفاً مؤقتاً للفوز في الحرب."
-        }
-      ]
-    },
-    {
-      "word": "heresy",
-      "translation": [
-        "بدعة",
-        "هرطقه"
-      ],
-      "examples": [
-        {
-          "english": "He was executed for heresy.",
-          "arabic": "أُعدم بتهمة الهرطقة."
-        },
-        {
-          "english": "To them, this idea was pure heresy.",
-          "arabic": "بالنسبة لهم، كانت هذه الفكرة بدعة خالصة."
-        }
-      ]
-    },
-    {
-      "word": "heyday",
-      "translation": [
-        "اوج",
-        "ذروه"
-      ],
-      "examples": [
-        {
-          "english": "In its heyday, the company employed thousands.",
-          "arabic": "في أوجها، وظفت الشركة الآلاف."
-        },
-        {
-          "english": "He was a famous actor in his heyday.",
-          "arabic": "كان ممثلاً مشهوراً في ذروته."
-        }
-      ]
-    },
-    {
-      "word": "lavishness",
-      "translation": [
-        "بذخ"
-      ],
-      "examples": [
-        {
-          "english": "The lavishness of the party was shocking.",
-          "arabic": "كان بذخ الحفلة صادماً."
-        },
-        {
-          "english": "They live in a state of extreme lavishness.",
-          "arabic": "إنهم يعيشون في حالة من البذخ الشديد."
-        }
-      ]
-    },
-    {
-      "word": "wrinkles",
-      "translation": [
-        "تجاعيد"
-      ],
-      "examples": [
-        {
-          "english": "She has fine wrinkles around her eyes.",
-          "arabic": "لديها تجاعيد دقيقة حول عينيها."
-        },
-        {
-          "english": "This cream claims to reduce wrinkles.",
-          "arabic": "هذا الكريم يدعي أنه يقلل التجاعيد."
-        }
-      ]
-    },
-    {
-      "word": "jury",
-      "translation": [
-        "هيئه المحلفين"
-      ],
-      "examples": [
-        {
-          "english": "The jury found the defendant guilty.",
-          "arabic": "وجدت هيئة المحلفين أن المدعى عليه مذنب."
-        },
-        {
-          "english": "She was called for jury duty.",
-          "arabic": "تم استدعاؤها للخدمة في هيئة المحلفين."
-        }
-      ]
-    },
-    {
-      "word": "austerity",
-      "translation": [
-        "تقشف"
-      ],
-      "examples": [
-        {
-          "english": "The government announced a new period of austerity.",
-          "arabic": "أعلنت الحكومة عن فترة جديدة من التقشف."
-        },
-        {
-          "english": "They lived a life of strict austerity.",
-          "arabic": "عاشوا حياة من التقشف الصارم."
-        }
-      ]
-    },
-    {
-      "word": "beak",
-      "translation": [
-        "منقار الطائر"
-      ],
-      "examples": [
-        {
-          "english": "The eagle has a sharp beak.",
-          "arabic": "للنسر منقار طائر حاد."
-        },
-        {
-          "english": "The bird held a worm in its beak.",
-          "arabic": "كان الطائر يحمل دودة في منقار الطائر."
-        }
-      ]
-    },
-    {
-      "word": "hermit",
-      "translation": [
-        "زاهد"
-      ],
-      "examples": [
-        {
-          "english": "He lives like a hermit in the mountains.",
-          "arabic": "إنه يعيش مثل زاهد في الجبال."
-        },
-        {
-          "english": "The hermit rarely spoke to anyone.",
-          "arabic": "نادرًا ما كان الزاهد يتحدث إلى أي شخص."
-        }
-      ]
-    },
-    {
-      "word": "cluster bomb",
-      "translation": [
-        "قنبلة عنقوديه"
-      ],
-      "examples": [
-        {
-          "english": "The use of a cluster bomb is banned by many countries.",
-          "arabic": "يحظر استخدام القنبلة العنقودية في العديد من البلدان."
-        },
-        {
-          "english": "The plane dropped a cluster bomb on the target.",
-          "arabic": "ألقت الطائرة قنبلة عنقودية على الهدف."
-        }
-      ]
-    },
-    {
-      "word": "hostility",
-      "translation": [
-        "عداوة"
-      ],
-      "examples": [
-        {
-          "english": "There was open hostility between the two families.",
-          "arabic": "كانت هناك عداوة صريحة بين العائلتين."
-        },
-        {
-          "english": "He showed great hostility towards the new idea.",
-          "arabic": "أظهر عداوة كبيرة تجاه الفكرة الجديدة."
-        }
-      ]
-    },
-    {
-      "word": "novice",
-      "translation": [
-        "مبتدئ"
-      ],
-      "examples": [
-        {
-          "english": "I am a complete novice when it comes to coding.",
-          "arabic": "أنا مبتدئ تمامًا عندما يتعلق الأمر بالبرمجة."
-        },
-        {
-          "english": "The game has an easy mode for a novice.",
-          "arabic": "تحتوي اللعبة على وضع سهل للمبتدئ."
-        }
-      ]
-    },
-    {
-      "word": "hunch",
-      "translation": [
-        "حدس"
-      ],
-      "examples": [
-        {
-          "english": "I had a hunch that you would be here.",
-          "arabic": "كان لدي حدس بأنك ستكون هنا."
-        },
-        {
-          "english": "She acted on a sudden hunch.",
-          "arabic": "لقد تصرفت بناءً على حدس مفاجئ."
-        }
-      ]
-    },
-    {
-      "word": "admission",
-      "translation": [
-        "قبول"
-      ],
-      "examples": [
-        {
-          "english": "The university sent her an admission letter.",
-          "arabic": "أرسلت لها الجامعة خطاب قبول."
-        },
-        {
-          "english": "Admission to the museum is free on Sundays.",
-          "arabic": "القبول في المتحف مجاني يوم الأحد."
-        }
-      ]
-    },
-    {
-      "word": "debris",
-      "translation": [
-        "حطام",
-        "انقاض"
-      ],
-      "examples": [
-        {
-          "english": "The explosion scattered debris everywhere.",
-          "arabic": "نثر الانفجار الحطام في كل مكان."
-        },
-        {
-          "english": "They pulled survivors from the debris.",
-          "arabic": "لقد انتشلوا الناجين من الأنقاض."
-        }
-      ]
-    },
-    {
-      "word": "marsh",
-      "translation": [
-        "مستنقع"
-      ],
-      "examples": [
-        {
-          "english": "The birds nested in the marsh.",
-          "arabic": "عششت الطيور في المستنقع."
-        },
-        {
-          "english": "We walked carefully through the muddy marsh.",
-          "arabic": "مشينا بحذر عبر المستنقع الموحل."
-        }
-      ]
-    },
-    {
-      "word": "superstition",
-      "translation": [
-        "خرافة"
-      ],
-      "examples": [
-        {
-          "english": "Breaking a mirror brings bad luck is a common superstition.",
-          "arabic": "كسر المرآة يجلب الحظ السيئ هي خرافة شائعة."
-        },
-        {
-          "english": "He doesn't believe in old superstition.",
-          "arabic": "إنه لا يؤمن بالخرافة القديمة."
-        }
-      ]
-    },
-    {
-      "word": "sensation",
-      "translation": [
-        "شعور"
-      ],
-      "examples": [
-        {
-          "english": "I had a strange sensation of being watched.",
-          "arabic": "كان لدي شعور غريب بأنني مراقب."
-        },
-        {
-          "english": "She lost all sensation in her arm.",
-          "arabic": "لقد فقدت كل شعور في ذراعها."
-        }
-      ]
-    },
-    {
-      "word": "equanimity",
-      "translation": [
-        "رباطة الجأش"
-      ],
-      "examples": [
-        {
-          "english": "He accepted the bad news with equanimity.",
-          "arabic": "تقبل الأخبار السيئة برباطة الجأش."
-        },
-        {
-          "english": "She handled the crisis with remarkable equanimity.",
-          "arabic": "لقد تعاملت مع الأزمة برباطة الجأش ملحوظة."
-        }
-      ]
-    },
-    {
-      "word": "curfew",
-      "translation": [
-        "حظر التجول"
-      ],
-      "examples": [
-        {
-          "english": "The military imposed a strict curfew at night.",
-          "arabic": "فرض الجيش حظر التجول الصارم في الليل."
-        },
-        {
-          "english": "They were arrested for breaking the curfew.",
-          "arabic": "تم القبض عليهم لخرقهم حظر التجول."
-        }
-      ]
-    },
-    {
-      "word": "prejudgment",
-      "translation": [
-        "حكم مسبق"
-      ],
-      "examples": [
-        {
-          "english": "We should avoid any prejudgment before hearing the facts.",
-          "arabic": "يجب أن نتجنب أي حكم مسبق قبل سماع الحقائق."
-        },
-        {
-          "english": "Her opinion was based on prejudgment rather than evidence.",
-          "arabic": "استند رأيها على حكم مسبق بدلاً من الأدلة."
-        }
-      ]
-    },
-    {
-      "word": "grief",
-      "translation": [
-        "حزن شديد"
-      ],
-      "examples": [
-        {
-          "english": "She was overcome with grief after his death.",
-          "arabic": "لقد تغلب عليها حزن شديد بعد وفاته."
-        },
-        {
-          "english": "Time slowly heals the grief.",
-          "arabic": "الوقت يشفي الحزن الشديد ببطء."
-        }
-      ]
-    },
-    {
-      "word": "dump",
-      "translation": [
-        "مزبلة"
-      ],
-      "examples": [
-        {
-          "english": "They took the old furniture to the dump.",
-          "arabic": "أخذوا الأثاث القديم إلى المزبلة."
-        },
-        {
-          "english": "The city needs a new garbage dump.",
-          "arabic": "تحتاج المدينة إلى مزبلة جديدة للقمامة."
-        }
-      ]
-    },
-    {
-      "word": "acquisition",
-      "translation": [
-        "استحواذ (علي شركه)"
-      ],
-      "examples": [
-        {
-          "english": "The acquisition of the rival company was successful.",
-          "arabic": "كان الاستحواذ على الشركة المنافسة ناجحاً."
-        },
-        {
-          "english": "They are planning a major corporate acquisition.",
-          "arabic": "إنهم يخططون لعملية استحواذ على شركة كبرى."
-        }
-      ]
-    }
-  ]
-}
+[
+  {
+    "word": "exuberance",
+    "translations": [
+      "امتلاء بالحيوية"
+    ],
+    "examples": [
+      {
+        "english": "Her exuberance was contagious.",
+        "arabic": "كان امتلائها بالحيوية معدياً."
+      },
+      {
+        "english": "The children played with great exuberance.",
+        "arabic": "لعب الأطفال بامتلاء بالحيوية كبير."
+      }
+    ],
+    "phonetic": "/ɪɡˈzuːbərəns/",
+    "definition": "The quality of being full of energy, excitement, and cheerfulness.",
+    "definitionTranslation": "صفة التمتع بالطاقة والإثارة والبهجة."
+  },
+  {
+    "word": "conviction",
+    "translations": [
+      "ادانة"
+    ],
+    "examples": [
+      {
+        "english": "He has a prior conviction for theft.",
+        "arabic": "لديه ادانة سابقة بالسرقة."
+      },
+      {
+        "english": "The evidence led to his conviction.",
+        "arabic": "أدت الأدلة إلى ادانته."
+      }
+    ],
+    "phonetic": "/kənˈvɪkʃn/",
+    "definition": "A formal declaration that someone is guilty of a criminal offense; a firmly held belief or opinion.",
+    "definitionTranslation": "إعلان رسمي بأن شخصاً ما مذنب بارتكاب جريمة؛ اعتقاد أو رأي راسخ."
+  },
+  {
+    "word": "quotient",
+    "translations": [
+      "نسبة"
+    ],
+    "examples": [
+      {
+        "english": "Intelligence quotient is often abbreviated as IQ.",
+        "arabic": "غالباً ما يُختصر نسبة الذكاء بـ IQ."
+      },
+      {
+        "english": "The quotient of 10 divided by 2 is 5.",
+        "arabic": "نسبة قسمة 10 على 2 هي 5."
+      }
+    ],
+    "phonetic": "/ˈkwoʊʃnt/",
+    "definition": "A result obtained by dividing one quantity by another.",
+    "definitionTranslation": "نتيجة يتم الحصول عليها بقسمة كمية على أخرى."
+  },
+  {
+    "word": "bargain",
+    "translations": [
+      "صفقة"
+    ],
+    "examples": [
+      {
+        "english": "This car is a real bargain.",
+        "arabic": "هذه السيارة صفقة حقيقية."
+      },
+      {
+        "english": "We made a bargain to help each other.",
+        "arabic": "عقدنا صفقة لمساعدة بعضنا البعض."
+      }
+    ],
+    "phonetic": "/ˈbɑːrɡən/",
+    "definition": "An agreement between two or more parties as to what each party will do for the other; a thing bought or offered for sale more cheaply than is usual or expected.",
+    "definitionTranslation": "اتفاق بين طرفين أو أكثر حول ما سيفعله كل طرف للآخر؛ شيء تم شراؤه أو عرضه للبيع بسعر أرخص مما هو معتاد أو متوقع."
+  },
+  {
+    "word": "Affinity",
+    "translations": [
+      "انجذاب"
+    ],
+    "examples": [
+      {
+        "english": "He has a natural affinity for music.",
+        "arabic": "لديه انجذاب طبيعي للموسيقى."
+      },
+      {
+        "english": "There is a strong affinity between the two languages.",
+        "arabic": "يوجد انجذاب قوي بين اللغتين."
+      }
+    ],
+    "phonetic": "/əˈfɪnəti/",
+    "definition": "A spontaneous or natural liking or sympathy for someone or something.",
+    "definitionTranslation": "إعجاب أو تعاطف عفوي أو طبيعي تجاه شخص أو شيء ما."
+  },
+  {
+    "word": "instinct",
+    "translations": [
+      "غريزة"
+    ],
+    "examples": [
+      {
+        "english": "Survival is a basic human instinct.",
+        "arabic": "البقاء هو غريزة إنسانية أساسية."
+      },
+      {
+        "english": "She trusted her maternal instinct.",
+        "arabic": "وثقت في غريزتها كأم."
+      }
+    ],
+    "phonetic": "/ˈɪnstɪŋkt/",
+    "definition": "An innate, typically fixed pattern of behavior in animals in response to certain stimuli; a natural or intuitive way of acting or thinking.",
+    "definitionTranslation": "نمط سلوك فطري وثابت عادة في الحيوانات استجابة لمحفزات معينة؛ طريقة طبيعية أو بديهية في التصرف أو التفكير."
+  },
+  {
+    "word": "razor",
+    "translations": [
+      "ماكينة حلاقة"
+    ],
+    "examples": [
+      {
+        "english": "He bought a new electric razor.",
+        "arabic": "اشترى ماكينة حلاقة كهربائية جديدة."
+      },
+      {
+        "english": "The razor is very sharp.",
+        "arabic": "ماكينة الحلاقة حادة جداً."
+      }
+    ],
+    "phonetic": "/ˈreɪzər/",
+    "definition": "An instrument with a sharp blade or combination of blades, used to remove unwanted hair from the face or body.",
+    "definitionTranslation": "أداة ذات شفرة حادة أو مجموعة من الشفرات، تستخدم لإزالة الشعر غير المرغوب فيه من الوجه أو الجسم."
+  },
+  {
+    "word": "foe",
+    "translations": [
+      "عدو"
+    ],
+    "examples": [
+      {
+        "english": "He is a formidable foe in the ring.",
+        "arabic": "إنه عدو لدود في الحلبة."
+      },
+      {
+        "english": "They joined forces to defeat a common foe.",
+        "arabic": "لقد وحدوا قواهم لهزيمة عدو مشترك."
+      }
+    ],
+    "phonetic": "/foʊ/",
+    "definition": "An enemy or opponent.",
+    "definitionTranslation": "عدو أو خصم."
+  },
+  {
+    "word": "benefactor",
+    "translations": [
+      "متبرع"
+    ],
+    "examples": [
+      {
+        "english": "An anonymous benefactor donated a million dollars.",
+        "arabic": "قدم متبرع مجهول مليون دولار."
+      },
+      {
+        "english": "The hospital was built thanks to a generous benefactor.",
+        "arabic": "تم بناء المستشفى بفضل متبرع سخي."
+      }
+    ],
+    "phonetic": "/ˈbenɪfæktər/",
+    "definition": "A person who gives money or other help to a person or cause.",
+    "definitionTranslation": "شخص يقدم المال أو أي مساعدة أخرى لشخص أو قضية."
+  },
+  {
+    "word": "hip",
+    "translations": [
+      "ورك"
+    ],
+    "examples": [
+      {
+        "english": "She placed her hands on her hips.",
+        "arabic": "وضعت يديها على وركيها."
+      },
+      {
+        "english": "He suffered a hip injury.",
+        "arabic": "لقد عانى من إصابة في الورك."
+      }
+    ],
+    "phonetic": "/hɪp/",
+    "definition": "A projection of the pelvis and upper thigh bone on each side of the body in human beings, quadrupeds, and birds.",
+    "definitionTranslation": "بروز الحوض وعظم الفخذ العلوي على كل جانب من جانبي الجسم في البشر والحيوانات ذوات الأربع والطيور."
+  },
+  {
+    "word": "bulk",
+    "translations": [
+      "كتلة"
+    ],
+    "examples": [
+      {
+        "english": "The bulk of the work is already done.",
+        "arabic": "تم إنجاز كتلة العمل الأكبر بالفعل."
+      },
+      {
+        "english": "He buys his groceries in bulk.",
+        "arabic": "يشتري البقالة الخاصة به ككتلة واحدة."
+      }
+    ],
+    "phonetic": "/bʌlk/",
+    "definition": "The mass or magnitude of something large; the greater part of something.",
+    "definitionTranslation": "كتلة أو حجم شيء كبير؛ الجزء الأكبر من شيء ما."
+  },
+  {
+    "word": "feat",
+    "translations": [
+      "عمل فذ"
+    ],
+    "examples": [
+      {
+        "english": "Climbing that mountain is a remarkable feat.",
+        "arabic": "تسلق هذا الجبل هو عمل فذ رائع."
+      },
+      {
+        "english": "The bridge was an engineering feat.",
+        "arabic": "كان الجسر بمثابة عمل فذ هندسي."
+      }
+    ],
+    "phonetic": "/fiːt/",
+    "definition": "An achievement that requires great courage, skill, or strength.",
+    "definitionTranslation": "إنجاز يتطلب شجاعة أو مهارة أو قوة كبيرة."
+  },
+  {
+    "word": "might",
+    "translations": [
+      "عظمة",
+      "بأس"
+    ],
+    "examples": [
+      {
+        "english": "He pushed the door with all his might.",
+        "arabic": "دفع الباب بكل بأسه."
+      },
+      {
+        "english": "The military might of the empire was feared.",
+        "arabic": "كانت العظمة العسكرية للإمبراطورية مرهوبة."
+      }
+    ],
+    "phonetic": "/maɪt/",
+    "definition": "Great and impressive power or strength, especially of a nation, large organization, or natural force.",
+    "definitionTranslation": "قوة أو بأس عظيم ومثير للإعجاب، خاصة لأمة أو منظمة كبيرة أو قوة طبيعية."
+  },
+  {
+    "word": "aversion",
+    "translations": [
+      "كره",
+      "بغض"
+    ],
+    "examples": [
+      {
+        "english": "I have a strong aversion to spiders.",
+        "arabic": "لدي كره شديد للعناكب."
+      },
+      {
+        "english": "His aversion to hard work is obvious.",
+        "arabic": "إن بغضه للعمل الشاق واضح."
+      }
+    ],
+    "phonetic": "/əˈvɜːrʒn/",
+    "definition": "A strong dislike or disinclination.",
+    "definitionTranslation": "كراهية قوية أو عدم رغبة."
+  },
+  {
+    "word": "cue",
+    "translations": [
+      "اشارة",
+      "ايعاز"
+    ],
+    "examples": [
+      {
+        "english": "That's my cue to leave.",
+        "arabic": "هذه إشارة لي للمغادرة."
+      },
+      {
+        "english": "The actor missed his cue.",
+        "arabic": "فوت الممثل الإيعاز الخاص به."
+      }
+    ],
+    "phonetic": "/kjuː/",
+    "definition": "A thing said or done that serves as a signal to an actor or other performer to enter or to begin their speech or performance.",
+    "definitionTranslation": "شيء يُقال أو يُفعل ويكون بمثابة إشارة لممثل أو مؤدي آخر للدخول أو بدء حديثه أو أدائه."
+  },
+  {
+    "word": "pillar",
+    "translations": [
+      "عمود"
+    ],
+    "examples": [
+      {
+        "english": "He leaned against the stone pillar.",
+        "arabic": "اتكأ على العمود الحجري."
+      },
+      {
+        "english": "She is a pillar of the community.",
+        "arabic": "إنها عمود من أعمدة المجتمع."
+      }
+    ],
+    "phonetic": "/ˈpɪlər/",
+    "definition": "A tall vertical structure of stone, wood, or metal, used as a support for a building, or as an ornament or monument.",
+    "definitionTranslation": "هيكل عمودي طويل من الحجر أو الخشب أو المعدن، يستخدم كدعم لمبنى، أو كزينة أو نصب تذكاري."
+  },
+  {
+    "word": "pace",
+    "translations": [
+      "خطوة"
+    ],
+    "examples": [
+      {
+        "english": "He took a step forward at a slow pace.",
+        "arabic": "أخذ خطوة للأمام بخطى بطيئة."
+      },
+      {
+        "english": "The pace of change is accelerating.",
+        "arabic": "خطوة التغيير تتسارع."
+      }
+    ],
+    "phonetic": "/peɪs/",
+    "definition": "A single step taken when walking or running; consistent and continuous speed in walking, running, or moving.",
+    "definitionTranslation": "خطوة واحدة يتم اتخاذها عند المشي أو الجري؛ سرعة ثابتة ومستمرة في المشي أو الجري أو الحركة."
+  },
+  {
+    "word": "laughter",
+    "translations": [
+      "ضحك"
+    ],
+    "examples": [
+      {
+        "english": "The room was filled with laughter.",
+        "arabic": "كانت الغرفة مليئة بالضحك."
+      },
+      {
+        "english": "His joke caused loud laughter.",
+        "arabic": "تسببت نكتته في ضحك عالٍ."
+      }
+    ],
+    "phonetic": "/ˈlæftər/",
+    "definition": "The action or sound of laughing.",
+    "definitionTranslation": "فعل أو صوت الضحك."
+  },
+  {
+    "word": "hardship",
+    "translations": [
+      "ضيق",
+      "عناء"
+    ],
+    "examples": [
+      {
+        "english": "They endured years of financial hardship.",
+        "arabic": "لقد تحملوا سنوات من الضيق المالي."
+      },
+      {
+        "english": "The war caused widespread hardship.",
+        "arabic": "تسببت الحرب في عناء واسع النطاق."
+      }
+    ],
+    "phonetic": "/ˈhɑːrdʃɪp/",
+    "definition": "Severe suffering or privation.",
+    "definitionTranslation": "معاناة شديدة أو حرمان."
+  },
+  {
+    "word": "hatch",
+    "translations": [
+      "باب ارضي"
+    ],
+    "examples": [
+      {
+        "english": "Open the escape hatch.",
+        "arabic": "افتح الباب الأرضي للهروب."
+      },
+      {
+        "english": "They climbed down through the hatch.",
+        "arabic": "نزلوا للأسفل من خلال الباب الأرضي."
+      }
+    ],
+    "phonetic": "/hætʃ/",
+    "definition": "An opening through a wall, floor, or roof, or the cover for it; to emerge from an egg.",
+    "definitionTranslation": "فتحة عبر جدار أو أرضية أو سقف، أو غطاء لها؛ الخروج من البيضة."
+  },
+  {
+    "word": "allied",
+    "translations": [
+      "حليف"
+    ],
+    "examples": [
+      {
+        "english": "The allied forces attacked at dawn.",
+        "arabic": "هاجمت قوات الحليف عند الفجر."
+      },
+      {
+        "english": "We must support our allied nations.",
+        "arabic": "يجب أن ندعم دولنا الحليفة."
+      }
+    ],
+    "phonetic": "/ˈælaɪd/",
+    "definition": "Joined by or relating to members of an alliance.",
+    "definitionTranslation": "منضم إلى أو متعلق بأعضاء تحالف."
+  },
+  {
+    "word": "heir",
+    "translations": [
+      "وريث"
+    ],
+    "examples": [
+      {
+        "english": "He is the sole heir to the throne.",
+        "arabic": "إنه الوريث الوحيد للعرش."
+      },
+      {
+        "english": "She was named heir to the family business.",
+        "arabic": "تم تسميتها وريثة لأعمال العائلة."
+      }
+    ],
+    "phonetic": "/er/",
+    "definition": "A person legally entitled to the property or rank of another on that person's death.",
+    "definitionTranslation": "شخص يحق له قانونًا الحصول على ممتلكات أو رتبة شخص آخر عند وفاته."
+  },
+  {
+    "word": "nutrition",
+    "translations": [
+      "تغذية"
+    ],
+    "examples": [
+      {
+        "english": "Good nutrition is essential for health.",
+        "arabic": "التغذية الجيدة ضرورية للصحة."
+      },
+      {
+        "english": "He studied plant nutrition at university.",
+        "arabic": "درس تغذية النبات في الجامعة."
+      }
+    ],
+    "phonetic": "/nuːˈtrɪʃn/",
+    "definition": "The process of providing or obtaining the food necessary for health and growth.",
+    "definitionTranslation": "عملية توفير أو الحصول على الغذاء الضروري للصحة والنمو."
+  },
+  {
+    "word": "luxury",
+    "translations": [
+      "ترف"
+    ],
+    "examples": [
+      {
+        "english": "They lived a life of absolute luxury.",
+        "arabic": "عاشوا حياة من الترف المطلق."
+      },
+      {
+        "english": "A hot bath is a simple luxury.",
+        "arabic": "الاستحمام الساخن هو ترف بسيط."
+      }
+    ],
+    "phonetic": "/ˈlʌɡʒəri/",
+    "definition": "The state of great comfort and extravagant living.",
+    "definitionTranslation": "حالة من الراحة الكبيرة والعيش الباذخ."
+  },
+  {
+    "word": "haven",
+    "translations": [
+      "ملاذ",
+      "مأوي"
+    ],
+    "examples": [
+      {
+        "english": "The island is a haven for wildlife.",
+        "arabic": "الجزيرة هي ملاذ للحياة البرية."
+      },
+      {
+        "english": "They sought a safe haven from the storm.",
+        "arabic": "لقد بحثوا عن مأوى آمن من العاصفة."
+      }
+    ],
+    "phonetic": "/ˈheɪvn/",
+    "definition": "A place of safety or refuge.",
+    "definitionTranslation": "مكان آمن أو ملجأ."
+  },
+  {
+    "word": "prohibition",
+    "translations": [
+      "حظر"
+    ],
+    "examples": [
+      {
+        "english": "There is a prohibition against smoking here.",
+        "arabic": "يوجد حظر على التدخين هنا."
+      },
+      {
+        "english": "The law enforces a strict prohibition on alcohol.",
+        "arabic": "يفرض القانون حظراً صارماً على الكحول."
+      }
+    ],
+    "phonetic": "/ˌproʊhɪˈbɪʃn/",
+    "definition": "The action of forbidding something, especially by law.",
+    "definitionTranslation": "فعل حظر شيء ما، وخاصة بموجب القانون."
+  },
+  {
+    "word": "wit",
+    "translations": [
+      "نباهة"
+    ],
+    "examples": [
+      {
+        "english": "She is known for her quick wit.",
+        "arabic": "هي معروفة بنباهتها السريعة."
+      },
+      {
+        "english": "He answered the question with great wit.",
+        "arabic": "أجاب على السؤال بنباهة كبيرة."
+      }
+    ],
+    "phonetic": "/wɪt/",
+    "definition": "Mental sharpness and inventiveness; a natural aptitude for using words and ideas in a quick and inventive way to create humor.",
+    "definitionTranslation": "الحدة الذهنية والإبداع؛ موهبة طبيعية لاستخدام الكلمات والأفكار بطريقة سريعة ومبتكرة لخلق الفكاهة."
+  },
+  {
+    "word": "plum",
+    "translations": [
+      "خوخ"
+    ],
+    "examples": [
+      {
+        "english": "She ate a juicy plum.",
+        "arabic": "أكلت حبة خوخ غنية بالعصير."
+      },
+      {
+        "english": "The plum tree blossomed in spring.",
+        "arabic": "أزهرت شجرة الخوخ في الربيع."
+      }
+    ],
+    "phonetic": "/plʌm/",
+    "definition": "An oval fleshy fruit that is purple, reddish, or yellow when ripe and contains a flattish pointed pit.",
+    "definitionTranslation": "فاكهة لحمية بيضاوية يكون لونها أرجوانيًا أو محمرًا أو أصفر عند النضج وتحتوي على نواة مدببة ومسطحة."
+  },
+  {
+    "word": "ire",
+    "translations": [
+      "غضب"
+    ],
+    "examples": [
+      {
+        "english": "The decision provoked the ire of the public.",
+        "arabic": "أثار القرار غضب الرأي العام."
+      },
+      {
+        "english": "He was afraid to face his father's ire.",
+        "arabic": "كان يخشى مواجهة غضب والده."
+      }
+    ],
+    "phonetic": "/ˈaɪər/",
+    "definition": "Anger.",
+    "definitionTranslation": "غضب."
+  },
+  {
+    "word": "disorder",
+    "translations": [
+      "فوضي"
+    ],
+    "examples": [
+      {
+        "english": "The room was in a state of complete disorder.",
+        "arabic": "كانت الغرفة في حالة فوضى عارمة."
+      },
+      {
+        "english": "The protest soon descended into disorder.",
+        "arabic": "سرعان ما تحول الاحتجاج إلى فوضى."
+      }
+    ],
+    "phonetic": "/dɪsˈɔːrdər/",
+    "definition": "A state of confusion; a disruption of normal physical or mental functions.",
+    "definitionTranslation": "حالة من الارتباك أو الفوضى؛ اضطراب في الوظائف الجسدية أو العقلية الطبيعية."
+  },
+  {
+    "word": "sceptic",
+    "translations": [
+      "شكوكى"
+    ],
+    "examples": [
+      {
+        "english": "He is a natural sceptic about new technology.",
+        "arabic": "إنه شخص شكوكي بطبعه حول التكنولوجيا الجديدة."
+      },
+      {
+        "english": "I tried to convince the sceptic in the group.",
+        "arabic": "حاولت إقناع الشخص الشكوكي في المجموعة."
+      }
+    ],
+    "phonetic": "/ˈskeptɪk/",
+    "definition": "A person inclined to question or doubt all accepted opinions.",
+    "definitionTranslation": "شخص يميل إلى التساؤل أو الشك في جميع الآراء المقبولة."
+  },
+  {
+    "word": "foyer",
+    "translations": [
+      "بهو"
+    ],
+    "examples": [
+      {
+        "english": "We waited for him in the hotel foyer.",
+        "arabic": "انتظرناه في بهو الفندق."
+      },
+      {
+        "english": "The theater foyer was crowded.",
+        "arabic": "كان بهو المسرح مزدحماً."
+      }
+    ],
+    "phonetic": "/ˈfɔɪər/",
+    "definition": "An entrance hall or other open area in a building used by the public, especially a hotel or theater.",
+    "definitionTranslation": "قاعة مدخل أو منطقة مفتوحة أخرى في مبنى يستخدمه الجمهور، وخاصة فندق أو مسرح."
+  },
+  {
+    "word": "hay",
+    "translations": [
+      "قش"
+    ],
+    "examples": [
+      {
+        "english": "The horses are eating hay.",
+        "arabic": "الخيول تأكل القش."
+      },
+      {
+        "english": "We need to bail the hay before it rains.",
+        "arabic": "نحتاج إلى حزم القش قبل أن تمطر."
+      }
+    ],
+    "phonetic": "/heɪ/",
+    "definition": "Grass that has been mown and dried for use as fodder.",
+    "definitionTranslation": "عشب تم قصه وتجفيفه لاستخدامه كعلف."
+  },
+  {
+    "word": "stake",
+    "translations": [
+      "وتد"
+    ],
+    "examples": [
+      {
+        "english": "He drove a wooden stake into the ground.",
+        "arabic": "دفع وتداً خشبياً في الأرض."
+      },
+      {
+        "english": "Tie the tent rope to the stake.",
+        "arabic": "اربط حبل الخيمة بالوتد."
+      }
+    ],
+    "phonetic": "/steɪk/",
+    "definition": "A strong wooden or metal post with a point at one end, driven into the ground to support a tree, form part of a fence, or act as a boundary mark.",
+    "definitionTranslation": "عمود قوي من الخشب أو المعدن بنهاية مدببة، يُدفع في الأرض لدعم شجرة، أو تشكيل جزء من سياج، أو ليكون بمثابة علامة حدودية."
+  },
+  {
+    "word": "herd",
+    "translations": [
+      "قطيع"
+    ],
+    "examples": [
+      {
+        "english": "A herd of elephants crossed the river.",
+        "arabic": "عبر قطيع من الأفيال النهر."
+      },
+      {
+        "english": "He manages a large herd of cattle.",
+        "arabic": "إنه يدير قطيعاً كبيراً من الماشية."
+      }
+    ],
+    "phonetic": "/hɜːrd/",
+    "definition": "A large group of animals, especially hooved mammals, that live, feed, or migrate together or are kept together as livestock.",
+    "definitionTranslation": "مجموعة كبيرة من الحيوانات، وخاصة الثدييات ذات الحوافر، التي تعيش أو تتغذى أو تهاجر معًا أو تُحفظ معًا كماشية."
+  },
+  {
+    "word": "pit",
+    "translations": [
+      "حفرة"
+    ],
+    "examples": [
+      {
+        "english": "They dug a deep pit in the garden.",
+        "arabic": "لقد حفروا حفرة عميقة في الحديقة."
+      },
+      {
+        "english": "He almost fell into the muddy pit.",
+        "arabic": "كاد أن يسقط في الحفرة الموحلة."
+      }
+    ],
+    "phonetic": "/pɪt/",
+    "definition": "A large hole in the ground.",
+    "definitionTranslation": "حفرة كبيرة في الأرض."
+  },
+  {
+    "word": "Decree",
+    "translations": [
+      "حكم",
+      "امر"
+    ],
+    "examples": [
+      {
+        "english": "The king issued a new decree.",
+        "arabic": "أصدر الملك أمراً جديداً."
+      },
+      {
+        "english": "The court's decree is final.",
+        "arabic": "حكم المحكمة نهائي."
+      }
+    ],
+    "phonetic": "/dɪˈkriː/",
+    "definition": "An official order issued by a legal authority.",
+    "definitionTranslation": "أمر رسمي صادر عن سلطة قانونية."
+  },
+  {
+    "word": "heist",
+    "translations": [
+      "سرقة"
+    ],
+    "examples": [
+      {
+        "english": "The bank heist was planned carefully.",
+        "arabic": "تم التخطيط لعملية سرقة البنك بعناية."
+      },
+      {
+        "english": "They got away with millions in the diamond heist.",
+        "arabic": "لقد هربوا بالملايين في سرقة الماس."
+      }
+    ],
+    "phonetic": "/haɪst/",
+    "definition": "A robbery.",
+    "definitionTranslation": "سرقة أو سطو."
+  },
+  {
+    "word": "incline",
+    "translations": [
+      "منحدر"
+    ],
+    "examples": [
+      {
+        "english": "The car struggled up the steep incline.",
+        "arabic": "عانت السيارة في الصعود على المنحدر الشديد."
+      },
+      {
+        "english": "She walked up the gradual incline.",
+        "arabic": "صعدت على المنحدر التدريجي."
+      }
+    ],
+    "phonetic": "/ɪnˈklaɪn/",
+    "definition": "Feel willing or favorably disposed toward; an upward slope.",
+    "definitionTranslation": "الشعور بالرغبة أو الميل الإيجابي تجاه شيء؛ منحدر تصاعدي."
+  },
+  {
+    "word": "referendum",
+    "translations": [
+      "استفتاء"
+    ],
+    "examples": [
+      {
+        "english": "The country held a referendum on independence.",
+        "arabic": "أجرت البلاد استفتاء على الاستقلال."
+      },
+      {
+        "english": "The results of the referendum were clear.",
+        "arabic": "كانت نتائج الاستفتاء واضحة."
+      }
+    ],
+    "phonetic": "/ˌrefəˈrendəm/",
+    "definition": "A general vote by the electorate on a single political question that has been referred to them for a direct decision.",
+    "definitionTranslation": "تصويت عام من قبل الناخبين على سؤال سياسي واحد تم إحالته إليهم لاتخاذ قرار مباشر."
+  },
+  {
+    "word": "kickback",
+    "translations": [
+      "رشوة"
+    ],
+    "examples": [
+      {
+        "english": "He was accused of accepting a kickback.",
+        "arabic": "اتُهم بقبول رشوة."
+      },
+      {
+        "english": "The contractor offered a kickback to secure the deal.",
+        "arabic": "قدم المقاول رشوة لتأمين الصفقة."
+      }
+    ],
+    "phonetic": "/ˈkɪkbæk/",
+    "definition": "A sudden forceful recoil; an illicit payment made to someone who has facilitated a transaction or appointment.",
+    "definitionTranslation": "ارتداد قوي مفاجئ؛ دفعة غير مشروعة تُدفع لشخص سهل صفقة أو تعيينًا."
+  },
+  {
+    "word": "deceit",
+    "translations": [
+      "تدليس",
+      "خداع"
+    ],
+    "examples": [
+      {
+        "english": "Their marriage was built on deceit.",
+        "arabic": "كان زواجهم مبنياً على التدليس."
+      },
+      {
+        "english": "He is a master of lies and deceit.",
+        "arabic": "إنه أستاذ في الكذب والخداع."
+      }
+    ],
+    "phonetic": "/dɪˈsiːt/",
+    "definition": "The action or practice of deceiving someone by concealing or misrepresenting the truth.",
+    "definitionTranslation": "فعل أو ممارسة خداع شخص ما عن طريق إخفاء الحقيقة أو تحريفها."
+  },
+  {
+    "word": "persecution",
+    "translations": [
+      "اضطهاد"
+    ],
+    "examples": [
+      {
+        "english": "They fled their country to escape religious persecution.",
+        "arabic": "فروا من بلادهم هرباً من الاضطهاد الديني."
+      },
+      {
+        "english": "The group faced years of political persecution.",
+        "arabic": "واجهت المجموعة سنوات من الاضطهاد السياسي."
+      }
+    ],
+    "phonetic": "/ˌpɜːrsɪˈkjuːʃn/",
+    "definition": "Hostility and ill-treatment, especially because of race or political or religious beliefs.",
+    "definitionTranslation": "العداء وسوء المعاملة، خاصة بسبب العرق أو المعتقدات السياسية أو الدينية."
+  },
+  {
+    "word": "annihilation",
+    "translations": [
+      "ابادة جماعية"
+    ],
+    "examples": [
+      {
+        "english": "The war resulted in the total annihilation of the city.",
+        "arabic": "أسفرت الحرب عن الإبادة الجماعية الكاملة للمدينة."
+      },
+      {
+        "english": "They are trying to prevent nuclear annihilation.",
+        "arabic": "إنهم يحاولون منع الإبادة الجماعية النووية."
+      }
+    ],
+    "phonetic": "/əˌnaɪəˈleɪʃn/",
+    "definition": "Complete destruction or obliteration.",
+    "definitionTranslation": "التدمير الكامل أو الإبادة."
+  },
+  {
+    "word": "entomology",
+    "translations": [
+      "علم الحشرات"
+    ],
+    "examples": [
+      {
+        "english": "She is studying entomology at the university.",
+        "arabic": "إنها تدرس علم الحشرات في الجامعة."
+      },
+      {
+        "english": "His interest in bugs led him to a career in entomology.",
+        "arabic": "اهتمامه بالبق قاده إلى مهنة في علم الحشرات."
+      }
+    ],
+    "phonetic": "/ˌentəˈmɑːlədʒi/",
+    "definition": "The branch of zoology concerned with the study of insects.",
+    "definitionTranslation": "فرع علم الحيوان الذي يهتم بدراسة الحشرات."
+  },
+  {
+    "word": "Astronomy",
+    "translations": [
+      "علم الفلك"
+    ],
+    "examples": [
+      {
+        "english": "He loves using his telescope for astronomy.",
+        "arabic": "يحب استخدام التلسكوب الخاص به في علم الفلك."
+      },
+      {
+        "english": "Astronomy helps us understand the universe.",
+        "arabic": "يساعدنا علم الفلك على فهم الكون."
+      }
+    ],
+    "phonetic": "/əˈstrɑːnəmi/",
+    "definition": "The branch of science which deals with celestial objects, space, and the physical universe as a whole.",
+    "definitionTranslation": "فرع العلوم الذي يتعامل مع الأجرام السماوية والفضاء والكون المادي ككل."
+  },
+  {
+    "word": "testament",
+    "translations": [
+      "ميثاق",
+      "عهد"
+    ],
+    "examples": [
+      {
+        "english": "The building is a testament to their hard work.",
+        "arabic": "المبنى هو عهد على عملهم الشاق."
+      },
+      {
+        "english": "He read the old testament daily.",
+        "arabic": "كان يقرأ الميثاق القديم يومياً."
+      }
+    ],
+    "phonetic": "/ˈtestəmənt/",
+    "definition": "A person's will; something that serves as a sign or evidence of a specified fact, event, or quality.",
+    "definitionTranslation": "وصية شخص؛ شيء يخدم كدليل أو إثبات على حقيقة أو حدث أو صفة معينة."
+  },
+  {
+    "word": "nuisance",
+    "translations": [
+      "ازعاج"
+    ],
+    "examples": [
+      {
+        "english": "The loud music is a public nuisance.",
+        "arabic": "الموسيقى الصاخبة تعتبر إزعاجاً عاماً."
+      },
+      {
+        "english": "Filling out these forms is such a nuisance.",
+        "arabic": "ملء هذه النماذج يمثل إزعاجاً كبيراً."
+      }
+    ],
+    "phonetic": "/ˈnuːsns/",
+    "definition": "A person, thing, or circumstance causing inconvenience or annoyance.",
+    "definitionTranslation": "شخص أو شيء أو ظرف يسبب الإزعاج أو المضايقة."
+  },
+  {
+    "word": "coalition",
+    "translations": [
+      "ائتلاف",
+      "تحالف مؤقت"
+    ],
+    "examples": [
+      {
+        "english": "The two parties formed a coalition government.",
+        "arabic": "شكل الحزبان حكومة ائتلاف."
+      },
+      {
+        "english": "They built a temporary coalition to win the war.",
+        "arabic": "لقد بنوا تحالفاً مؤقتاً للفوز في الحرب."
+      }
+    ],
+    "phonetic": "/ˌkoʊəˈlɪʃn/",
+    "definition": "An alliance for combined action, especially a temporary alliance of political parties forming a government or of states.",
+    "definitionTranslation": "تحالف للعمل المشترك، وخاصة تحالف مؤقت للأحزاب السياسية لتشكيل حكومة أو تحالف بين الدول."
+  },
+  {
+    "word": "heresy",
+    "translations": [
+      "بدعة",
+      "هرطقه"
+    ],
+    "examples": [
+      {
+        "english": "He was executed for heresy.",
+        "arabic": "أُعدم بتهمة الهرطقة."
+      },
+      {
+        "english": "To them, this idea was pure heresy.",
+        "arabic": "بالنسبة لهم، كانت هذه الفكرة بدعة خالصة."
+      }
+    ],
+    "phonetic": "/ˈherəsi/",
+    "definition": "Belief or opinion contrary to orthodox religious (especially Christian) doctrine.",
+    "definitionTranslation": "معتقد أو رأي يتعارض مع العقيدة الدينية الأرثوذكسية (وخاصة المسيحية)."
+  },
+  {
+    "word": "heyday",
+    "translations": [
+      "اوج",
+      "ذروه"
+    ],
+    "examples": [
+      {
+        "english": "In its heyday, the company employed thousands.",
+        "arabic": "في أوجها، وظفت الشركة الآلاف."
+      },
+      {
+        "english": "He was a famous actor in his heyday.",
+        "arabic": "كان ممثلاً مشهوراً في ذروته."
+      }
+    ],
+    "phonetic": "/ˈheɪdeɪ/",
+    "definition": "The period of a person's or thing's greatest success, popularity, or vigor.",
+    "definitionTranslation": "فترة أعظم نجاح أو شعبية أو قوة لشخص أو لشيء ما."
+  },
+  {
+    "word": "lavishness",
+    "translations": [
+      "بذخ"
+    ],
+    "examples": [
+      {
+        "english": "The lavishness of the party was shocking.",
+        "arabic": "كان بذخ الحفلة صادماً."
+      },
+      {
+        "english": "They live in a state of extreme lavishness.",
+        "arabic": "إنهم يعيشون في حالة من البذخ الشديد."
+      }
+    ],
+    "phonetic": "/ˈlævɪʃnəs/",
+    "definition": "The quality of being rich, elaborate, or luxurious.",
+    "definitionTranslation": "صفة كون الشيء غنيًا أو متقنًا أو فاخرًا."
+  },
+  {
+    "word": "wrinkles",
+    "translations": [
+      "تجاعيد"
+    ],
+    "examples": [
+      {
+        "english": "She has fine wrinkles around her eyes.",
+        "arabic": "لديها تجاعيد دقيقة حول عينيها."
+      },
+      {
+        "english": "This cream claims to reduce wrinkles.",
+        "arabic": "هذا الكريم يدعي أنه يقلل التجاعيد."
+      }
+    ],
+    "phonetic": "/ˈrɪŋklz/",
+    "definition": "Slight lines or folds in something, especially fabric or the skin of the face.",
+    "definitionTranslation": "خطوط أو طيات خفيفة في شيء ما، وخاصة القماش أو جلد الوجه."
+  },
+  {
+    "word": "jury",
+    "translations": [
+      "هيئه المحلفين"
+    ],
+    "examples": [
+      {
+        "english": "The jury found the defendant guilty.",
+        "arabic": "وجدت هيئة المحلفين أن المدعى عليه مذنب."
+      },
+      {
+        "english": "She was called for jury duty.",
+        "arabic": "تم استدعاؤها للخدمة في هيئة المحلفين."
+      }
+    ],
+    "phonetic": "/ˈdʒʊri/",
+    "definition": "A body of people (typically twelve in number) sworn to give a verdict in a legal case on the basis of evidence submitted to them in court.",
+    "definitionTranslation": "مجموعة من الأشخاص (عادة اثنا عشر) يؤدون اليمين لإصدار حكم في قضية قانونية بناءً على الأدلة المقدمة إليهم في المحكمة."
+  },
+  {
+    "word": "austerity",
+    "translations": [
+      "تقشف"
+    ],
+    "examples": [
+      {
+        "english": "The government announced a new period of austerity.",
+        "arabic": "أعلنت الحكومة عن فترة جديدة من التقشف."
+      },
+      {
+        "english": "They lived a life of strict austerity.",
+        "arabic": "عاشوا حياة من التقشف الصارم."
+      }
+    ],
+    "phonetic": "/ɔːˈsterəti/",
+    "definition": "Sternness or severity of manner or attitude; extreme plainness and simplicity of style or appearance; conditions characterized by severe limits on spending.",
+    "definitionTranslation": "الصرامة أو القسوة في الأسلوب أو الموقف؛ البساطة الشديدة في الأسلوب أو المظهر؛ الظروف التي تتسم بحدود صارمة على الإنفاق."
+  },
+  {
+    "word": "beak",
+    "translations": [
+      "منقار الطائر"
+    ],
+    "examples": [
+      {
+        "english": "The eagle has a sharp beak.",
+        "arabic": "للنسر منقار طائر حاد."
+      },
+      {
+        "english": "The bird held a worm in its beak.",
+        "arabic": "كان الطائر يحمل دودة في منقار الطائر."
+      }
+    ],
+    "phonetic": "/biːk/",
+    "definition": "A bird's horny projecting jaws; a bill.",
+    "definitionTranslation": "فكي الطائر البارزين والقرنيين؛ المنقار."
+  },
+  {
+    "word": "hermit",
+    "translations": [
+      "زاهد"
+    ],
+    "examples": [
+      {
+        "english": "He lives like a hermit in the mountains.",
+        "arabic": "إنه يعيش مثل زاهد في الجبال."
+      },
+      {
+        "english": "The hermit rarely spoke to anyone.",
+        "arabic": "نادرًا ما كان الزاهد يتحدث إلى أي شخص."
+      }
+    ],
+    "phonetic": "/ˈhɜːrmɪt/",
+    "definition": "A person living in solitude as a religious discipline.",
+    "definitionTranslation": "شخص يعيش في عزلة كنظام أو انضباط ديني."
+  },
+  {
+    "word": "cluster bomb",
+    "translations": [
+      "قنبلة عنقوديه"
+    ],
+    "examples": [
+      {
+        "english": "The use of a cluster bomb is banned by many countries.",
+        "arabic": "يحظر استخدام القنبلة العنقودية في العديد من البلدان."
+      },
+      {
+        "english": "The plane dropped a cluster bomb on the target.",
+        "arabic": "ألقت الطائرة قنبلة عنقودية على الهدف."
+      }
+    ],
+    "phonetic": "/ˈklʌstər bɑːm/",
+    "definition": "A munition that is dropped from the air or fired from the ground and releases smaller submunitions.",
+    "definitionTranslation": "ذخيرة تُسقط من الجو أو تُطلق من الأرض وتطلق ذخائر فرعية أصغر."
+  },
+  {
+    "word": "hostility",
+    "translations": [
+      "عداوة"
+    ],
+    "examples": [
+      {
+        "english": "There was open hostility between the two families.",
+        "arabic": "كانت هناك عداوة صريحة بين العائلتين."
+      },
+      {
+        "english": "He showed great hostility towards the new idea.",
+        "arabic": "أظهر عداوة كبيرة تجاه الفكرة الجديدة."
+      }
+    ],
+    "phonetic": "/hɑːˈstɪləti/",
+    "definition": "Hostile behavior; unfriendliness or opposition.",
+    "definitionTranslation": "سلوك عدائي؛ عدم ودية أو معارضة."
+  },
+  {
+    "word": "novice",
+    "translations": [
+      "مبتدئ"
+    ],
+    "examples": [
+      {
+        "english": "I am a complete novice when it comes to coding.",
+        "arabic": "أنا مبتدئ تمامًا عندما يتعلق الأمر بالبرمجة."
+      },
+      {
+        "english": "The game has an easy mode for a novice.",
+        "arabic": "تحتوي اللعبة على وضع سهل للمبتدئ."
+      }
+    ],
+    "phonetic": "/ˈnɑːvɪs/",
+    "definition": "A person new to or inexperienced in a field or situation.",
+    "definitionTranslation": "شخص جديد أو عديم الخبرة في مجال أو موقف معين."
+  },
+  {
+    "word": "hunch",
+    "translations": [
+      "حدس"
+    ],
+    "examples": [
+      {
+        "english": "I had a hunch that you would be here.",
+        "arabic": "كان لدي حدس بأنك ستكون هنا."
+      },
+      {
+        "english": "She acted on a sudden hunch.",
+        "arabic": "لقد تصرفت بناءً على حدس مفاجئ."
+      }
+    ],
+    "phonetic": "/hʌntʃ/",
+    "definition": "A feeling or guess based on intuition rather than known facts.",
+    "definitionTranslation": "شعور أو تخمين مبني على الحدس بدلاً من الحقائق المعروفة."
+  },
+  {
+    "word": "admission",
+    "translations": [
+      "قبول"
+    ],
+    "examples": [
+      {
+        "english": "The university sent her an admission letter.",
+        "arabic": "أرسلت لها الجامعة خطاب قبول."
+      },
+      {
+        "english": "Admission to the museum is free on Sundays.",
+        "arabic": "القبول في المتحف مجاني يوم الأحد."
+      }
+    ],
+    "phonetic": "/ədˈmɪʃn/",
+    "definition": "A statement acknowledging the truth of something; the process or fact of entering or being allowed to enter a place, organization, or institution.",
+    "definitionTranslation": "بيان يعترف بصحة شيء ما؛ عملية أو حقيقة الدخول أو السماح بالدخول إلى مكان أو منظمة أو مؤسسة."
+  },
+  {
+    "word": "debris",
+    "translations": [
+      "حطام",
+      "انقاض"
+    ],
+    "examples": [
+      {
+        "english": "The explosion scattered debris everywhere.",
+        "arabic": "نثر الانفجار الحطام في كل مكان."
+      },
+      {
+        "english": "They pulled survivors from the debris.",
+        "arabic": "لقد انتشلوا الناجين من الأنقاض."
+      }
+    ],
+    "phonetic": "/dəˈbriː/",
+    "definition": "Scattered pieces of waste or remains.",
+    "definitionTranslation": "قطع متناثرة من النفايات أو البقايا."
+  },
+  {
+    "word": "marsh",
+    "translations": [
+      "مستنقع"
+    ],
+    "examples": [
+      {
+        "english": "The birds nested in the marsh.",
+        "arabic": "عششت الطيور في المستنقع."
+      },
+      {
+        "english": "We walked carefully through the muddy marsh.",
+        "arabic": "مشينا بحذر عبر المستنقع الموحل."
+      }
+    ],
+    "phonetic": "/mɑːrʃ/",
+    "definition": "An area of low-lying land that is flooded in wet seasons or at high tide, and typically remains waterlogged at all times.",
+    "definitionTranslation": "منطقة من الأراضي المنخفضة التي تغمرها المياه في المواسم الرطبة أو عند ارتفاع المد، وتبقى عادة مشبعة بالمياه في جميع الأوقات."
+  },
+  {
+    "word": "superstition",
+    "translations": [
+      "خرافة"
+    ],
+    "examples": [
+      {
+        "english": "Breaking a mirror brings bad luck is a common superstition.",
+        "arabic": "كسر المرآة يجلب الحظ السيئ هي خرافة شائعة."
+      },
+      {
+        "english": "He doesn't believe in old superstition.",
+        "arabic": "إنه لا يؤمن بالخرافة القديمة."
+      }
+    ],
+    "phonetic": "/ˌsuːpərˈstɪʃn/",
+    "definition": "Excessively credulous belief in and reverence for supernatural beings.",
+    "definitionTranslation": "اعتقاد ساذج ومفرط في الكائنات الخارقة للطبيعة وتبجيلها."
+  },
+  {
+    "word": "sensation",
+    "translations": [
+      "شعور"
+    ],
+    "examples": [
+      {
+        "english": "I had a strange sensation of being watched.",
+        "arabic": "كان لدي شعور غريب بأنني مراقب."
+      },
+      {
+        "english": "She lost all sensation in her arm.",
+        "arabic": "لقد فقدت كل شعور في ذراعها."
+      }
+    ],
+    "phonetic": "/senˈseɪʃn/",
+    "definition": "A physical feeling or perception resulting from something that happens to or comes into contact with the body.",
+    "definitionTranslation": "شعور أو إدراك جسدي ناتج عن شيء يحدث للجسم أو يلامسه."
+  },
+  {
+    "word": "equanimity",
+    "translations": [
+      "رباطة الجأش"
+    ],
+    "examples": [
+      {
+        "english": "He accepted the bad news with equanimity.",
+        "arabic": "تقبل الأخبار السيئة برباطة الجأش."
+      },
+      {
+        "english": "She handled the crisis with remarkable equanimity.",
+        "arabic": "لقد تعاملت مع الأزمة برباطة الجأش ملحوظة."
+      }
+    ],
+    "phonetic": "/ˌekwəˈnɪməti/",
+    "definition": "Mental calmness, composure, and evenness of temper, especially in a difficult situation.",
+    "definitionTranslation": "الهدوء العقلي ورباطة الجأش واعتدال المزاج، خاصة في المواقف الصعبة."
+  },
+  {
+    "word": "curfew",
+    "translations": [
+      "حظر التجول"
+    ],
+    "examples": [
+      {
+        "english": "The military imposed a strict curfew at night.",
+        "arabic": "فرض الجيش حظر التجول الصارم في الليل."
+      },
+      {
+        "english": "They were arrested for breaking the curfew.",
+        "arabic": "تم القبض عليهم لخرقهم حظر التجول."
+      }
+    ],
+    "phonetic": "/ˈkɜːrfjuː/",
+    "definition": "A regulation requiring people to remain indoors between specified hours, typically at night.",
+    "definitionTranslation": "لائحة تلزم الناس بالبقاء في منازلهم بين ساعات محددة، وعادة في الليل."
+  },
+  {
+    "word": "prejudgment",
+    "translations": [
+      "حكم مسبق"
+    ],
+    "examples": [
+      {
+        "english": "We should avoid any prejudgment before hearing the facts.",
+        "arabic": "يجب أن نتجنب أي حكم مسبق قبل سماع الحقائق."
+      },
+      {
+        "english": "Her opinion was based on prejudgment rather than evidence.",
+        "arabic": "استند رأيها على حكم مسبق بدلاً من الأدلة."
+      }
+    ],
+    "phonetic": "/priˈdʒʌdʒmənt/",
+    "definition": "A judgment or decision made beforehand, without proper evidence or knowledge.",
+    "definitionTranslation": "حكم أو قرار يُتخذ مسبقًا، بدون أدلة أو معرفة مناسبة."
+  },
+  {
+    "word": "grief",
+    "translations": [
+      "حزن شديد"
+    ],
+    "examples": [
+      {
+        "english": "She was overcome with grief after his death.",
+        "arabic": "لقد تغلب عليها حزن شديد بعد وفاته."
+      },
+      {
+        "english": "Time slowly heals the grief.",
+        "arabic": "الوقت يشفي الحزن الشديد ببطء."
+      }
+    ],
+    "phonetic": "/ɡriːf/",
+    "definition": "Deep sorrow, especially that caused by someone's death.",
+    "definitionTranslation": "حزن عميق، وخاصة ذلك الناتج عن وفاة شخص ما."
+  },
+  {
+    "word": "dump",
+    "translations": [
+      "مزبلة"
+    ],
+    "examples": [
+      {
+        "english": "They took the old furniture to the dump.",
+        "arabic": "أخذوا الأثاث القديم إلى المزبلة."
+      },
+      {
+        "english": "The city needs a new garbage dump.",
+        "arabic": "تحتاج المدينة إلى مزبلة جديدة للقمامة."
+      }
+    ],
+    "phonetic": "/dʌmp/",
+    "definition": "A site for depositing garbage; to drop or set down carelessly in a mass.",
+    "definitionTranslation": "موقع لإلقاء القمامة؛ الإسقاط أو الوضع بإهمال ككتلة واحدة."
+  },
+  {
+    "word": "acquisition",
+    "translations": [
+      "استحواذ (علي شركه)"
+    ],
+    "examples": [
+      {
+        "english": "The acquisition of the rival company was successful.",
+        "arabic": "كان الاستحواذ على الشركة المنافسة ناجحاً."
+      },
+      {
+        "english": "They are planning a major corporate acquisition.",
+        "arabic": "إنهم يخططون لعملية استحواذ على شركة كبرى."
+      }
+    ],
+    "phonetic": "/ˌækwɪˈzɪʃn/",
+    "definition": "An asset or object bought or obtained; the learning or developing of a skill, habit, or quality.",
+    "definitionTranslation": "أصل أو شيء تم شراؤه أو الحصول عليه؛ تعلم أو تطوير مهارة أو عادة أو صفة."
+  }
+]
