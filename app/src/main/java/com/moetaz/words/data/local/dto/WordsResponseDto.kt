@@ -24,8 +24,12 @@ data class WordDto(
     @JsonNames("phonetics")
     val phonetic: String? = null,
     val definition: String? = null,
-    @JsonNames("definitionTranslation")
-    val definitionTranslation: String? = null
+    @JsonNames("definition_translation", "definition_ar")
+    val definitionTranslation: String? = null,
+    @JsonNames("mastery_status")
+    val masteryStatus: WordMasteryStatus = WordMasteryStatus.LEARNING,
+    @JsonNames("is_favorite")
+    val isFavorite: Boolean = false
 ) {
     fun toEntity(): WordEntity = WordEntity(
         id = id,
@@ -35,6 +39,8 @@ data class WordDto(
         phonetic = phonetic,
         definition = definition,
         definitionTranslation = definitionTranslation,
+        masteryStatus = masteryStatus,
+        isFavorite = isFavorite
     )
 
     companion object {
@@ -46,7 +52,8 @@ data class WordDto(
             phonetic = word.phonetic,
             definition = word.definition,
             definitionTranslation = word.definitionTranslation,
-
+            masteryStatus = word.masteryStatus,
+            isFavorite = word.isFavorite
         )
     }
 }

@@ -13,6 +13,8 @@ import com.moetaz.words.presentation.add.AddWordScreen
 import com.moetaz.words.presentation.add.AddWordViewModel
 import com.moetaz.words.presentation.detail.WordDetailScreen
 import com.moetaz.words.presentation.detail.WordDetailViewModel
+import com.moetaz.words.presentation.favorites.FavoritesScreen
+import com.moetaz.words.presentation.favorites.FavoritesViewModel
 import com.moetaz.words.presentation.flashcards.FlashcardsScreen
 import com.moetaz.words.presentation.flashcards.FlashcardsViewModel
 import com.moetaz.words.presentation.list.WordListScreen
@@ -61,12 +63,25 @@ class MainActivity : ComponentActivity() {
                             onSettingsClick = {
                                 navigator.navigate(Route.Settings)
                             },
+                            onFavoritesClick = {
+                                navigator.navigate(Route.Favorites)
+                            },
                             onFlashcardsClick = {
                                 navigator.navigate(Route.Flashcards)
                             },
                             onQuizClick = {
                                 navigator.navigate(Route.Quiz)
                             }
+                        )
+                    }
+                    entry<Route.Favorites> {
+                        val viewModel: FavoritesViewModel = koinViewModel()
+                        FavoritesScreen(
+                            viewModel = viewModel,
+                            onWordClick = { id ->
+                                navigator.navigate(Route.WordDetail(id))
+                            },
+                            onBack = { navigator.goBack() }
                         )
                     }
                     entry<Route.AddWord> { key ->

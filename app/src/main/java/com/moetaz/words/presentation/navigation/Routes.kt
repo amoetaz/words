@@ -22,4 +22,7 @@ sealed interface Route : NavKey {
 
     @Serializable
     data object Quiz : Route
+
+    @Serializable
+    data object Favorites : Route
 }

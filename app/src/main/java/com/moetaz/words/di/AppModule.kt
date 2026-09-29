@@ -15,6 +15,7 @@ import com.moetaz.words.domain.usecase.GetWordByIdUseCase
 import com.moetaz.words.domain.usecase.GetWordsUseCase
 import com.moetaz.words.presentation.add.AddWordViewModel
 import com.moetaz.words.presentation.detail.WordDetailViewModel
+import com.moetaz.words.presentation.favorites.FavoritesViewModel
 import com.moetaz.words.presentation.flashcards.FlashcardsViewModel
 import com.moetaz.words.presentation.list.WordListViewModel
 import com.moetaz.words.presentation.quiz.QuizViewModel
@@ -61,4 +62,5 @@ val appModule = module {
     viewModel { SettingsViewModel(get(), get()) }
     viewModel { FlashcardsViewModel(get()) }
     viewModel { QuizViewModel(get()) }
+    viewModel { FavoritesViewModel(get(), get()) }
 }

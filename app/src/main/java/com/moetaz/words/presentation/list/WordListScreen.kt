@@ -40,6 +40,7 @@ fun WordListScreen(
     onWordClick: (Long) -> Unit,
     onAddWordClick: () -> Unit,
     onSettingsClick: () -> Unit = {},
+    onFavoritesClick: () -> Unit = {},
     onFlashcardsClick: () -> Unit = {},
     onQuizClick: () -> Unit = {}
 ) {
@@ -51,6 +52,7 @@ fun WordListScreen(
         onWordClick = onWordClick,
         onAddWordClick = onAddWordClick,
         onSettingsClick = onSettingsClick,
+        onFavoritesClick = onFavoritesClick,
         onFlashcardsClick = onFlashcardsClick,
         onQuizClick = onQuizClick
     )
@@ -63,6 +65,7 @@ fun WordListContent(
     onWordClick: (Long) -> Unit,
     onAddWordClick: () -> Unit,
     onSettingsClick: () -> Unit = {},
+    onFavoritesClick: () -> Unit = {},
     onFlashcardsClick: () -> Unit = {},
     onQuizClick: () -> Unit = {}
 ) {
@@ -126,6 +129,13 @@ fun WordListContent(
                         )
 
                         Row {
+                            IconButton(onClick = onFavoritesClick) {
+                                Icon(
+                                    imageVector = Icons.Default.Favorite,
+                                    contentDescription = "Favorite Words",
+                                    tint = Color.White
+                                )
+                            }
                             IconButton(onClick = onFlashcardsClick) {
                                 Icon(
                                     imageVector = Icons.Default.Style,
